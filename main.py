@@ -6,11 +6,11 @@ from core.exception.exceptions import NoSettingsFilePresent, NoTemplateFilePrese
 #paths = ["settings.json", "operators/zong/template.json"]
 paths = ["settings.json"]
 
-def files_exist(paths):
+def files_exist(path_str: str):
     try:
         print("Checking necessary files...")
         result = [False, False]
-        for index, path in enumerate(paths):
+        for index, path in enumerate(path_str):
             if not os.path.isfile(path):
                 result[index] = False
             else:
