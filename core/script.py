@@ -17,11 +17,10 @@ This code include following :
 
 # !pip install pycryptodome
 # you can use requirements.txt
+
 # from core.GlobalParams import PARAMETERS, DATA_FRAMES
 
 from globals.parameters import PARAMETERS, DATA_FRAMES
-
-# from GlobalParams import PARAMETERS, DATA_FRAMES
 from generator.utils import (
     CryptoUtils,
     DataGenerator,
@@ -29,9 +28,6 @@ from generator.utils import (
     DataFrameProcessor,
 )
 
-# from json_utils import JsonHandler
-
-# from custom_json import JsonHandler
 from typing import Optional, List, Dict, Any, Tuple
 
 # from pydantic import BaseModel, Field
@@ -373,7 +369,7 @@ from parser.utils import ConfigHolder, json_loader
 
 if __name__ == "__main__":
     config_holder: ConfigHolder = json_loader(
-        "D:/STC_APP/improvements/security-layer/datageneration/core/settings.json"
+        "core/settings.json"
     )
 
     s = DataGenerationScript(config_holder=config_holder)

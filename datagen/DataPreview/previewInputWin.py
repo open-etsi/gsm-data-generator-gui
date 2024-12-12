@@ -1,13 +1,9 @@
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWidgets import QDialog, QTableWidgetItem
-from forms.input_ui import Ui_Dialog as input_ui
-import pandas as pd
+from gui.forms import Ui_Dialog as input_ui
 from PyQt6.QtCore import Qt
-import re
 
 # =================================#
-
-import sys
 
 app = QApplication([])
 # app = QApplication(sys.argv)
