@@ -29,9 +29,11 @@ from gui.forms.main_ui import Ui_MainWindow
 from gui.forms.login_ui import Ui_Form as login_form
 #from gui.forms import Ui_Form as sign_up_form
 
+from core.parser.utils import json_loader
+from core.executor.script import DataGenerationScript
 
 debug = False
-STC_ICON = "resources/style/icons/stc_logo.ico"
+STC_ICON = "resources/stc_logo.ico"
 # CONFIGURATION_FILE_PATH = "settings.json"
 
 
@@ -51,7 +53,7 @@ class MainWindow(QMainWindow):
         self.global_graph_check = None
         self.w = None
         user_name = kwargs.get("name")
-        user_role = kwargs.get("privilidges")
+        user_role = kwargs.get("privileges")
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.showMaximized()
@@ -906,13 +908,12 @@ class MainWindow(QMainWindow):
             # Do this [enable respective]
         else:
             self.parameters.set_SERVER_CHECK(False)
-
     def browse_button_func(self):
         path = self.project_path
-        path = os.path.join(path, "MNO Input file")
-        #        filters = "CSV Files (*.csv);;Text Files (*.txt)"
+        path = os.path.join(path, "Json File")
+        filters = "Json File (*.json);"
 
-        fname, _ = QFileDialog.getOpenFileNames(self, "Load MNO Input file", path)
+        fname, _ = QFileDialog.getOpenFileNames(self, "Load Json Input File", path, filter=filters)
         self.ui.textEdit.append(str(fname))
         if len(fname) != 0:
             self.ui.filename.setText(", ".join(fname))
@@ -921,6 +922,17 @@ class MainWindow(QMainWindow):
             #            self.global_input_path=fname[0]
             #            self.parameters.set_INPUT_PATH(fname[0])
             self.parameters.set_INPUT_FILE_PATH(fname[0])
+
+            config_holder = json_loader(fname[0])
+            s = DataGenerationScript(config_holder=config_holder)
+            s.SET_ALL_DISP_PARAMS()  # testing
+            (dfs, keys) = s.generate_all_data()
+
+            # print(s.generate_all_data())
+            print(dfs["ELECT"].to_csv("ELECT.csv"))
+            print(dfs["GRAPH"].to_csv("GRAPH.csv"))
+            print(dfs["SERVER"].to_csv("SERVER.csv"))
+
 
     def show_input_files(self):
         pass

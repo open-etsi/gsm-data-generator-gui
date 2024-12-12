@@ -2,7 +2,7 @@
 import  json
 from core.parser.utils import json_loader, ConfigHolder, ConfigData
 
-JSON_PATH = "C:/Users/DELL/Desktop/datadecryption_poetry/core/settings.json"
+JSON_PATH = "C:/Users/DELL/Desktop/datadecryption_poetry/settings.json"
 
 if __name__ == "__main__":
 
@@ -13,4 +13,4 @@ if __name__ == "__main__":
         data = json.load(f)
     config = ConfigData(**data)
     config_holder = ConfigHolder.from_config(config)
-    print(config_holder.DISP.imsi)
+    print(config_holder.DISP.pin1_rand)

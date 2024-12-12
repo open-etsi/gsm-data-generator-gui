@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../resources/style/icons/stc_logo.ico</normaloff>../resources/style/icons/stc_logo.ico</iconset>
+    <normaloff>//stcards-dc/STCards_Software_Team/resources/stc_png.png</normaloff>//stcards-dc/STCards_Software_Team/resources/stc_png.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color:rgba(32,33,36,255);
@@ -101,7 +101,7 @@ color: white;
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <property name="leftMargin">
-               <number>4</number>
+               <number>3</number>
               </property>
               <item>
                <widget class="QFrame" name="frame_3">
@@ -126,10 +126,7 @@ color: white;
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout">
-                 <property name="spacing">
-                  <number>0</number>
-                 </property>
+                <layout class="QGridLayout" name="gridLayout_16">
                  <property name="leftMargin">
                   <number>0</number>
                  </property>
@@ -142,452 +139,13 @@ color: white;
                  <property name="bottomMargin">
                   <number>0</number>
                  </property>
-                 <item>
-                  <widget class="QFrame" name="frame_7">
-                   <property name="styleSheet">
-                    <string notr="true"/>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <property name="spacing">
-                     <number>0</number>
-                    </property>
-                    <property name="leftMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                    <item>
-                     <widget class="QFrame" name="frame_9">
-                      <property name="minimumSize">
-                       <size>
-                        <width>100</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QGridLayout" name="gridLayout_6">
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <item row="0" column="0">
-                        <widget class="QFrame" name="frame_18">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QGridLayout" name="gridLayout_16">
-                          <property name="leftMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="topMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="rightMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="bottomMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="spacing">
-                           <number>0</number>
-                          </property>
-                          <item row="0" column="0">
-                           <widget class="QFrame" name="frame_19">
-                            <property name="styleSheet">
-                             <string notr="true"/>
-                            </property>
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
-                            </property>
-                            <layout class="QGridLayout" name="gridLayout_17">
-                             <property name="leftMargin">
-                              <number>0</number>
-                             </property>
-                             <property name="topMargin">
-                              <number>0</number>
-                             </property>
-                             <property name="rightMargin">
-                              <number>0</number>
-                             </property>
-                             <property name="bottomMargin">
-                              <number>0</number>
-                             </property>
-                             <property name="spacing">
-                              <number>0</number>
-                             </property>
-                             <item row="3" column="0">
-                              <widget class="QCheckBox" name="graph_data">
-                               <property name="styleSheet">
-                                <string notr="true">#graph_data{
-                               font: 10pt &quot;Segoe UI&quot;;
-}
-#graph_data::indicator
-                               {
-                               width : 20px;
-                               height : 20px;
-                               }
-                              
-#graph_data::indicator:unchecked{
-
-	image: url(resources/style/icons/unchk3.ico);
-}
-#graph_data::indicator:checked{
-
-	image: url(resources/style/icons/chk3.ico);
-}</string>
-                               </property>
-                               <property name="text">
-                                <string>Graphical Data</string>
-                               </property>
-                               <property name="tristate">
-                                <bool>false</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="0" column="0">
-                              <widget class="QCheckBox" name="production_data">
-                               <property name="styleSheet">
-                                <string notr="true">#production_data{
-
-                               font: 10pt &quot;Segoe UI&quot;;
-}
-#production_data::indicator
-                               {
-color:white;
-                               width : 20px;
-                               height : 20px;
-                               }
-
-#production_data::indicator:unchecked{
-	
-	image: url(resources/style/icons/unchk3.ico);
-}
-#production_data::indicator:checked{
-
-
-	image: url(resources/style/icons/chk3.ico);
-}
-</string>
-                               </property>
-                               <property name="text">
-                                <string>Production Data</string>
-                               </property>
-                               <property name="checkable">
-                                <bool>true</bool>
-                               </property>
-                               <property name="checked">
-                                <bool>false</bool>
-                               </property>
-                               <property name="tristate">
-                                <bool>false</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="4" column="0">
-                              <widget class="QCheckBox" name="elect_data">
-                               <property name="styleSheet">
-                                <string notr="true">#elect_data{
-                               font: 10pt &quot;Segoe UI&quot;;
-}
-#elect_data::indicator
-                               {
-                               width : 20px;
-                               height : 20px;
-                               }
-
-#elect_data::indicator:unchecked{
-
-	image: url(resources/style/icons/unchk3.ico);
-}
-#elect_data::indicator:checked{
-	
-	image: url(resources/style/icons/chk3.ico);
-}
-</string>
-                               </property>
-                               <property name="text">
-                                <string>Electrical Data</string>
-                               </property>
-                               <property name="autoRepeatDelay">
-                                <number>300</number>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_8">
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QGridLayout" name="gridLayout_15">
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <item row="0" column="0">
-                        <widget class="QFrame" name="frame_10">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>140</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QGridLayout" name="gridLayout_10">
-                          <property name="leftMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="topMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="rightMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="bottomMargin">
-                           <number>10</number>
-                          </property>
-                          <property name="horizontalSpacing">
-                           <number>5</number>
-                          </property>
-                          <property name="verticalSpacing">
-                           <number>0</number>
-                          </property>
-                          <item row="0" column="1">
-                           <widget class="QPushButton" name="browse_button">
-                            <property name="sizePolicy">
-                             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                             </sizepolicy>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <family>Segoe UI</family>
-                              <pointsize>9</pointsize>
-                              <italic>false</italic>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">#browse_button{background-color: rgba(63,64,66,255);
-font: 600 9pt &quot;Segoe UI&quot;;
-height:26px;
-width:80px;
-border-radius:5px;
-border:2px solid black;
-}
-#browse_button:hover{
-
-background-color:rgba(32,33,36,255);
-}</string>
-                            </property>
-                            <property name="text">
-                             <string>BROWSE</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="2">
-                           <widget class="QPushButton" name="preview_in_file">
-                            <property name="sizePolicy">
-                             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                             </sizepolicy>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <family>Segoe UI</family>
-                              <pointsize>9</pointsize>
-                              <italic>false</italic>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">#preview_in_file{background-color: rgba(63,64,66,255);
-font: 600 9pt &quot;Segoe UI&quot;;
-height:26px;
-width:80px;
-border-radius:5px;
-border:2px solid black;
-}
-#preview_in_file:hover{
-
-background-color:rgba(32,33,36,255);
-}</string>
-                            </property>
-                            <property name="text">
-                             <string>OPEN</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="0">
-                           <widget class="QLineEdit" name="filename">
-                            <property name="sizePolicy">
-                             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                             </sizepolicy>
-                            </property>
-                            <property name="mouseTracking">
-                             <bool>true</bool>
-                            </property>
-                            <property name="contextMenuPolicy">
-                             <enum>Qt::NoContextMenu</enum>
-                            </property>
-                            <property name="toolTip">
-                             <string>Input file from Operator</string>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">#filename{
-background-color: rgba(63,64,66,255);
-border-radius:5px;
-height:26px;
-border:2px solid black;
-padding-left:5px;
-}
-#filename:hover{
-border:2px solid black;
-}
-</string>
-                            </property>
-                            <property name="maxLength">
-                             <number>1000</number>
-                            </property>
-                            <property name="frame">
-                             <bool>true</bool>
-                            </property>
-                            <property name="readOnly">
-                             <bool>true</bool>
-                            </property>
-                            <property name="placeholderText">
-                             <string>  Input Data file</string>
-                            </property>
-                            <property name="clearButtonEnabled">
-                             <bool>false</bool>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                       <item row="1" column="0">
-                        <widget class="QFrame" name="frame_11">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::NoFrame</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Sunken</enum>
-                         </property>
-                         <property name="midLineWidth">
-                          <number>0</number>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
+                 <item row="2" column="0">
                   <widget class="QGroupBox" name="groupBox">
                    <property name="styleSheet">
                     <string notr="true"/>
                    </property>
                    <property name="title">
-                    <string>Input Parameters</string>
+                    <string>INPUT PARAMETERS</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_5">
                     <property name="leftMargin">
@@ -2351,6 +1909,396 @@ background-color:rgba(32,33,36,255);
                    </layout>
                   </widget>
                  </item>
+                 <item row="1" column="0">
+                  <widget class="QGroupBox" name="groupBox_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>300</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
+                   <property name="title">
+                    <string>SETTING</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_6">
+                    <item row="1" column="1">
+                     <widget class="QCheckBox" name="graph_data">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#graph_data{
+                               font: 10pt &quot;Segoe UI&quot;;
+}
+#graph_data::indicator
+                               {
+                               width : 20px;
+                               height : 20px;
+                               }
+                              
+#graph_data::indicator:unchecked{
+
+	image: url(resources/style/icons/unchk3.ico);
+}
+#graph_data::indicator:checked{
+
+	image: url(resources/style/icons/chk3.ico);
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>Graphical Data</string>
+                      </property>
+                      <property name="tristate">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <widget class="QCheckBox" name="elect_data">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#elect_data{
+                               font: 10pt &quot;Segoe UI&quot;;
+}
+#elect_data::indicator
+                               {
+                               width : 20px;
+                               height : 20px;
+                               }
+
+#elect_data::indicator:unchecked{
+
+	image: url(resources/style/icons/unchk3.ico);
+}
+#elect_data::indicator:checked{
+	
+	image: url(resources/style/icons/chk3.ico);
+}
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Electrical Data</string>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>300</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QCheckBox" name="production_data">
+                      <property name="styleSheet">
+                       <string notr="true">#production_data{
+
+                               font: 10pt &quot;Segoe UI&quot;;
+}
+#production_data::indicator
+                               {
+color:white;
+                               width : 20px;
+                               height : 20px;
+                               }
+
+#production_data::indicator:unchecked{
+	
+	image: url(resources/style/icons/unchk3.ico);
+}
+#production_data::indicator:checked{
+
+
+	image: url(resources/style/icons/chk3.ico);
+}
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Production Data</string>
+                      </property>
+                      <property name="checkable">
+                       <bool>true</bool>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                      <property name="tristate">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="lbl_vendor">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#lbl_vendor{
+
+
+}</string>
+                      </property>
+                      <property name="text">
+                       <string> Select Vendor:</string>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::AutoText</enum>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                      <property name="margin">
+                       <number>2</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="3">
+                     <widget class="QCheckBox" name="server_data">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#server_data{
+                               font: 10pt &quot;Segoe UI&quot;;
+}
+#server_data::indicator
+                               {
+                               width : 20px;
+                               height : 20px;
+                               }
+
+#server_data::indicator:unchecked{
+
+	image: url(resources/style/icons/unchk3.ico);
+}
+#server_data::indicator:checked{
+	
+	image: url(resources/style/icons/chk3.ico);
+}
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Server Data</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1" colspan="3">
+                     <widget class="QComboBox" name="comboVendor">
+                      <property name="styleSheet">
+                       <string notr="true">QComboBox#comboVendor{
+    border:                 none;
+ background-color: rgba(63,64,66,255);
+color:                      white;
+    font-weight:            bold;
+    padding:                    5px;
+border-radius:5px;
+border:2px solid black;
+}
+QComboBox#comboVendor:hover{
+
+background-color:rgba(32,33,36,255);
+
+}
+QListView{
+    border:                 none;
+    color:                     white;
+    background-color: rgba(63,64,66,255);
+    font-weight:            bold;
+    selection-background-color: rgb(0, 144, 196);
+    show-decoration-selected: 1;
+    margin-left:                -10px;
+    padding-left    :           15px;
+}
+QListView::item:hover{
+
+    background-color:   rgb(0, 144, 196);
+    border:                 none;
+}
+
+
+
+</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>ZONG</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>JAZZ</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QGroupBox" name="groupBox_3">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="title">
+                    <string>INPUT FILE</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_10">
+                    <item row="0" column="0">
+                     <widget class="QLineEdit" name="filename">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>8</pointsize>
+                       </font>
+                      </property>
+                      <property name="mouseTracking">
+                       <bool>true</bool>
+                      </property>
+                      <property name="contextMenuPolicy">
+                       <enum>Qt::NoContextMenu</enum>
+                      </property>
+                      <property name="toolTip">
+                       <string>Input file from Operator</string>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#filename{
+background-color: rgba(63,64,66,255);
+border-radius:5px;
+height:26px;
+border:2px solid black;
+padding-left:5px;
+}
+#filename:hover{
+border:2px solid black;
+}
+</string>
+                      </property>
+                      <property name="maxLength">
+                       <number>1000</number>
+                      </property>
+                      <property name="frame">
+                       <bool>true</bool>
+                      </property>
+                      <property name="readOnly">
+                       <bool>true</bool>
+                      </property>
+                      <property name="placeholderText">
+                       <string>  Input Data file</string>
+                      </property>
+                      <property name="clearButtonEnabled">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="browse_button">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>9</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#browse_button{background-color: rgba(63,64,66,255);
+font: 600 9pt &quot;Segoe UI&quot;;
+height:26px;
+width:80px;
+border-radius:5px;
+border:2px solid black;
+}
+#browse_button:hover{
+
+background-color:rgba(32,33,36,255);
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>BROWSE</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QPushButton" name="preview_in_file">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>9</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#preview_in_file{background-color: rgba(63,64,66,255);
+font: 600 9pt &quot;Segoe UI&quot;;
+height:26px;
+width:80px;
+border-radius:5px;
+border:2px solid black;
+}
+#preview_in_file:hover{
+
+background-color:rgba(32,33,36,255);
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>OPEN</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
@@ -2566,8 +2514,14 @@ QHeaderView::section:horizontal
                          <property name="midLineWidth">
                           <number>0</number>
                          </property>
+                         <property name="verticalScrollBarPolicy">
+                          <enum>Qt::ScrollBarAlwaysOn</enum>
+                         </property>
                          <property name="horizontalScrollBarPolicy">
                           <enum>Qt::ScrollBarAlwaysOff</enum>
+                         </property>
+                         <property name="sizeAdjustPolicy">
+                          <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
                          </property>
                          <property name="editTriggers">
                           <set>QAbstractItemView::DoubleClicked</set>
@@ -2651,9 +2605,14 @@ QHeaderView::section:horizontal
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#dn_button{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/downw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #dn_button:hover{
 	
@@ -2663,9 +2622,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/bottom.ico</normaloff>:/icons/bottom.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>22</width>
+                           <height>22</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -2690,7 +2651,7 @@ background-color:rgba(32,33,36,255);
                           </size>
                          </property>
                          <property name="cursor">
-                          <cursorShape>ArrowCursor</cursorShape>
+                          <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="toolTipDuration">
                           <number>-1</number>
@@ -2698,6 +2659,8 @@ background-color:rgba(32,33,36,255);
                          <property name="styleSheet">
                           <string notr="true">#up_button{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/upw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #up_button:hover{
 	
@@ -2707,9 +2670,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/top.ico</normaloff>:/icons/top.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>22</width>
+                           <height>22</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -2721,9 +2686,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#g_save{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/savew.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #g_save:hover{
 	
@@ -2732,10 +2702,6 @@ background-color:rgba(32,33,36,255);
                          </property>
                          <property name="text">
                           <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/save.ico</normaloff>:/icons/save.ico</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -2753,9 +2719,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#g_default{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/loadw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #g_default:hover{
 	
@@ -2765,9 +2736,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/r.ico</normaloff>:/icons/r.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -2779,9 +2752,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#del_text{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/minusw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #del_text:hover{
 
@@ -2791,9 +2769,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/del.ico</normaloff>:/icons/del.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -2805,9 +2785,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#add_text{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/addw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #add_text:hover{
 
@@ -2817,9 +2802,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/plus.ico</normaloff>:/icons/plus.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -3132,8 +3119,14 @@ QHeaderView::section:horizontal
                          <property name="frameShape">
                           <enum>QFrame::Box</enum>
                          </property>
+                         <property name="verticalScrollBarPolicy">
+                          <enum>Qt::ScrollBarAlwaysOn</enum>
+                         </property>
                          <property name="horizontalScrollBarPolicy">
                           <enum>Qt::ScrollBarAlwaysOff</enum>
+                         </property>
+                         <property name="sizeAdjustPolicy">
+                          <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
                          </property>
                          <property name="editTriggers">
                           <set>QAbstractItemView::DoubleClicked</set>
@@ -3223,9 +3216,14 @@ QHeaderView::section:horizontal
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#e_up_button{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/upw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #e_up_button:hover{
 	
@@ -3236,9 +3234,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/top.ico</normaloff>:/icons/top.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>22</width>
+                           <height>22</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -3250,9 +3250,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#e_dn_button{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/downw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #e_dn_button:hover{
 
@@ -3262,9 +3267,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/bottom.ico</normaloff>:/icons/bottom.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>22</width>
+                           <height>22</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -3276,9 +3283,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#e_save{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/savew.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #e_save:hover{
 	
@@ -3287,10 +3299,6 @@ background-color:rgba(32,33,36,255);
                          </property>
                          <property name="text">
                           <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/save.ico</normaloff>:/icons/save.ico</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -3308,9 +3316,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#e_default{background-color: rgba(63,64,66,255);
 border:2px solid black;
+		image: url(resources/style/icons/loadw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #e_default:hover{
 	
@@ -3320,9 +3333,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/r.ico</normaloff>:/icons/r.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -3334,9 +3349,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#e_del_text{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/minusw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #e_del_text:hover{
 
@@ -3347,9 +3367,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/del.ico</normaloff>:/icons/del.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -3361,9 +3383,14 @@ background-color:rgba(32,33,36,255);
                            <height>30</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">#e_add_text{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/addw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #e_add_text:hover{
 	
@@ -3373,9 +3400,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/plus.ico</normaloff>:/icons/plus.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -3879,7 +3908,7 @@ background-color:rgba(32,33,36,255);
                <widget class="QLabel" name="lbl_userrole">
                 <property name="maximumSize">
                  <size>
-                  <width>25</width>
+                  <width>35</width>
                   <height>25</height>
                  </size>
                 </property>
@@ -4445,6 +4474,7 @@ border-bottom:1px  solid black;
 color:white;
 
 }
+
 QTableView::item:selected{
     background-color:  rgba(63,64,66,255);
 }
@@ -4470,8 +4500,14 @@ QHeaderView::section:horizontal
                          <property name="midLineWidth">
                           <number>0</number>
                          </property>
+                         <property name="verticalScrollBarPolicy">
+                          <enum>Qt::ScrollBarAlwaysOn</enum>
+                         </property>
                          <property name="horizontalScrollBarPolicy">
                           <enum>Qt::ScrollBarAlwaysOff</enum>
+                         </property>
+                         <property name="sizeAdjustPolicy">
+                          <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
                          </property>
                          <property name="editTriggers">
                           <set>QAbstractItemView::DoubleClicked</set>
@@ -4486,7 +4522,7 @@ QHeaderView::section:horizontal
                           <enum>Qt::IgnoreAction</enum>
                          </property>
                          <property name="alternatingRowColors">
-                          <bool>true</bool>
+                          <bool>false</bool>
                          </property>
                          <property name="selectionMode">
                           <enum>QAbstractItemView::SingleSelection</enum>
@@ -4510,7 +4546,7 @@ QHeaderView::section:horizontal
                           <number>3</number>
                          </property>
                          <attribute name="horizontalHeaderVisible">
-                          <bool>false</bool>
+                          <bool>true</bool>
                          </attribute>
                          <attribute name="horizontalHeaderCascadingSectionResizes">
                           <bool>true</bool>
@@ -4539,6 +4575,9 @@ QHeaderView::section:horizontal
                          <attribute name="verticalHeaderDefaultSectionSize">
                           <number>25</number>
                          </attribute>
+                         <attribute name="verticalHeaderHighlightSections">
+                          <bool>false</bool>
+                         </attribute>
                          <attribute name="verticalHeaderStretchLastSection">
                           <bool>false</bool>
                          </attribute>
@@ -4556,20 +4595,26 @@ QHeaderView::section:horizontal
                           </size>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">#de_dn_button{background-color: rgba(63,64,66,255);
+                          <string notr="true">#de_dn_button
+{
+background-color: rgba(63,64,66,255);
 border:2px solid black;
+image: url(resources/style/icons/downw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
-#de_dn_button:hover{
-
+#de_dn_button:hover
+{	
 background-color:rgba(32,33,36,255);
 }</string>
                          </property>
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/bottom.ico</normaloff>:/icons/bottom.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>22</width>
+                           <height>22</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -4597,21 +4642,26 @@ background-color:rgba(32,33,36,255);
                           <number>-1</number>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">#de_up_button{background-color: rgba(63,64,66,255);
+                          <string notr="true">#de_up_button
+{
+background-color: rgba(63,64,66,255);
 border:2px solid black;
-color:white;
+image: url(resources/style/icons/upw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
-#de_up_button:hover{
-	
+#de_up_button:hover
+{	
 background-color:rgba(32,33,36,255);
 }</string>
                          </property>
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/top.ico</normaloff>:/icons/top.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>22</width>
+                           <height>22</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -4624,20 +4674,20 @@ background-color:rgba(32,33,36,255);
                           </size>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">#de_g_save{background-color: rgba(63,64,66,255);
+                          <string notr="true">#de_g_save
+{
+background-color: rgba(63,64,66,255);
 border:2px solid black;
+image: url(resources/style/icons/savew.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
-#de_g_save:hover{
-
+#de_g_save:hover
+{	
 background-color:rgba(32,33,36,255);
 }</string>
                          </property>
                          <property name="text">
                           <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/save.ico</normaloff>:/icons/save.ico</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -4656,20 +4706,26 @@ background-color:rgba(32,33,36,255);
                           </size>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">#de_default{background-color: rgba(63,64,66,255);
+                          <string notr="true">#de_default
+{
+background-color: rgba(63,64,66,255);
 border:2px solid black;
+image: url(resources/style/icons/loadw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
-#de_default:hover{
-	
+#de_default:hover
+{	
 background-color:rgba(32,33,36,255);
 }</string>
                          </property>
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/r.ico</normaloff>:/icons/r.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -4684,6 +4740,8 @@ background-color:rgba(32,33,36,255);
                          <property name="styleSheet">
                           <string notr="true">#de_del_text{background-color: rgba(63,64,66,255);
 border:2px solid black;
+	image: url(resources/style/icons/minusw.ico);
+padding:2px;
 color: rgb(0, 0, 0);}
 #de_del_text:hover{
 	
@@ -4693,9 +4751,11 @@ background-color:rgba(32,33,36,255);
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/del.ico</normaloff>:/icons/del.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -4708,23 +4768,26 @@ background-color:rgba(32,33,36,255);
                           </size>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">#de_add_text{
-background-color: rgba(63,64,66,255);
-color: rgb(0, 0, 0);
-border:2px solid black;
-}
-#de_add_text:hover
+                          <string notr="true">#de_add_text
 {
-
+background-color: rgba(63,64,66,255);
+border:2px solid black;
+image: url(resources/style/icons/addw.ico);
+padding:2px;
+color: rgb(0, 0, 0);}
+#de_add_text:hover
+{	
 background-color:rgba(32,33,36,255);
 }</string>
                          </property>
                          <property name="text">
                           <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="../resources/style/icons/resources.qrc">
-                           <normaloff>:/icons/plus.ico</normaloff>:/icons/plus.ico</iconset>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>
@@ -5272,12 +5335,6 @@ background-color:rgba(32,33,36,255);
  <tabstops>
   <tabstop>tabWidget</tabstop>
   <tabstop>btn_logout</tabstop>
-  <tabstop>production_data</tabstop>
-  <tabstop>filename</tabstop>
-  <tabstop>browse_button</tabstop>
-  <tabstop>preview_in_file</tabstop>
-  <tabstop>graph_data</tabstop>
-  <tabstop>elect_data</tabstop>
   <tabstop>k4_key_text</tabstop>
   <tabstop>k4_key_fetch</tabstop>
   <tabstop>k4_key_auto</tabstop>

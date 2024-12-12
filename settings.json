@@ -19,13 +19,12 @@
     "elect_check": true,
     "graph_check": true,
     "server_check": true,
-    "pin1_rand": true,
-    "puk1_rand": true,
-    "pin2_rand": true,
-    "puk2_rand": true,
-    "adm1_rand": true,
-    "adm6_rand": true,
-    "acc_rand": true
+    "pin1_fix": false,
+    "puk1_fix": false,
+    "pin2_fix": false,
+    "puk2_fix": false,
+    "adm1_fix": false,
+    "adm6_fix": false
   },
   "PATHS": {
     "TEMPLATE_JSON": "operators/zong/template.json",
@@ -43,7 +42,8 @@
       "PUK1",
       "PIN2",
       "PUK2",
-      "ADM1"
+      "ADM1",
+      "ADM6"
     ],
     "data_variables": [
       "IMSI",
@@ -77,7 +77,8 @@
       "6": ["ICCID", "Normal", "16-20"],
       "7": ["PIN1", "Normal", "0-3"],
       "8": ["PUK1", "Normal", "0-7"],
-      "9": ["IMSI", "Normal", "9-10"]
+      "9": ["PIN2", "Normal", "0-3"],
+      "10": ["PUK2", "Normal", "0-7"]
     }
   }
 }

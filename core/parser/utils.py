@@ -24,12 +24,12 @@ class DISP(BaseModel):
     elect_check: bool
     graph_check: bool
     server_check: bool
-    pin1_rand: bool
-    puk1_rand: bool
-    pin2_rand: bool
-    puk2_rand: bool
-    adm1_rand: bool
-    adm6_rand: bool
+    pin1_fix: bool
+    puk1_fix: bool
+    pin2_fix: bool
+    puk2_fix: bool
+    adm1_fix: bool
+    adm6_fix: bool
 
 
 class PATHS(BaseModel):

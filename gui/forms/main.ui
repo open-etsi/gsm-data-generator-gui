@@ -565,6 +565,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1106,6 +1107,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1247,6 +1249,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1411,6 +1414,7 @@ border:2px solid black;
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1484,6 +1488,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -2234,6 +2239,7 @@ border:2px solid black;
                        <font>
                         <family>Segoe UI</family>
                         <pointsize>9</pointsize>
+                        <weight>75</weight>
                         <italic>false</italic>
                         <bold>true</bold>
                        </font>
@@ -2271,6 +2277,7 @@ background-color:rgba(32,33,36,255);
                        <font>
                         <family>Segoe UI</family>
                         <pointsize>9</pointsize>
+                        <weight>75</weight>
                         <italic>false</italic>
                         <bold>true</bold>
                        </font>
@@ -2821,6 +2828,7 @@ background-color:rgba(32,33,36,255);
                          <property name="font">
                           <font>
                            <family>Segoe UI</family>
+                           <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>
@@ -3578,6 +3586,7 @@ QListView::item:hover{
                     <font>
                      <family>Segoe UI</family>
                      <pointsize>9</pointsize>
+                     <weight>68</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -4192,6 +4201,7 @@ border:2px solid black;
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -4229,6 +4239,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -4546,7 +4557,7 @@ QHeaderView::section:horizontal
                           <number>3</number>
                          </property>
                          <attribute name="horizontalHeaderVisible">
-                          <bool>true</bool>
+                          <bool>false</bool>
                          </attribute>
                          <attribute name="horizontalHeaderCascadingSectionResizes">
                           <bool>true</bool>
@@ -4802,6 +4813,7 @@ background-color:rgba(32,33,36,255);
                          <property name="font">
                           <font>
                            <family>Segoe UI</family>
+                           <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>
@@ -5402,8 +5414,8 @@ background-color:rgba(32,33,36,255);
   <tabstop>de_generate_button</tabstop>
  </tabstops>
  <resources>
-  <include location="../resources/style/icons/icons.qrc"/>
-  <include location="../resources/style/icons/resources.qrc"/>
+  <include location="../../resources/icons.qrc"/>
+  <include location="../../resources/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

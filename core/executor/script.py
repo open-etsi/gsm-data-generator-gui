@@ -92,13 +92,13 @@ class DataGenerationScript:
         # ========================================#
         # ========================================#
 
-        self.params.set_PIN1_RAND(False)
-        self.params.set_PUK1_RAND(True)
-        self.params.set_PIN2_RAND(False)
-        self.params.set_PUK2_RAND(False)
-        self.params.set_ADM1_RAND(False)
-        self.params.set_ADM6_RAND(True)
-        self.params.set_ACC_RAND(False)
+        self.params.set_PIN1_RAND(self.config_holder.DISP.pin1_fix)
+        self.params.set_PUK1_RAND(self.config_holder.DISP.puk1_fix)
+        self.params.set_PIN2_RAND(self.config_holder.DISP.pin2_fix)
+        self.params.set_PUK2_RAND(self.config_holder.DISP.puk2_fix)
+        self.params.set_ADM1_RAND(self.config_holder.DISP.adm1_fix)
+        self.params.set_ADM6_RAND(self.config_holder.DISP.adm6_fix)
+#        self.params.set_ACC_RAND(self.config_holder.DISP.pin1_rand)
 
     def generate_eki(self, ki):
         return self.data_generator.generate_eki(self.params.get_K4(), ki)
