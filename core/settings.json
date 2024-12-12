@@ -3,7 +3,7 @@
     "elect_data_sep": ",",
     "server_data_sep": ",",
     "graph_data_sep": ",",
-    "K4": "1111111111111111111111111111111111111111111111111111111111111111",
+    "K4": "1111111111111111151111111111111111111111111111111111111111111111",
     "op": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     "imsi": "111111111155555",
     "iccid": "1111111111111155555",
@@ -67,17 +67,61 @@
       "KIK3"
     ],
     "laser_variables": {
-      "0": ["ICCID", "Normal", "0-20"],
-      "1": ["ICCID", "Normal", "0-20"],
-      "2": ["ICCID", "Normal", "0-3"],
-      "3": ["ICCID", "Normal", "4-7"],
-      "4": ["ICCID", "Normal", "8-11"],
-      "5": ["ICCID", "Normal", "12-15"],
-      "6": ["ICCID", "Normal", "16-20"],
-      "7": ["PIN1", "Normal", "0-3"],
-      "8": ["PUK1", "Normal", "0-7"],
-      "9": ["IMSI", "Normal", "9-10"],
-      "10": ["ICCID", "Normal", "0-20"]
+      "0": [
+        "ICCID",
+        "Normal",
+        "0-20"
+      ],
+      "1": [
+        "ICCID",
+        "Normal",
+        "0-20"
+      ],
+      "2": [
+        "ICCID",
+        "Normal",
+        "0-3"
+      ],
+      "3": [
+        "ICCID",
+        "Normal",
+        "4-7"
+      ],
+      "4": [
+        "ICCID",
+        "Normal",
+        "8-11"
+      ],
+      "5": [
+        "ICCID",
+        "Normal",
+        "12-15"
+      ],
+      "6": [
+        "ICCID",
+        "Normal",
+        "16-20"
+      ],
+      "7": [
+        "PIN1",
+        "Normal",
+        "0-3"
+      ],
+      "8": [
+        "PUK1",
+        "Normal",
+        "0-7"
+      ],
+      "9": [
+        "IMSI",
+        "Normal",
+        "9-10"
+      ],
+      "10": [
+        "ICCID",
+        "Normal",
+        "0-20"
+      ]
     }
   }
 }
