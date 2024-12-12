@@ -24,7 +24,7 @@ from gui.messages import messageBox
 #from core.json_utils import JsonHandler
 #from core.settings import SETTINGS
 from gui.settings import SETTINGS
-from core.styleSheets import style_sheet_good, style_sheet_bad, style_sheet_disabled
+from gui.styleSheets import style_sheet_good, style_sheet_bad, style_sheet_disabled
 from gui.forms.main_ui import Ui_MainWindow
 from gui.forms.login_ui import Ui_Form as login_form
 #from gui.forms import Ui_Form as sign_up_form
