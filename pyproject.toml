@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "datageneration"
+version = "0.1.0"
+description = ""
+authors = ["Hamza Qureshi <hamza7771.861@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyqt6 = "^6.7.1"
+pandas = "^2.2.3"
+pycryptodome = "^3.21.0"
+pydantic = "^2.10.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

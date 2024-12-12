@@ -1,0 +1,73 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/security-layer/datagen-v39-vscode-v2 - (xDataBase)/setup.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": true
+  },
+  {
+   "optionDest": "console",
+   "value": true
+  },
+  {
+   "optionDest": "icon_file",
+   "value": "C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/security-layer/datagen-v39-vscode-v2 - (xDataBase)/resources/style/icons/stc_logo.ico"
+  },
+  {
+   "optionDest": "name",
+   "value": "DataGenerator"
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "version_file",
+   "value": "C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/security-layer/datagen-v39-vscode-v2 - (xDataBase)/version_info.txt"
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/security-layer/datagen-v39-vscode-v2 - (xDataBase)/settings.json;."
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}

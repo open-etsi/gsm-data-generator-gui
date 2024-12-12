@@ -1,0 +1,24 @@
+{
+    "input": {
+        "file_name": "N2023031016844011.i01",
+        "vendor": "Secure Tech STC AES 256",
+        "card_type": "64k 3 in one Cut 4G SIM",
+        "quantity": "5 ( 1 / 1 )",
+        "imsi": [
+            "410040619843710",
+            "410040619843705"
+        ],
+        "iccid": [
+            "899204480323000004",
+            "899204480323000005"
+        ],
+        "kid": "100",
+        "opid": "222",
+        "generated_on": "2023-03-10 16",
+        "variables": [
+            "ICCID",
+            "IMSI"
+        ]
+    },
+    "JOB_NAME": "N2023031016844011"
+}
