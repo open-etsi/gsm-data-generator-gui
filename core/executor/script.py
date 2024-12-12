@@ -54,6 +54,7 @@ from core.executor.utils import list_2_dict, dict_2_list, default_headers, copy_
 class DataGenerationScript:
 
     def __init__(self, config_holder):
+        self.config_holder = config_holder
         self.params = PARAMETERS.get_instance()
         self.dataframes = DATA_FRAMES.get_instance()
         self.crypto_utils = CryptoUtils()
@@ -62,30 +63,30 @@ class DataGenerationScript:
         self.df_processor = DataFrameProcessor()
 
     def SET_ALL_DISP_PARAMS(self):
-        self.params.set_K4(config_holder.DISP.K4)
-        self.params.set_OP(config_holder.DISP.op)
-        self.params.set_IMSI(config_holder.DISP.imsi)
-        self.params.set_ICCID(config_holder.DISP.iccid)
-        self.params.set_PIN1(config_holder.DISP.pin1)
-        self.params.set_PUK1(config_holder.DISP.puk1)
-        self.params.set_PIN2(config_holder.DISP.pin2)
-        self.params.set_PUK2(config_holder.DISP.puk2)
-        self.params.set_ADM1(config_holder.DISP.adm1)
-        self.params.set_ADM6(config_holder.DISP.adm6)
-        self.params.set_DATA_SIZE(config_holder.DISP.size)
+        self.params.set_K4(self.config_holder.DISP.K4)
+        self.params.set_OP(self.config_holder.DISP.op)
+        self.params.set_IMSI(self.config_holder.DISP.imsi)
+        self.params.set_ICCID(self.config_holder.DISP.iccid)
+        self.params.set_PIN1(self.config_holder.DISP.pin1)
+        self.params.set_PUK1(self.config_holder.DISP.puk1)
+        self.params.set_PIN2(self.config_holder.DISP.pin2)
+        self.params.set_PUK2(self.config_holder.DISP.puk2)
+        self.params.set_ADM1(self.config_holder.DISP.adm1)
+        self.params.set_ADM6(self.config_holder.DISP.adm6)
+        self.params.set_DATA_SIZE(self.config_holder.DISP.size)
 
         self.params.set_PRODUCTION_CHECK(False)
-        self.params.set_ELECT_CHECK(config_holder.DISP.elect_check)
-        self.params.set_GRAPH_CHECK(config_holder.DISP.graph_check)
-        self.params.set_SERVER_CHECK(config_holder.DISP.server_check)
+        self.params.set_ELECT_CHECK(self.config_holder.DISP.elect_check)
+        self.params.set_GRAPH_CHECK(self.config_holder.DISP.graph_check)
+        self.params.set_SERVER_CHECK(self.config_holder.DISP.server_check)
 
         self.params.set_SERVER_DICT(
-            list_2_dict(config_holder.PARAMETERS.server_variables)
+            list_2_dict(self.config_holder.PARAMETERS.server_variables)
         )
-        self.params.set_ELECT_DICT(list_2_dict(config_holder.PARAMETERS.data_variables))
-        self.params.set_GRAPH_DICT((config_holder.PARAMETERS.laser_variables))
+        self.params.set_ELECT_DICT(list_2_dict(self.config_holder.PARAMETERS.data_variables))
+        self.params.set_GRAPH_DICT((self.config_holder.PARAMETERS.laser_variables))
         #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
-        self.params.set_INPUT_PATH(config_holder.PATHS.INPUT_FILE_PATH)
+        self.params.set_INPUT_PATH(self.config_holder.PATHS.INPUT_FILE_PATH)
 
         # ========================================#
         # ========================================#
@@ -231,21 +232,3 @@ class DataGenerationScript:
         return result_dfs, keys_dict
 
 
-# For testing
-
-# from core.parser.utils import ConfigHolder, json_loader
-# # from core.executor.script import DataGenerationScript
-#
-# if __name__ == "__main__":
-#     config_holder: ConfigHolder = json_loader("settings.json")
-#     s = DataGenerationScript(config_holder=config_holder)
-#     s.SET_ALL_DISP_PARAMS()  # testing
-#     (dfs, keys) = s.generate_all_data()
-#
-#     # print(s.generate_all_data())
-#     print(dfs["ELECT"].to_csv("temp_elect.csv"))
-#     print(dfs["GRAPH"].to_csv("temp_graph.csv"))
-#     print(dfs["SERVER"].to_csv("temp_server.csv"))
-#
-#
-#
