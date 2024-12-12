@@ -14,7 +14,7 @@
     "adm1": "11111111",
     "adm6": "11111111",
     "acc": "1111",
-    "size": 25,
+    "size": 5,
     "prod_check": true,
     "elect_check": true,
     "graph_check": true,

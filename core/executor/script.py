@@ -20,99 +20,36 @@ This code include following :
 
 # from core.GlobalParams import PARAMETERS, DATA_FRAMES
 
-from globals.parameters import PARAMETERS, DATA_FRAMES
-from generator.utils import (
-    CryptoUtils,
-    DataGenerator,
-    DataProcessing,
-    DataFrameProcessor,
-)
+# Standard library imports
+import binascii
+import collections
+import datetime
+import json
+import os
+import random
+import secrets
+import string
+import time
+import uuid
 
-from typing import Optional, List, Dict, Any, Tuple
-
-# from pydantic import BaseModel, Field
+# Third-party imports
+import pandas as pd
 from Crypto.Cipher import AES
 from io import BytesIO
-import secrets
-import pandas as pd
-import collections
-import binascii
-import datetime
-import random
-import string
-import uuid
-import json
-import time
-import os
 
-# CONFIGURATION_FILE_PATH = "settings.json"
+# Typing imports
+from typing import Any, Dict, List, Optional, Tuple
 
-default_headers = (
-    "ICCID",
-    "IMSI",
-    "OP",
-    "K4",
-    "PIN1",
-    "PUK1",
-    "PIN2",
-    "PUK2",
-    "KI",
-    "EKI",
-    "OPC",
-    "ADM1",
-    "ADM6",
-    "ACC",
-    "KIC1",
-    "KID1",
-    "KIK1",
-    "KIC2",
-    "KID2",
-    "KIK2",
-    "KIC3",
-    "KID3",
-    "KIK3",
+# Project-specific imports
+from core.generator.utils import (
+    CryptoUtils,
+    DataFrameProcessor,
+    DataGenerator,
+    DataProcessing,
 )
-
-
-def list_2_dict(list: list) -> dict:
-    dict = {}
-    for index in range(0, len(list)):
-        dict[str(index)] = [list[index], "Normal", "0-31"]
-    return dict
-
-
-def dict_2_list(d: dict) -> list:
-    list1 = []
-    for index, j in enumerate(d):
-        temp = list(d.values())[index][0]
-        list1.append(temp)
-    return list1
-
-
-# # m_zong = ZongGenerateHandle()
-
-# # m_zong.set_json_to_UI()
-# # m_zong.Generate_laser_file("AAA",s.dataframes.GRAPH_DF)
-# # m_zong.Generate_servr_file("ASD",s.dataframes.SERVR_DF)
-# # m_zong.Generate_elect_file("ASD",s.dataframes.ELECT_DF)
-
-
-def read_json(file_path: str):
-    try:
-        with open(file_path, "r") as json_file:
-            data = json.load(json_file)
-        return dict(data)
-    except FileNotFoundError:
-        print(f"Error: File '{file_path}' not found.")
-        return None  # You can choose to return None or raise a custom exception here
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON in '{file_path}': {e}")
-        return None  # You can choose to return None or raise a custom exception here
-
-
-def copy_function(x):
-    return str(x)
-
+from globals.parameters import DATA_FRAMES, PARAMETERS
+from core.executor.utils import list_2_dict, dict_2_list, default_headers, copy_function
+# Commented-out imports (if needed in the future)
 
 class DataGenerationScript:
 
@@ -127,8 +64,8 @@ class DataGenerationScript:
     def SET_ALL_DISP_PARAMS(self):
         self.params.set_K4(config_holder.DISP.K4)
         self.params.set_OP(config_holder.DISP.op)
-        self.params.set_IMSI(config_holder.DISP.iccid)
-        self.params.set_ICCID(config_holder.DISP.imsi)
+        self.params.set_IMSI(config_holder.DISP.imsi)
+        self.params.set_ICCID(config_holder.DISP.iccid)
         self.params.set_PIN1(config_holder.DISP.pin1)
         self.params.set_PUK1(config_holder.DISP.puk1)
         self.params.set_PIN2(config_holder.DISP.pin2)
@@ -193,16 +130,14 @@ class DataGenerationScript:
         df["IMSI"] = df["IMSI"].apply(lambda x: copy_function(x))
         df["PIN1"] = df["PIN1"].apply(lambda x: self.generate_pin("PIN1"))
         df["PIN2"] = df["PIN2"].apply(lambda x: self.generate_pin("PIN2"))
-        df["PUK1"] = df["PUK1"].apply(lambda x: self.generate_pin("PUK1"))
-        df["PUK2"] = df["PUK2"].apply(lambda x: self.generate_pin("PUK2"))
+        df["PUK1"] = df["PUK1"].apply(lambda x: self.generate_puk("PUK1"))
+        df["PUK2"] = df["PUK2"].apply(lambda x: self.generate_puk("PUK2"))
 
         df["ADM1"] = df["ADM1"].apply(lambda x: self.generate_adm("ADM1"))
         df["ADM6"] = df["ADM6"].apply(lambda x: self.generate_adm("ADM6"))
 
         df["KI"] = df["KI"].apply(lambda x: self.data_generator.generate_ki())
-        df["ACC"] = df["IMSI"].apply(
-            lambda imsi: self.data_processor.generate_acc(imsi=str(imsi))
-        )
+        df["ACC"] = df["IMSI"].apply(lambda imsi: self.data_processor.generate_acc(imsi=str(imsi)))
 
         #        self.apply_function(df, "EKI", "KI", functions)
         self.apply_function(df, "EKI", "KI", self.generate_eki)
@@ -215,31 +150,22 @@ class DataGenerationScript:
                     df[col] = df["KI"].apply(
                         lambda x: self.data_generator.generate_otas()
                     )
-        df.to_csv("temp.csv")
+#        df.to_csv("temp.csv")
         return df
 
     def generate_demo_data(self):
-        df = self.df_processor.generate_empty_dataframe(
-            default_headers, self.params.get_DATA_SIZE()
-        )
-
-        print("-------> ", self.params.get_K4())
+        df = self.df_processor.generate_empty_dataframe(default_headers, self.params.get_DATA_SIZE())
         self.df_processor.initialize_column(df, "ICCID", self.params.get_ICCID())
         self.df_processor.initialize_column(df, "IMSI", self.params.get_IMSI())
-
-        self.df_processor.initialize_column(
-            df, "OP", self.params.get_OP(), increment=False
-        )
-        self.df_processor.initialize_column(
-            df, "K4", self.params.get_K4(), increment=False
-        )
+        self.df_processor.initialize_column(df, "OP", self.params.get_OP(), increment=False)
+        self.df_processor.initialize_column(df, "K4", self.params.get_K4(), increment=False)
         return self.apply_functions(df)
 
     def generate_non_demo_data(self):
         input_df = self.dataframes.get_INPUT_DF()
         df = self.df_processor.generate_empty_dataframe(default_headers, len(input_df))
-        #        self.df_processor.initialize_column(df, 'OP', self.params.get_OP(), increment=False)
-        #        self.df_processor.initialize_column(df, 'K4', self.params.get_K4(), increment=False)
+        self.df_processor.initialize_column(df, 'OP', self.params.get_OP(), increment=False)
+        self.df_processor.initialize_column(df, 'K4', self.params.get_K4(), increment=False)
         df["ICCID"] = input_df["ICCID"]
         df["IMSI"] = input_df["IMSI"]
         return self.apply_functions(df)
@@ -255,10 +181,8 @@ class DataGenerationScript:
             "op": self.params.get_OP(),
         }
 
-    def process_final_data(
-        self, input_dict: dict, df_input: pd.DataFrame, clip: bool, encoding: bool
-    ):
-        print("In process_final_data()", input_dict)
+    def process_final_data(self, input_dict: dict, df_input: pd.DataFrame, clip: bool, encoding: bool):
+#        print("In process_final_data()", clip, encoding)
         df = df_input.copy(deep=True)
         if encoding:
             df = self.df_processor.encode_dataframe(df)
@@ -268,7 +192,7 @@ class DataGenerationScript:
 
         if clip:
             df = self.df_processor.clip_columns(df, left_ranges, right_ranges)
-
+        print(df)
         return df
 
     def generate_all_data(self):
@@ -276,7 +200,7 @@ class DataGenerationScript:
         #     self.params.get_PRODUCTION_CHECK()
         # )
         initial_df, keys_dict = self.generate_initial_data(True)
-        #        print(initial_df.head())
+        # print(initial_df.head())
         data_types = {bool, dict, bool, bool}
         data_types = {
             "SERVER": (
@@ -306,70 +230,22 @@ class DataGenerationScript:
                 )
         return result_dfs, keys_dict
 
-    # def set_all_parameters(self):
-    #     # Set default parameters
-    #     params = {
-    #         "K4": "111150987DE41E9F0808193003B543296D0A01D797B511AFDAEEEAC53BC61111",
-    #         "OP": "1111006F86FAD6540D86FEF24D261111",
-    #         "IMSI": 999990000000400,
-    #         "ICCID": 999900000000000400,
-    #         "PIN1": "0000",
-    #         "PUK1": "00000000",
-    #         "PIN2": "5555",
-    #         "PUK2": "4444",
-    #         "ADM1": "11111111",
-    #         "ADM6": "11111111",
-    #         "ACC": "0111",
-    #         "DATA_SIZE": 7,
-    #         "PRODUCTION_CHECK": False,
-    #         "ELECT_CHECK": True,
-    #         "GRAPH_CHECK": True,
-    #         "SERVER_CHECK": True,
-    #         "INPUT_PATH": "templates/N2023031016844011.txt",
-    #         "PIN1_RAND": True,
-    #         "PUK1_RAND": True,
-    #         "PIN2_RAND": True,
-    #         "PUK2_RAND": True,
-    #         "ADM1_RAND": True,
-    #         "ADM6_RAND": True,
-    #         "ACC_RAND": True,
-    #     }
 
-    #     for key, value in params.items():
-    #         setter = getattr(self.params, f"set_{key}")
-    #         setter(value)
+# For testing
 
-    # def get_all_parameters(self) -> dict:
-    #     return {
-    #         param: getattr(self.params, f"get_{param}")()
-    #         for param in [
-    #             "PRODUCTION_CHECK",
-    #             "OP",
-    #             "K4",
-    #             "ICCID",
-    #             "IMSI",
-    #             "PIN1",
-    #             "PUK1",
-    #             "PIN2",
-    #             "PUK2",
-    #             "ADM1",
-    #             "ADM6",
-    #             "ACC",
-    #             "DATA_SIZE",
-    #             "INPUT_PATH",
-    #         ]
-    #     }
-
-
-from parser.utils import ConfigHolder, json_loader
-
-if __name__ == "__main__":
-    config_holder: ConfigHolder = json_loader("C:/Users/DELL/Desktop/datadecryption_poetry/core/settings.json")
-    s = DataGenerationScript(config_holder=config_holder)
-    s.SET_ALL_DISP_PARAMS()  # testing
-    (dfs, keys) = s.generate_all_data()
-
-    # print(s.generate_all_data())
-    print(dfs["ELECT"])
-    # print(dfs["GRAPH"])
-    # print(dfs["SERVER"])
+# from core.parser.utils import ConfigHolder, json_loader
+# # from core.executor.script import DataGenerationScript
+#
+# if __name__ == "__main__":
+#     config_holder: ConfigHolder = json_loader("settings.json")
+#     s = DataGenerationScript(config_holder=config_holder)
+#     s.SET_ALL_DISP_PARAMS()  # testing
+#     (dfs, keys) = s.generate_all_data()
+#
+#     # print(s.generate_all_data())
+#     print(dfs["ELECT"].to_csv("temp_elect.csv"))
+#     print(dfs["GRAPH"].to_csv("temp_graph.csv"))
+#     print(dfs["SERVER"].to_csv("temp_server.csv"))
+#
+#
+#

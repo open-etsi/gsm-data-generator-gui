@@ -11,7 +11,7 @@ class DISP(BaseModel):
     K4: constr(min_length=64, max_length=64)  # type: ignore
     op: constr(min_length=32, max_length=32)  # type: ignore
     imsi: constr(min_length=15, max_length=15)  # type: ignore
-    iccid: constr(min_length=19, max_length=19)  # type: ignore
+    iccid: constr(min_length=18, max_length=19)  # type: ignore
     pin1: constr(min_length=4, max_length=4)  # type: ignore
     puk1: constr(min_length=8, max_length=8)  # type: ignore
     pin2: constr(min_length=4, max_length=4)  # type: ignore

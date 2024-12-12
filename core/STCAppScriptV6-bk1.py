@@ -915,8 +915,8 @@
 #                 self.params.set_SERVER_DICT(header_server_dict)
 #                 self.params.set_ELECT_DICT(headers_data_dict)
 #                 self.params.set_GRAPH_DICT(headers_laser_dict)
-#                 return "Loaded Json Successfull!"
-#             return "Loaded Json Unuccessfull!"
+#                 return "Loaded Json Successfully!"
+#             return "Loaded Json Unsuccessful!"
 #         except Exception as e:
 #             return e
 #

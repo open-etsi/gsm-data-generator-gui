@@ -150,12 +150,11 @@ class EncodingUtils:
         return EncodingUtils.h2s(encoded_pin).upper()
 
     @staticmethod
-    def enc_imsi(imsi: str) -> str:
-        l = EncodingUtils.half_round_up(len(imsi) + 1)
-        oe = len(imsi) & 1
-        ei = f"{l:02x}" + EncodingUtils.swap_nibbles(
-            f"{(oe << 3) | 1:01x}{EncodingUtils.rpad(imsi, 15)}"
-        )
+    def enc_imsi(imsi):
+        imsi = str(imsi)
+        l = EncodingUtils.half_round_up(len(imsi) + 1)  # Required bytes - include space for odd/even indicator
+        oe = len(imsi) & 1  # Odd (1) / Even (0)
+        ei = "%02x" % l + EncodingUtils.swap_nibbles("%01x%s" % ((oe << 3) | 1, EncodingUtils.rpad(imsi, 15)))
         return ei
 
     @staticmethod
