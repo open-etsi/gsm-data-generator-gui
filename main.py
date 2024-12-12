@@ -1,12 +1,10 @@
-from core.main import run
-
 import os
 import sys
 from PyQt6.QtWidgets import QApplication
-from core.exceptions import NoSettingsFilePresent, NoTemplateFilePresent
+from core.exception.exceptions import NoSettingsFilePresent, NoTemplateFilePresent
 
-paths = ["settings.json", "operators/zong/template.json"]
-
+#paths = ["settings.json", "operators/zong/template.json"]
+paths = ["settings.json"]
 
 def files_exist(paths):
     try:
@@ -20,25 +18,26 @@ def files_exist(paths):
             print("Required file {} is present!{}".format(path, result[index]))
         return all(result)
 
-    except Exception:
-        print("Error reading Files!")
+    except Exception as error:
+        print("Error reading Files!", error)
 
 
 def run():
     try:
-        if files_exist(paths):
-            from core.source import AppController, MainWindow
-
+        #if files_exist(paths):
+        if True:
+            from gui.source import AppController, MainWindow
             app = QApplication(sys.argv)
-            credentials = {"name": "admin", "privilidges": "admin"}
-            #            win = MainWindow(**credentials)
-            #            win.show()
-            win = AppController()
-            win.login_screen()
+            credentials = {"name": "admin", "privileges": "admin"}
+            win = MainWindow(**credentials)
+            win.show()
+#            win = AppController()
+#            win.login_screen()
             sys.exit(app.exec())
-    #        else:
-    #            raise NoSettingsFilePresent("No Settings File Present")
-
+        else:
+            raise NoSettingsFilePresent("No Settings File Present")
+    except Exception as e:
+        print(e)
     except NoSettingsFilePresent:
         print("No Settings File Present")
     except NoTemplateFilePresent:
