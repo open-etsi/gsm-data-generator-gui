@@ -63,6 +63,9 @@ class DataGenerationScript:
         self.df_processor = DataFrameProcessor()
 
     def SET_ALL_DISP_PARAMS(self):
+        self.params.set_SERVER_SEP(self.config_holder.DISP.server_data_sep)
+        self.params.set_ELECT_SEP(self.config_holder.DISP.elect_data_sep)
+        self.params.set_GRAPH_SEP(self.config_holder.DISP.graph_data_sep)
         self.params.set_K4(self.config_holder.DISP.K4)
         self.params.set_OP(self.config_holder.DISP.op)
         self.params.set_IMSI(self.config_holder.DISP.imsi)

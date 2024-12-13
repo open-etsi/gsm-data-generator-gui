@@ -18,29 +18,34 @@ from PyQt6.QtWidgets import (
 from globals.parameters import PARAMETERS, DATA_FRAMES
 from gui.screens import PreviewInput, PreviewOutput
 from gui.messages import messageBox
-
+from gui.ulits import set_ui_from_json
+from gui.table import GuiElect, GuiGraph, GuiExtractor
+from gui.ulits import GuiButtons
 # from datagen.operators.zong.FileWriter import ZongFileWriter
 # from datagen.operators.zong.FileParser import ZongFileParser
-#from core.json_utils import JsonHandler
-#from core.settings import SETTINGS
+# from core.json_utils import JsonHandler
+# from core.settings import SETTINGS
 from gui.settings import SETTINGS
-from gui.styleSheets import style_sheet_good, style_sheet_bad, style_sheet_disabled
+from gui.stylesheet import style_sheet_good, style_sheet_bad, style_sheet_disabled
 from gui.forms.main_ui import Ui_MainWindow
 from gui.forms.login_ui import Ui_Form as login_form
-#from gui.forms import Ui_Form as sign_up_form
+from gui.forms.signup_ui import Ui_Form as sign_up_form
+from core.executor.utils import read_json, list_2_dict
 
 from core.parser.utils import json_loader
-from core.executor.script import DataGenerationScript
+
+# from core.executor.script import DataGenerationScript
 
 debug = False
 STC_ICON = "resources/stc_logo.ico"
-# CONFIGURATION_FILE_PATH = "settings.json"
 
 
 class MainWindow(QMainWindow):
     project_path = os.getcwd()
 
     def __init__(self, *args, **kwargs):
+        self.config_holder = None
+        global laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict
         super(MainWindow, self).__init__()
         self.global_elect_check = None
         self.default_graph = None
@@ -67,11 +72,15 @@ class MainWindow(QMainWindow):
         self.parameters = PARAMETERS.get_instance()
         self.dataframes = DATA_FRAMES.get_instance()
         self.sett = SETTINGS()
+        self.elect_gui = GuiElect(self.ui)
+        self.graph_gui = GuiGraph(self.ui)
+        self.button_gui = GuiButtons(self.ui)
+        self.extractor_gui = GuiExtractor(self.ui)
         #        self.sec = messageBox()
 
-#        self.m_json = JsonHandler()
-#        self.m_json.read_paths()
-#        self.m_json.read_variables()
+        #        self.m_json = JsonHandler()
+        #        self.m_json.read_paths()
+        #        self.m_json.read_variables()
         #        data_generator_instance = DataGenerationScript()
         #        self.ui.textEdit.append(data_generator_instance.SET_HEADERS())
         #        del data_generator_instance
@@ -85,17 +94,17 @@ class MainWindow(QMainWindow):
 
         # m_zong = ZongGenerateHandle()
         # m_zong.set_json_to_UI()
-        # data = read_json(CONFIGURATION_FILE_PATH)
-        # if data:
-        #     header_server_dict = list_2_dict(data["PARAMETERS"]["server_variables"])
-        #     headers_laser_dict = data["PARAMETERS"]["laser_variables"]
-        #     headers_data_dict = list_2_dict(data["PARAMETERS"]["data_variables"])
-        #     laser_ext_path = data["PATHS"]["OUTPUT_FILES_LASER_EXT"]
+        data = read_json("settings.json")
+        if data:
+            header_server_dict = list_2_dict(data["PARAMETERS"]["server_variables"])
+            headers_laser_dict = data["PARAMETERS"]["laser_variables"]
+            headers_data_dict = list_2_dict(data["PARAMETERS"]["data_variables"])
+            laser_ext_path = data["PATHS"]["OUTPUT_FILES_LASER_EXT"]
 
-        # self.parameters.set_LASER_EXT_PATH(laser_ext_path)
-        # self.parameters.set_ELECT_DICT(headers_data_dict)
-        # self.parameters.set_GRAPH_DICT(headers_laser_dict)
-        # self.parameters.set_SERVER_DICT(header_server_dict)
+        self.parameters.set_LASER_EXT_PATH(laser_ext_path)
+        self.parameters.set_ELECT_DICT(headers_data_dict)
+        self.parameters.set_GRAPH_DICT(headers_laser_dict)
+        self.parameters.set_SERVER_DICT(header_server_dict)
 
         # ==========================================#
         # ============DEFAULT VALUES================#
@@ -148,19 +157,19 @@ class MainWindow(QMainWindow):
         self.ui.graph_data.setChecked(self.default_graph_check)
         self.ui.server_data.setChecked(True)
 
-        self.ui.add_text.clicked.connect(self.add_text_to_table)
-        self.ui.del_text.clicked.connect(self.delete_selected_row)
-        self.ui.up_button.clicked.connect(self.move_selected_row_up)
-        self.ui.dn_button.clicked.connect(self.move_selected_row_down)
-        self.ui.g_default.clicked.connect(self.g_setDefault)
-        self.ui.g_save.clicked.connect(self.g_getDefault)
+        self.ui.add_text.clicked.connect(self.graph_gui.add_text_to_table)
+        self.ui.del_text.clicked.connect(self.graph_gui.delete_selected_row)
+        self.ui.up_button.clicked.connect(self.graph_gui.move_selected_row_up)
+        self.ui.dn_button.clicked.connect(self.graph_gui.move_selected_row_down)
+        self.ui.g_default.clicked.connect(self.graph_gui.g_setDefault)
+        self.ui.g_save.clicked.connect(self.graph_gui.g_getDefault)
 
-        self.ui.e_add_text.clicked.connect(self.e_add_text_to_table)
-        self.ui.e_del_text.clicked.connect(self.e_delete_selected_row)
-        self.ui.e_up_button.clicked.connect(self.e_move_selected_row_up)
-        self.ui.e_dn_button.clicked.connect(self.e_move_selected_row_down)
-        self.ui.e_default.clicked.connect(self.e_setDefault)
-        self.ui.e_save.clicked.connect(self.e_getDefault)
+        self.ui.e_add_text.clicked.connect(self.elect_gui.e_add_text_to_table)
+        self.ui.e_del_text.clicked.connect(self.elect_gui.e_delete_selected_row)
+        self.ui.e_up_button.clicked.connect(self.elect_gui.e_move_selected_row_up)
+        self.ui.e_dn_button.clicked.connect(self.elect_gui.e_move_selected_row_down)
+        self.ui.e_default.clicked.connect(self.elect_gui.e_setDefault)
+        self.ui.e_save.clicked.connect(self.elect_gui.e_getDefault)
 
         self.ui.browse_button.clicked.connect(self.browse_button_func)
         self.ui.preview_in_file.clicked.connect(self.show_input_files)
@@ -223,19 +232,19 @@ class MainWindow(QMainWindow):
             lambda: self.len_check("ADM6", self.ui.adm6_text.text(), self.ui.adm6_text)
         )
 
-        self.ui.pin1_rand_check.stateChanged.connect(self.pin1_rand_check)
-        self.ui.pin2_rand_check.stateChanged.connect(self.pin2_rand_check)
-        self.ui.puk1_rand_check.stateChanged.connect(self.puk1_rand_check)
-        self.ui.puk2_rand_check.stateChanged.connect(self.puk2_rand_check)
-        self.ui.adm1_rand_check.stateChanged.connect(self.adm1_rand_check)
-        self.ui.adm6_rand_check.stateChanged.connect(self.adm6_rand_check)
+        self.ui.pin1_rand_check.stateChanged.connect(self.button_gui.pin1_rand_check)
+        self.ui.pin2_rand_check.stateChanged.connect(self.button_gui.pin2_rand_check)
+        self.ui.puk1_rand_check.stateChanged.connect(self.button_gui.puk1_rand_check)
+        self.ui.puk2_rand_check.stateChanged.connect(self.button_gui.puk2_rand_check)
+        self.ui.adm1_rand_check.stateChanged.connect(self.button_gui.adm1_rand_check)
+        self.ui.adm6_rand_check.stateChanged.connect(self.button_gui.adm6_rand_check)
 
-        self.ui.pin1_auto.clicked.connect(self.auto_pin1_func)
-        self.ui.pin2_auto.clicked.connect(self.auto_pin2_func)
-        self.ui.puk1_auto.clicked.connect(self.auto_puk1_func)
-        self.ui.puk2_auto.clicked.connect(self.auto_puk2_func)
-        self.ui.adm1_auto.clicked.connect(self.auto_adm1_func)
-        self.ui.adm6_auto.clicked.connect(self.auto_adm6_func)
+        self.ui.pin1_auto.clicked.connect(self.button_gui.auto_pin1_func)
+        self.ui.pin2_auto.clicked.connect(self.button_gui.auto_pin2_func)
+        self.ui.puk1_auto.clicked.connect(self.button_gui.auto_puk1_func)
+        self.ui.puk2_auto.clicked.connect(self.button_gui.auto_puk2_func)
+        self.ui.adm1_auto.clicked.connect(self.button_gui.auto_adm1_func)
+        self.ui.adm6_auto.clicked.connect(self.button_gui.auto_adm6_func)
 
         self.ui.save_seting_button.clicked.connect(self.save_settings_func)
         self.ui.load_seting_button.clicked.connect(self.load_settings_func)
@@ -243,11 +252,11 @@ class MainWindow(QMainWindow):
         self.ui.de_browse_button.clicked.connect(self.de_browse_button_func)
         self.ui.de_preview_in_file.clicked.connect(self.de_show_input_files)
 
-        self.ui.de_add_text.clicked.connect(self.de_add_text_to_table)
-        self.ui.de_del_text.clicked.connect(self.de_delete_selected_row)
-        self.ui.de_up_button.clicked.connect(self.de_move_selected_row_up)
-        self.ui.de_dn_button.clicked.connect(self.de_move_selected_row_down)
-        self.ui.de_default.clicked.connect(self.de_setDefault)
+        self.ui.de_add_text.clicked.connect(self.extractor_gui.de_add_text_to_table)
+        self.ui.de_del_text.clicked.connect(self.extractor_gui.de_delete_selected_row)
+        self.ui.de_up_button.clicked.connect(self.extractor_gui.de_move_selected_row_up)
+        self.ui.de_dn_button.clicked.connect(self.extractor_gui.de_move_selected_row_down)
+        self.ui.de_default.clicked.connect(self.extractor_gui.de_setDefault)
 
         self.ui.de_main_preview.clicked.connect(self.de_main_generate_function)
         self.ui.de_generate_button.clicked.connect(self.de_save_files_function)
@@ -332,119 +341,119 @@ class MainWindow(QMainWindow):
         else:
             exit()
 
-    def update_pin1_text(self):
-        var = self.ui.pin1_text.text()
-        if len(var) == 4:
-            self.parameters.set_PIN1(var)
-        else:
-            self.parameters.set_PIN1("")
-            self.ui.textEdit.append("Enter valid PIN1")
-
-    def update_pin2_text(self):
-        var = self.ui.pin2_text.text()
-        if len(var) == 4:
-            self.parameters.set_PIN2(var)
-        else:
-            self.parameters.set_PIN2("")
-            self.ui.textEdit.append("Enter valid PIN2")
-
-    def update_puk1_text(self):
-        var = self.ui.puk1_text.text()
-        if len(var) == 8:
-            self.parameters.set_PUK1(var)
-        else:
-            self.parameters.set_PUK1("")
-            self.ui.textEdit.append("Enter valid PUK1")
-
-    def update_puk2_text(self):
-        var = self.ui.puk2_text.text()
-        if len(var) == 8:
-            self.parameters.set_PUK2(var)
-        else:
-            self.parameters.set_PUK2("")
-            self.ui.textEdit.append("Enter valid PUK2")
-
-    def update_adm1_text(self):
-        var = self.ui.adm1_text.text()
-        if len(var) == 8:
-            self.parameters.set_ADM1(var)
-        else:
-            self.parameters.set_ADM1("")
-            self.ui.textEdit.append("Enter valid ADM1")
-
-    def update_adm6_text(self):
-        var = self.ui.adm6_text.text()
-        if len(var) == 8:
-            self.parameters.set_ADM6(var)
-        else:
-            self.parameters.set_ADM6("")
-            self.ui.textEdit.append("Enter valid ADM6")
-
-    def auto_pin1_func(self):
-        # string = generate_4_Digit()
-        string = "0000"
-        self.ui.pin1_text.setText(string)
-
-    def pin1_rand_check(self):
-        if self.ui.pin1_rand_check.isChecked():
-            self.parameters.set_PIN1_RAND(True)
-        else:
-            self.parameters.set_PIN1_RAND(False)
-
-    def auto_pin2_func(self):
-#        string = generate_4_Digit()
-        string = "0000"
-        self.ui.pin2_text.setText(string)
-
-    def pin2_rand_check(self):
-        if self.ui.pin2_rand_check.isChecked():
-            self.parameters.set_PIN2_RAND(True)
-        else:
-            self.parameters.set_PIN2_RAND(False)
-
-    def auto_puk1_func(self):
-#        string = generate_8_Digit()
-        string = "00000000"
-        self.ui.puk1_text.setText(string)
-
-    def puk1_rand_check(self):
-        if self.ui.puk1_rand_check.isChecked():
-            self.parameters.set_PUK1_RAND(True)
-        else:
-            self.parameters.set_PUK1_RAND(False)
-
-    def auto_puk2_func(self):
-#        string = generate_8_Digit()
-        string = "00000000"
-        self.ui.puk2_text.setText(string)
-
-    def puk2_rand_check(self):
-        if self.ui.puk2_rand_check.isChecked():
-            self.parameters.set_PUK2_RAND(True)
-        else:
-            self.parameters.set_PUK2_RAND(False)
-
-    def auto_adm1_func(self):
-#        string = generate_8_Digit()
-        string = "00000000"
-        self.ui.adm1_text.setText(string)
-
-    def adm1_rand_check(self):
-        if self.ui.adm1_rand_check.isChecked():
-            self.parameters.set_ADM1_RAND(True)
-        else:
-            self.parameters.set_ADM1_RAND(False)
-
-    def auto_adm6_func(self):
-#        string = generate_8_Digit()
-        string = "00000000"
-        self.ui.adm6_text.setText(string)
-
-    def adm6_rand_check(self):
-        if self.ui.adm6_rand_check.isChecked():
-            self.parameters.set_ADM6_RAND(True)
-        else:
-            self.parameters.set_ADM6_RAND(False)
+    # def update_pin1_text(self):
+    #     var = self.ui.pin1_text.text()
+    #     if len(var) == 4:
+    #         self.parameters.set_PIN1(var)
+    #     else:
+    #         self.parameters.set_PIN1("")
+    #         self.ui.textEdit.append("Enter valid PIN1")
+    #
+    # def update_pin2_text(self):
+    #     var = self.ui.pin2_text.text()
+    #     if len(var) == 4:
+    #         self.parameters.set_PIN2(var)
+    #     else:
+    #         self.parameters.set_PIN2("")
+    #         self.ui.textEdit.append("Enter valid PIN2")
+    #
+    # def update_puk1_text(self):
+    #     var = self.ui.puk1_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_PUK1(var)
+    #     else:
+    #         self.parameters.set_PUK1("")
+    #         self.ui.textEdit.append("Enter valid PUK1")
+    #
+    # def update_puk2_text(self):
+    #     var = self.ui.puk2_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_PUK2(var)
+    #     else:
+    #         self.parameters.set_PUK2("")
+    #         self.ui.textEdit.append("Enter valid PUK2")
+    #
+    # def update_adm1_text(self):
+    #     var = self.ui.adm1_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_ADM1(var)
+    #     else:
+    #         self.parameters.set_ADM1("")
+    #         self.ui.textEdit.append("Enter valid ADM1")
+    #
+    # def update_adm6_text(self):
+    #     var = self.ui.adm6_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_ADM6(var)
+    #     else:
+    #         self.parameters.set_ADM6("")
+    #         self.ui.textEdit.append("Enter valid ADM6")
+    #
+    # def auto_pin1_func(self):
+    #     # string = generate_4_Digit()
+    #     string = "0000"
+    #     self.ui.pin1_text.setText(string)
+    #
+    # def pin1_rand_check(self):
+    #     if self.ui.pin1_rand_check.isChecked():
+    #         self.parameters.set_PIN1_RAND(True)
+    #     else:
+    #         self.parameters.set_PIN1_RAND(False)
+    #
+    # def auto_pin2_func(self):
+    #     #        string = generate_4_Digit()
+    #     string = "0000"
+    #     self.ui.pin2_text.setText(string)
+    #
+    # def pin2_rand_check(self):
+    #     if self.ui.pin2_rand_check.isChecked():
+    #         self.parameters.set_PIN2_RAND(True)
+    #     else:
+    #         self.parameters.set_PIN2_RAND(False)
+    #
+    # def auto_puk1_func(self):
+    #     #        string = generate_8_Digit()
+    #     string = "00000000"
+    #     self.ui.puk1_text.setText(string)
+    #
+    # def puk1_rand_check(self):
+    #     if self.ui.puk1_rand_check.isChecked():
+    #         self.parameters.set_PUK1_RAND(True)
+    #     else:
+    #         self.parameters.set_PUK1_RAND(False)
+    #
+    # def auto_puk2_func(self):
+    #     #        string = generate_8_Digit()
+    #     string = "00000000"
+    #     self.ui.puk2_text.setText(string)
+    #
+    # def puk2_rand_check(self):
+    #     if self.ui.puk2_rand_check.isChecked():
+    #         self.parameters.set_PUK2_RAND(True)
+    #     else:
+    #         self.parameters.set_PUK2_RAND(False)
+    #
+    # def auto_adm1_func(self):
+    #     #        string = generate_8_Digit()
+    #     string = "00000000"
+    #     self.ui.adm1_text.setText(string)
+    #
+    # def adm1_rand_check(self):
+    #     if self.ui.adm1_rand_check.isChecked():
+    #         self.parameters.set_ADM1_RAND(True)
+    #     else:
+    #         self.parameters.set_ADM1_RAND(False)
+    #
+    # def auto_adm6_func(self):
+    #     #        string = generate_8_Digit()
+    #     string = "00000000"
+    #     self.ui.adm6_text.setText(string)
+    #
+    # def adm6_rand_check(self):
+    #     if self.ui.adm6_rand_check.isChecked():
+    #         self.parameters.set_ADM6_RAND(True)
+    #     else:
+    #         self.parameters.set_ADM6_RAND(False)
 
     def SET_ALL_FROM_SETT(self):
         self.ui.imsi_text.setText(self.parameters.get_IMSI())
@@ -471,31 +480,22 @@ class MainWindow(QMainWindow):
             self.get_imsi_func()
             self.get_data_size_func()
 
-        self.pin1_rand_check()
-        self.pin2_rand_check()
-        self.puk1_rand_check()
-        self.puk2_rand_check()
-        self.adm1_rand_check()
-        self.adm6_rand_check()
+        self.button_gui.pin1_rand_check()
+        self.button_gui.pin2_rand_check()
+        self.button_gui.puk1_rand_check()
+        self.button_gui.puk2_rand_check()
+        self.button_gui.adm1_rand_check()
+        self.button_gui.adm6_rand_check()
 
-        self.update_pin1_text()
-        self.update_pin2_text()
-        self.update_puk1_text()
-        self.update_puk2_text()
-        self.update_adm1_text()
-        self.update_adm6_text()
+        self.button_gui.update_pin1_text()
+        self.button_gui.update_pin2_text()
+        self.button_gui.update_puk1_text()
+        self.button_gui.update_puk2_text()
+        self.button_gui.update_adm1_text()
+        self.button_gui.update_adm6_text()
 
         self.get_k4_func()
         self.get_op_func()
-
-    def g_setDefault(self):
-        d = self.parameters.get_GRAPH_DICT()
-        for items in d:
-            self.g_table_append(d[items][0], d[items][2])
-
-    def g_getDefault(self):
-        self.default_graph = self.get_data_from_table()
-        # print(str(self.default_graph))
 
     def main_generate_function(self):
         self.ui.textEdit.clear()
@@ -510,8 +510,8 @@ class MainWindow(QMainWindow):
 
         self.ui.textEdit.append("==================================")
 
-        self.parameters.set_GRAPH_DICT(self.get_data_from_table())
-        self.parameters.set_ELECT_DICT(self.e_get_data_from_table())
+        self.parameters.set_GRAPH_DICT(self.graph_gui.get_data_from_table())
+        self.parameters.set_ELECT_DICT(self.elect_gui.e_get_data_from_table())
         #        self.parameters.set_SERVER_DICT(header_server_dict)
 
         #        self.parameters.dict1 is test dictionary
@@ -576,10 +576,10 @@ class MainWindow(QMainWindow):
         #        elect=self.e_get_data_from_table()
         try:
             # elect = {}  # initialize
-            elect = self.de_get_data_from_table()
+            elect = self.extractor_gui.de_get_data_from_table()
             self.ui.de_textEdit.append(str(elect))
 
-            self.parameters.set_EXTRACTOR_DICT(self.de_get_data_from_table())
+            self.parameters.set_EXTRACTOR_DICT(self.extractor_gui.de_get_data_from_table())
             # s = DataGenerationScript()
             # #            if self.parameters.check_params():
             # self.dataframes._GRAPH_DF = s.__LASER_DATA_EXTRACTOR(
@@ -647,8 +647,9 @@ class MainWindow(QMainWindow):
             # Check if the file exists
             if os.path.isfile(path):
                 # Read the JSON file
-#                keys = read_json(path)
-                keys = {"op": "55555555555555555555555555555555","k4": "6666666666666666666666666666666666666666666666666666666666666666"}
+                #                keys = read_json(path)
+                keys = {"op": "55555555555555555555555555555555",
+                        "k4": "6666666666666666666666666666666666666666666666666666666666666666"}
                 # Check if the JSON is not empty
                 if keys:
                     op_key = keys.get("op")
@@ -683,8 +684,9 @@ class MainWindow(QMainWindow):
             # Check if the file exists
             if os.path.isfile(path):
                 # Read the JSON file
-#                keys = read_json(path)
-                keys = {    "op": "55555555555555555555555555555555",    "k4": "6666666666666666666666666666666666666666666666666666666666666666"}
+                #                keys = read_json(path)
+                keys = {"op": "55555555555555555555555555555555",
+                        "k4": "6666666666666666666666666666666666666666666666666666666666666666"}
                 if keys:
                     k4_key = keys.get("k4")
                     if len(k4_key) == 64:
@@ -738,7 +740,7 @@ class MainWindow(QMainWindow):
 
         # temp_key = gen_k4()
         temp_key = "55555555555555555555555555555555"
-        
+
         self.ui.k4_key_text.setText(str(temp_key))
         self.statusBar().showMessage(
             "Auto K4 generated sucessfully :{} Lenght : {}".format(
@@ -908,6 +910,7 @@ class MainWindow(QMainWindow):
             # Do this [enable respective]
         else:
             self.parameters.set_SERVER_CHECK(False)
+
     def browse_button_func(self):
         path = self.project_path
         path = os.path.join(path, "Json File")
@@ -923,43 +926,19 @@ class MainWindow(QMainWindow):
             #            self.parameters.set_INPUT_PATH(fname[0])
             self.parameters.set_INPUT_FILE_PATH(fname[0])
 
-            config_holder = json_loader(fname[0])
-            s = DataGenerationScript(config_holder=config_holder)
-            s.SET_ALL_DISP_PARAMS()  # testing
-            (dfs, keys) = s.generate_all_data()
+            self.config_holder = json_loader(fname[0])
 
-            # print(s.generate_all_data())
-            print(dfs["ELECT"].to_csv("ELECT.csv"))
-            print(dfs["GRAPH"].to_csv("GRAPH.csv"))
-            print(dfs["SERVER"].to_csv("SERVER.csv"))
-
+            # s = DataGenerationScript(config_holder=config_holder)
+            # s.SET_ALL_DISP_PARAMS()  # testing
+            # (dfs, keys) = s.generate_all_data()
+            #
+            # # print(s.generate_all_data())
+            # print(dfs["ELECT"].to_csv("ELECT.csv"))
+            # print(dfs["GRAPH"].to_csv("GRAPH.csv"))
+            # print(dfs["SERVER"].to_csv("SERVER.csv"))
 
     def show_input_files(self):
-        pass
-        #        path = self.parameters.get_INPUT_PATH()
-        # path = self.parameters.get_INPUT_FILE_PATH()
-        # m_zong = ZongFileParser(path)
-        # df = m_zong.input_file_handle()
-        # #       self.dataframes._INPUT_DF = df
-        # self.dataframes.set_INPUT_DF(df)
-        # del m_zong
-
-        # match path:
-        #     case "" | " ":
-        #         self.ui.textEdit.append("No file selected")
-        #     case _:
-        #         if self.dataframes.get_INPUT_DF() is not None:
-        #             if not self.dataframes.get_INPUT_DF().empty:
-        #                 try:
-        #                     self.w = PreviewInput(self.dataframes.get_INPUT_DF())
-        #                     self.w.show()
-        #                 except Exception as e:
-        #                     self.ui.de_textEdit.append(str(e))
-        #             else:
-        #                 self.ui.textEdit.append("Input DataFrame is empty")
-        #         else:
-        #             self.ui.textEdit.append("Input DataFrame is not initialized")
-        # fmt: on
+        set_ui_from_json(self.ui, self.config_holder)
 
     def de_browse_button_func(self):
         path = self.project_path
@@ -990,215 +969,6 @@ class MainWindow(QMainWindow):
                     self.w = PreviewInput(self.dataframes._INPUT_DF)
                     self.w.show()
 
-    # ===================================================================================#
-    # ===================================================================================#
-    # =========================GRAPHICAL DATA FUNCTIONS==================================#
-    # ===================================================================================#
-    # ===================================================================================#
-
-    def g_table_append(self, text: str, l: str):
-        drop_down_menu = ["Normal", "Right", "Center", "Left"]
-
-        if text != "   -SELECT-":
-            # Create a new row in the table
-            row_count = self.ui.tableWidget.rowCount()
-            self.ui.tableWidget.setRowCount(row_count + 1)
-
-            self.combo_box = QComboBox()
-            self.combo_box.addItems(drop_down_menu)
-            # self.combo_box.lineEdit().setAlignment(Qt.AlignmentFlag.AlignCenter)  # Adjust alignment as needed
-
-            self.combo_box.setDisabled(True)
-            # Set the combo box as the widget for the desired cell
-            self.ui.tableWidget.setCellWidget(row_count, 1, self.combo_box)
-            # Add the text to the table
-            item = QTableWidgetItem(text)
-            self.ui.tableWidget.setItem(row_count, 0, item)
-            item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-
-            #            item1 = QTableWidgetItem("0-"+self.parameter_len(text.lstrip()))
-            #            item1 = QTableWidgetItem(self.parameter_len(text.lstrip()))
-            item1 = QTableWidgetItem(l)
-            self.ui.tableWidget.setItem(row_count, 2, item1)
-            item1.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.table_widget_debug(self.ui.tableWidget)
-
-    def g_clear_table(self):
-        rows = self.ui.tableWidget.rowCount()
-        for row in range(rows):
-            self.ui.tableWidget.removeRow(row)
-
-    def add_text_to_table(self):
-        #        drop_down_menu = ['Normal', 'Right','Center', 'Left']
-        self.ui.tableWidget.setHorizontalHeaderLabels(["Variables", "Clip", "length"])
-
-        text = self.ui.comboBox.currentText()
-        self.g_table_append(text, "0-" + self.parameter_len(text.lstrip()))
-
-    def delete_selected_row(self):
-        # row_count = self.ui.tableWidget.rowCount()
-        selected_row = self.ui.tableWidget.currentRow()
-        if selected_row >= 0:
-            self.ui.tableWidget.removeRow(selected_row)
-
-    def move_selected_row_up(self):
-        selected_row = self.ui.tableWidget.currentRow()
-        if 0 < selected_row <= self.ui.tableWidget.rowCount():
-            self.ui.tableWidget.insertRow(selected_row - 1)
-            self.copy_row(selected_row + 1, selected_row - 1)
-            self.ui.tableWidget.removeRow(selected_row + 1)
-            self.ui.tableWidget.selectRow(selected_row - 1)
-
-    def move_selected_row_down(self):
-        selected_row = self.ui.tableWidget.currentRow()
-        if 0 <= selected_row < self.ui.tableWidget.rowCount() - 1:
-            self.ui.tableWidget.insertRow(selected_row + 2)
-            self.copy_row(selected_row, selected_row + 2)
-            self.ui.tableWidget.removeRow(selected_row)
-            self.ui.tableWidget.selectRow(selected_row + 1)
-
-    def copy_row(self, source_row, target_row):
-        for column in range(self.ui.tableWidget.columnCount()):
-            source_item = self.ui.tableWidget.item(source_row, column)
-            if source_item is not None:
-                target_item = QTableWidgetItem(source_item.text())
-                self.ui.tableWidget.setItem(target_row, column, target_item)
-                target_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.source_widget = self.ui.tableWidget.cellWidget(source_row, 1)
-        if isinstance(self.source_widget, QComboBox):
-            drop_down_menu = ["Normal", "Right", "Center", "Left"]
-            self.target_widget = QComboBox()
-            self.target_widget.addItems(drop_down_menu)
-            source_text = self.source_widget.currentText()
-            self.target_widget.setCurrentText(source_text)
-            #            self.target_widget.addItems([self.source_widget.currentText()])
-            self.ui.tableWidget.setCellWidget(target_row, 1, self.target_widget)
-
-    def get_data_from_table(self):
-        max_rows = self.ui.tableWidget.rowCount()
-        # var = []
-        dict_ret = {}
-        for i in range(0, max_rows):
-            var = self.ui.tableWidget.item(i, 0).text()
-            widget = self.ui.tableWidget.cellWidget(i, 1)
-            clip = ""
-            if isinstance(widget, QComboBox):
-                clip = widget.currentText()
-
-            cell_value = 0
-            # cell_text = ""
-            table_item = self.ui.tableWidget.item(i, 2)
-            if table_item is not None:
-                cell_text = table_item.text()
-                cell_value = str(cell_text)
-            dict_ret[str(i)] = [str(var.lstrip()), str(clip), cell_value]
-        return dict_ret
-
-    def table_widget_debug(self, widget):
-        pass
-
-    #        self.ui.textEdit.append("TOTAL ROWS : "+ str(widget.rowCount()))
-    #        self.ui.textEdit.append("SELECTED ROW : "+str(widget.currentRow()))
-
-    # ===================================================================================#
-    # ===================================================================================#
-    # ========================ELECTRICAL DATA FUNCTIONS==================================#
-    # ===================================================================================#
-    # ===================================================================================#
-
-    def e_setDefault(self):
-        d = self.parameters.get_ELECT_DICT()
-        for items in d.values():
-            self.e_table_append(items)
-
-    def e_getDefault(self):
-        self.default_elect = self.e_get_data_from_table()
-
-    def e_table_append(self, text: list):
-        drop_down_menu = ["Normal", "Right", "Center", "Left"]
-        if text[0] != "-SELECT-":
-            row_count = self.ui.e_tableWidget.rowCount()
-            self.ui.e_tableWidget.setRowCount(row_count + 1)
-
-            col1 = QTableWidgetItem(text[0])
-            self.ui.e_tableWidget.setItem(row_count, 0, col1)
-            col1.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-            col1.setFlags(col1.flags() & Qt.ItemFlag.ItemIsEditable)
-
-            self.e_combo_box = QComboBox()
-            self.e_combo_box.addItems(drop_down_menu)
-            self.e_combo_box.setDisabled(True)
-            self.ui.e_tableWidget.setCellWidget(row_count, 1, self.e_combo_box)
-
-            col3 = QTableWidgetItem("0-" + self.parameter_len(text[0].lstrip()))
-            #            col3 = QTableWidgetItem(text[2])
-            self.ui.e_tableWidget.setItem(row_count, 2, col3)
-            col3.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-
-    def e_add_text_to_table(self):
-        self.ui.e_tableWidget.setHorizontalHeaderLabels(["Variables", "Clip", "length"])
-        text = self.ui.e_comboBox.currentText()
-        self.e_table_append([text, "Normal", "0-" + self.parameter_len(text).lstrip()])
-
-    def e_delete_selected_row(self):
-        selected_row = self.ui.e_tableWidget.currentRow()
-        if selected_row >= 0:
-            self.ui.e_tableWidget.removeRow(selected_row)
-
-    def e_move_selected_row_up(self):
-        selected_row = self.ui.e_tableWidget.currentRow()
-        if 0 < selected_row <= self.ui.e_tableWidget.rowCount():
-            self.ui.e_tableWidget.insertRow(selected_row - 1)
-            self.e_copy_row(selected_row + 1, selected_row - 1)
-            self.ui.e_tableWidget.removeRow(selected_row + 1)
-            self.ui.e_tableWidget.selectRow(selected_row - 1)
-
-    def e_move_selected_row_down(self):
-        selected_row = self.ui.e_tableWidget.currentRow()
-        table_widget = self.ui.e_tableWidget
-        if 0 <= selected_row < table_widget.rowCount() - 1:
-            table_widget.insertRow(selected_row + 2)
-            self.e_copy_row(selected_row, selected_row + 2)
-            table_widget.removeRow(selected_row)
-            table_widget.selectRow(selected_row + 1)
-
-    def e_copy_row(self, source_row, target_row):
-        for column in range(self.ui.e_tableWidget.columnCount()):
-            source_item = self.ui.e_tableWidget.item(source_row, column)
-            if source_item is not None:
-                target_item = QTableWidgetItem(source_item.text())
-                self.ui.e_tableWidget.setItem(target_row, column, target_item)
-                target_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.source_widget = self.ui.e_tableWidget.cellWidget(source_row, 1)
-        if isinstance(self.source_widget, QComboBox):
-            self.target_widget = QComboBox()
-            drop_down_menu = ["Normal", "Right", "Center", "Left"]
-            self.target_widget.addItems(drop_down_menu)
-            source_text = self.source_widget.currentText()
-            self.target_widget.setCurrentText(source_text)
-            self.ui.e_tableWidget.setCellWidget(target_row, 1, self.target_widget)
-
-    def e_get_data_from_table(self):
-        max_rows = self.ui.e_tableWidget.rowCount()
-        # var = []
-        dict_ret = {}
-        for i in range(0, max_rows):
-            var = self.ui.e_tableWidget.item(i, 0).text()
-            widget = self.ui.e_tableWidget.cellWidget(i, 1)
-            clip = ""
-            if isinstance(widget, QComboBox):
-                clip = widget.currentText()
-
-            cell_value = 0
-            # cell_text = ""
-            table_item = self.ui.e_tableWidget.item(i, 2)
-            if table_item is not None:
-                cell_text = table_item.text()
-                cell_value = str(cell_text)
-            dict_ret[str(i)] = [str(var.lstrip()), str(clip), cell_value]
-        return dict_ret
 
     def save_files_function(self):
         self.progress_bar()
@@ -1257,100 +1027,6 @@ class MainWindow(QMainWindow):
     def progress_bar_init(self):
         self.ui.progressBar.setValue(0)
 
-    # ===================================================================================#
-    # ===================================================================================#
-    # ========================EXTRACTOR DATA FUNCTIONS==================================#
-    # ===================================================================================#
-    # ===================================================================================#
-    def de_setDefault(self):
-        #        for items in self.default_elect:
-        for items in self.extractor_columns:
-            self.de_table_append(items)
-
-    def de_table_append(self, text: str):
-        drop_down_menu = ["Normal", "Right", "Center", "Left"]
-        if text != "   -SELECT-":
-            row_count = self.ui.de_tableWidget.rowCount()
-            self.ui.de_tableWidget.setRowCount(row_count + 1)
-
-            col1 = QTableWidgetItem(text)
-            self.ui.de_tableWidget.setItem(row_count, 0, col1)
-            col1.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-            col1.setFlags(col1.flags() & Qt.ItemFlag.ItemIsEditable)
-
-            self.de_combo_box = QComboBox()
-            self.de_combo_box.addItems(drop_down_menu)
-            self.ui.de_tableWidget.setCellWidget(row_count, 1, self.de_combo_box)
-
-            col3 = QTableWidgetItem("0-" + self.parameter_len(text.lstrip()))
-            self.ui.de_tableWidget.setItem(row_count, 2, col3)
-            col3.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-
-    def de_add_text_to_table(self):
-        self.ui.de_tableWidget.setHorizontalHeaderLabels(
-            ["Variables", "Clip", "length"]
-        )
-        text = self.ui.de_comboBox.currentText()
-        self.de_table_append(text)
-
-    def de_delete_selected_row(self):
-        selected_row = self.ui.de_tableWidget.currentRow()
-        if selected_row >= 0:
-            self.ui.de_tableWidget.removeRow(selected_row)
-
-    def de_move_selected_row_up(self):
-        selected_row = self.ui.de_tableWidget.currentRow()
-        if 0 < selected_row <= self.ui.de_tableWidget.rowCount():
-            self.ui.de_tableWidget.insertRow(selected_row - 1)
-            self.de_copy_row(selected_row + 1, selected_row - 1)
-            self.ui.de_tableWidget.removeRow(selected_row + 1)
-            self.ui.de_tableWidget.selectRow(selected_row - 1)
-
-    def de_move_selected_row_down(self):
-        selected_row = self.ui.de_tableWidget.currentRow()
-        table_widget = self.ui.de_tableWidget
-        if 0 <= selected_row < table_widget.rowCount() - 1:
-            table_widget.insertRow(selected_row + 2)
-            self.de_copy_row(selected_row, selected_row + 2)
-            table_widget.removeRow(selected_row)
-            table_widget.selectRow(selected_row + 1)
-
-    def de_copy_row(self, source_row, target_row):
-        for column in range(self.ui.de_tableWidget.columnCount()):
-            source_item = self.ui.de_tableWidget.item(source_row, column)
-            if source_item is not None:
-                target_item = QTableWidgetItem(source_item.text())
-                self.ui.de_tableWidget.setItem(target_row, column, target_item)
-                target_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.source_widget = self.ui.de_tableWidget.cellWidget(source_row, 1)
-        if isinstance(self.source_widget, QComboBox):
-            self.target_widget = QComboBox()
-            drop_down_menu = ["Normal", "Right", "Center", "Left"]
-            self.target_widget.addItems(drop_down_menu)
-            source_text = self.source_widget.currentText()
-            self.target_widget.setCurrentText(source_text)
-            self.ui.de_tableWidget.setCellWidget(target_row, 1, self.target_widget)
-
-    def de_get_data_from_table(self):
-        max_rows = self.ui.de_tableWidget.rowCount()
-        # var = []
-        dict_ret = {}
-        for i in range(0, max_rows):
-            var = self.ui.de_tableWidget.item(i, 0).text()
-            widget = self.ui.de_tableWidget.cellWidget(i, 1)
-            clip = ""
-            if isinstance(widget, QComboBox):
-                clip = widget.currentText()
-
-            cell_value = 0
-            # cell_text = ""
-            table_item = self.ui.de_tableWidget.item(i, 2)
-            if table_item is not None:
-                cell_text = table_item.text()
-                cell_value = str(cell_text)
-            dict_ret[str(i)] = [str(var.lstrip()), str(clip), cell_value]
-        return dict_ret
 
     # def read_json(self, file_path: str):
     #     with open(file_path, "r") as json_file:
@@ -1374,7 +1050,7 @@ def run_application():
     pass
 
 
-#class SignUp(QDialog, messageBox, sqldatabase):
+# class SignUp(QDialog, messageBox, sqldatabase):
 class SignUp(QDialog, messageBox):
     def __init__(self):
         super(SignUp, self).__init__()
@@ -1386,8 +1062,8 @@ class SignUp(QDialog, messageBox):
         self.setWindowIcon(QIcon(STC_ICON))
         self.setWindowTitle("Create Login Account")
 
-#        self.conn = sqldatabase()
-#        self.conn.initializeDatabase()
+        #        self.conn = sqldatabase()
+        #        self.conn.initializeDatabase()
 
         self.ui.btn_signup.clicked.connect(self.signup_2_login_func)
         self.ui.btn_login.clicked.connect(self.createAccount)
@@ -1419,19 +1095,19 @@ class SignUp(QDialog, messageBox):
             self.Show_message_box("Message", "Enter Valid Email")
             return
 
-        # if password == re_password:
-        #     result, success = self.conn.insertData(
-        #         user_name=username,
-        #         user_pass=password,
-        #         user_email=email,
-        #         user_role="user",
-        #     )
+            # if password == re_password:
+            #     result, success = self.conn.insertData(
+            #         user_name=username,
+            #         user_pass=password,
+            #         user_email=email,
+            #         user_role="user",
+            #     )
 
-            if success is True:
-                self.Show_message_box("Message", "Login Created Successfully")
-
-            else:
-                self.Show_message_box("Message", result)
+            # if success is True:
+            #     self.Show_message_box("Message", "Login Created Successfully")
+            #
+            # else:
+            #     self.Show_message_box("Message", result)
 
         else:
             self.Show_message_box("Message", "Password do not match!")
@@ -1457,8 +1133,8 @@ class LoginWindow(QDialog, messageBox):
         self.ui.setupUi(self)
         self.ui.label.setPixmap(QPixmap(STC_ICON))
 
-#        self.conn = sqldatabase()
-#        self.conn.initializeDatabase()
+        #        self.conn = sqldatabase()
+        #        self.conn.initializeDatabase()
 
         self.setWindowIcon(QIcon(STC_ICON))
         self.setWindowTitle("Login Account")
@@ -1478,7 +1154,7 @@ class LoginWindow(QDialog, messageBox):
         # result, success = self.conn.checkCredentials(
         #     username=username, password=password
         # )
-        result, success = "admin",True
+        result, success = "admin", True
 
         if success:
             #            global user_role

@@ -115,6 +115,14 @@ class PARAMETERS(DATA_FRAMES):
 
             self.__INPUT_FILE_PARAMETERS = {}
 
+            # ===========================-=================#
+            # ================= SEPERATOR==================#
+            # =============================================#
+
+            self.__ELECT_SEP = None
+            self.__GRAPH_SEP = None
+            self.__SERVR_SEP = None
+
             # ============================================#
             # =================EXTRACTOR==================#
             # ============================================#
@@ -135,6 +143,24 @@ class PARAMETERS(DATA_FRAMES):
         if PARAMETERS.__instance is None:
             PARAMETERS.__instance = PARAMETERS()
         return PARAMETERS.__instance
+
+    def set_ELECT_SEP(self, value: str) -> None:
+        self.__ELECT_SEP = str(value)
+
+    def get_ELECT_SEP(self) -> str:
+        return self.__ELECT_SEP
+
+    def set_GRAPH_SEP(self, value: str) -> None:
+        self.__GRAPH_SEP = str(value)
+
+    def get_GRAPH_SEP(self) -> str:
+        return self.__GRAPH_SEP
+
+    def set_SERVER_SEP(self, value: str) -> None:
+        self.__SERVR_SEP = str(value)
+
+    def get_SERVER_SEP(self) -> str:
+        return self.__SERVR_SEP
 
     def set_TEMPLATE_JSON(self, value):
         self.__TEMPLATE_JSON = str(value)
@@ -379,9 +405,9 @@ class PARAMETERS(DATA_FRAMES):
         match param_name:
             case "ICCID":
                 result = (
-                    len(str(param)) == 20
-                    or len(str(param)) == 19
-                    or len(str(param)) == 18
+                        len(str(param)) == 20
+                        or len(str(param)) == 19
+                        or len(str(param)) == 18
                 )
             case "IMSI":
                 result = len(str(param)) == 15
@@ -415,34 +441,34 @@ class PARAMETERS(DATA_FRAMES):
             result = (
                 #                self.is_valid(self.get_IMSI(), "IMSI")
                 #                and self.is_valid(self.get_ICCID(), "ICCID")
-                self.is_valid(self.get_PIN1(), "PIN1")
-                and self.is_valid(self.get_PUK1(), "PUK1")
-                and self.is_valid(self.get_PIN2(), "PIN2")
-                and self.is_valid(self.get_PUK2(), "PUK2")
-                and self.is_valid(self.get_ADM1(), "ADM1")
-                and self.is_valid(self.get_ADM6(), "ADM6")
-                and self.is_valid(self.get_OP(), "OP")
-                and self.is_valid(self.get_K4(), "K4")
-                #                and self.is_valid(self.get_DATA_SIZE(), "SIZE")
-                and self.is_valid(self.get_ELECT_DICT(), "DICT")
-                and self.is_valid(self.get_GRAPH_DICT(), "DICT")
+                    self.is_valid(self.get_PIN1(), "PIN1")
+                    and self.is_valid(self.get_PUK1(), "PUK1")
+                    and self.is_valid(self.get_PIN2(), "PIN2")
+                    and self.is_valid(self.get_PUK2(), "PUK2")
+                    and self.is_valid(self.get_ADM1(), "ADM1")
+                    and self.is_valid(self.get_ADM6(), "ADM6")
+                    and self.is_valid(self.get_OP(), "OP")
+                    and self.is_valid(self.get_K4(), "K4")
+                    #                and self.is_valid(self.get_DATA_SIZE(), "SIZE")
+                    and self.is_valid(self.get_ELECT_DICT(), "DICT")
+                    and self.is_valid(self.get_GRAPH_DICT(), "DICT")
             )
         else:
             print("=================Demo===================")
             result = (
-                self.is_valid(self.get_IMSI(), "IMSI")
-                and self.is_valid(self.get_ICCID(), "ICCID")
-                and self.is_valid(self.get_DATA_SIZE(), "SIZE")
-                and self.is_valid(self.get_PIN1(), "PIN1")
-                and self.is_valid(self.get_PUK1(), "PUK1")
-                and self.is_valid(self.get_PIN2(), "PIN2")
-                and self.is_valid(self.get_PUK2(), "PUK2")
-                and self.is_valid(self.get_ADM1(), "ADM1")
-                and self.is_valid(self.get_ADM6(), "ADM6")
-                and self.is_valid(self.get_OP(), "OP")
-                and self.is_valid(self.get_K4(), "K4")
-                and self.is_valid(self.get_ELECT_DICT(), "DICT")
-                and self.is_valid(self.get_GRAPH_DICT(), "DICT")
+                    self.is_valid(self.get_IMSI(), "IMSI")
+                    and self.is_valid(self.get_ICCID(), "ICCID")
+                    and self.is_valid(self.get_DATA_SIZE(), "SIZE")
+                    and self.is_valid(self.get_PIN1(), "PIN1")
+                    and self.is_valid(self.get_PUK1(), "PUK1")
+                    and self.is_valid(self.get_PIN2(), "PIN2")
+                    and self.is_valid(self.get_PUK2(), "PUK2")
+                    and self.is_valid(self.get_ADM1(), "ADM1")
+                    and self.is_valid(self.get_ADM6(), "ADM6")
+                    and self.is_valid(self.get_OP(), "OP")
+                    and self.is_valid(self.get_K4(), "K4")
+                    and self.is_valid(self.get_ELECT_DICT(), "DICT")
+                    and self.is_valid(self.get_GRAPH_DICT(), "DICT")
                 # self.is_VALID_DF(self.get_ELECT_DF,"DF")
             )
         return result

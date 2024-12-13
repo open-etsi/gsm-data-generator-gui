@@ -33,11 +33,11 @@ class DISP(BaseModel):
 
 
 class PATHS(BaseModel):
-    TEMPLATE_JSON: str
-    INPUT_FILE_PATH: str
-    INPUT_CSV: str
+#    TEMPLATE_JSON: str
+#    INPUT_FILE_PATH: str
+#    INPUT_CSV: str
     OUTPUT_FILES_DIR: str
-    OUTPUT_FILES_LASER_EXT: str
+#    OUTPUT_FILES_LASER_EXT: str
 
 
 class PARAMETERS(BaseModel):
@@ -66,6 +66,14 @@ class ConfigHolder:
 def json_loader(path: str) -> ConfigHolder:
     with open(path, "r") as f:
         data = json.load(f)
+    config = ConfigData(**data)
+    config_holder = ConfigHolder.from_config(config)
+    return config_holder
+
+
+def gui_loader(path: json) -> ConfigHolder:
+#    data = json.load(path)
+    data = path
     config = ConfigData(**data)
     config_holder = ConfigHolder.from_config(config)
     return config_holder
