@@ -6,9 +6,7 @@ import pandas as pd
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtWidgets import (
-    QComboBox,
     QFileDialog,
-    QTableWidgetItem,
     QMainWindow,
     QLineEdit,
     QMessageBox,
@@ -21,6 +19,7 @@ from gui.messages import messageBox
 from gui.ulits import set_ui_from_json
 from gui.table import GuiElect, GuiGraph, GuiExtractor
 from gui.ulits import GuiButtons
+from gui.ulits import parameter_len
 # from datagen.operators.zong.FileWriter import ZongFileWriter
 # from datagen.operators.zong.FileParser import ZongFileParser
 # from core.json_utils import JsonHandler
@@ -44,9 +43,8 @@ class MainWindow(QMainWindow):
     project_path = os.getcwd()
 
     def __init__(self, *args, **kwargs):
-        self.config_holder = None
-        global laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict
         super(MainWindow, self).__init__()
+        self.config_holder = None
         self.global_elect_check = None
         self.default_graph = None
         self.default_elect = None
@@ -77,13 +75,6 @@ class MainWindow(QMainWindow):
         self.button_gui = GuiButtons(self.ui)
         self.extractor_gui = GuiExtractor(self.ui)
         #        self.sec = messageBox()
-
-        #        self.m_json = JsonHandler()
-        #        self.m_json.read_paths()
-        #        self.m_json.read_variables()
-        #        data_generator_instance = DataGenerationScript()
-        #        self.ui.textEdit.append(data_generator_instance.SET_HEADERS())
-        #        del data_generator_instance
 
         self.user_privilges = user_role
         self.ui.lbl_username.setText(user_name)
@@ -122,21 +113,6 @@ class MainWindow(QMainWindow):
         self.default_elect_check = True
         self.default_graph_check = True
         self.default_prod_check = True
-
-        # self.default_headers = [
-        #     "ICCID",
-        #     "IMSI",
-        #     "PIN1",
-        #     "PUK1",
-        #     "PIN2",
-        #     "PUK2",
-        #     "KI",
-        #     "EKI",
-        #     "OPC",
-        #     "ADM1",
-        #     "ADM6",
-        #     "ACC",
-        # ]
 
         # self.parameters.set_ELECT_CHECK(self.default_elect_check)
         # self.parameters.set_GRAPH_CHECK(self.default_graph_check)
@@ -182,13 +158,13 @@ class MainWindow(QMainWindow):
         self.ui.production_data.stateChanged.connect(self.check_state_prod_data)
         self.check_state_prod_data()
 
-        self.ui.op_key_auto.clicked.connect(self.auto_op_func)
-        self.ui.k4_key_auto.clicked.connect(self.auto_k4_func)
-        self.ui.op_key_fetch.clicked.connect(self.fetch_op_func)
-        self.ui.k4_key_fetch.clicked.connect(self.fetch_k4_func)
-        self.ui.data_size_auto.clicked.connect(self.auto_data_size_func)
-        self.ui.imsi_auto.clicked.connect(self.auto_imsi_func)
-        self.ui.iccid_auto.clicked.connect(self.auto_iccid_func)
+        self.ui.op_key_auto.clicked.connect(self.button_gui.auto_op_func)
+        self.ui.k4_key_auto.clicked.connect(self.button_gui.auto_k4_func)
+        self.ui.op_key_fetch.clicked.connect(self.button_gui.fetch_op_func)
+        self.ui.k4_key_fetch.clicked.connect(self.button_gui.fetch_k4_func)
+        self.ui.data_size_auto.clicked.connect(self.button_gui.auto_data_size_func)
+        self.ui.imsi_auto.clicked.connect(self.button_gui.auto_imsi_func)
+        self.ui.iccid_auto.clicked.connect(self.button_gui.auto_iccid_func)
 
         self.ui.k4_key_text.textChanged.connect(
             lambda: self.len_check(
@@ -286,44 +262,10 @@ class MainWindow(QMainWindow):
     #         self.ui.demo_data.setChecked(self.parameters.get_DEMO_CHECK())
     #         self.ui.elect_data.setChecked(self.parameters.get_ELECT_CHECK())
     #         self.ui.graph_data.setChecked(self.parameters.get_GRAPH_CHECK())
-    @staticmethod
-    def is_valid_iccid(iccid):
-        iccid_length = len(str(iccid))
-        return iccid_length in [18, 19, 20]
-
-    @staticmethod
-    def is_valid_imsi(imsi):
-        return len(str(imsi)) == 15
 
     def extractor_function(self, dest, src):
         print(self.dataframes._INPUT_DF)
 
-    @staticmethod
-    def parameter_len(param):
-        """Function printing python version."""
-        length = 0
-        # fmt: off
-
-        match param:
-            case "ICCID_MIN":
-                length = 18
-            case "ICCID":
-                length = 20
-            case "IMSI":
-                length = 15
-            case "PIN1" | "PIN2" | "ACC":
-                length = 4
-            case "PUK1" | "PUK2" | "ADM1" | "ADM6":
-                length = 8
-            case "KI" | "EKI" | "OPC":
-                length = 32
-            case "K4":
-                length = 64
-            case "SIZE":
-                length = 1
-            case _:
-                length = 32
-        return str(length - 1)
 
     @staticmethod
     def create_folder(folder_name: str):
@@ -341,119 +283,6 @@ class MainWindow(QMainWindow):
         else:
             exit()
 
-    # def update_pin1_text(self):
-    #     var = self.ui.pin1_text.text()
-    #     if len(var) == 4:
-    #         self.parameters.set_PIN1(var)
-    #     else:
-    #         self.parameters.set_PIN1("")
-    #         self.ui.textEdit.append("Enter valid PIN1")
-    #
-    # def update_pin2_text(self):
-    #     var = self.ui.pin2_text.text()
-    #     if len(var) == 4:
-    #         self.parameters.set_PIN2(var)
-    #     else:
-    #         self.parameters.set_PIN2("")
-    #         self.ui.textEdit.append("Enter valid PIN2")
-    #
-    # def update_puk1_text(self):
-    #     var = self.ui.puk1_text.text()
-    #     if len(var) == 8:
-    #         self.parameters.set_PUK1(var)
-    #     else:
-    #         self.parameters.set_PUK1("")
-    #         self.ui.textEdit.append("Enter valid PUK1")
-    #
-    # def update_puk2_text(self):
-    #     var = self.ui.puk2_text.text()
-    #     if len(var) == 8:
-    #         self.parameters.set_PUK2(var)
-    #     else:
-    #         self.parameters.set_PUK2("")
-    #         self.ui.textEdit.append("Enter valid PUK2")
-    #
-    # def update_adm1_text(self):
-    #     var = self.ui.adm1_text.text()
-    #     if len(var) == 8:
-    #         self.parameters.set_ADM1(var)
-    #     else:
-    #         self.parameters.set_ADM1("")
-    #         self.ui.textEdit.append("Enter valid ADM1")
-    #
-    # def update_adm6_text(self):
-    #     var = self.ui.adm6_text.text()
-    #     if len(var) == 8:
-    #         self.parameters.set_ADM6(var)
-    #     else:
-    #         self.parameters.set_ADM6("")
-    #         self.ui.textEdit.append("Enter valid ADM6")
-    #
-    # def auto_pin1_func(self):
-    #     # string = generate_4_Digit()
-    #     string = "0000"
-    #     self.ui.pin1_text.setText(string)
-    #
-    # def pin1_rand_check(self):
-    #     if self.ui.pin1_rand_check.isChecked():
-    #         self.parameters.set_PIN1_RAND(True)
-    #     else:
-    #         self.parameters.set_PIN1_RAND(False)
-    #
-    # def auto_pin2_func(self):
-    #     #        string = generate_4_Digit()
-    #     string = "0000"
-    #     self.ui.pin2_text.setText(string)
-    #
-    # def pin2_rand_check(self):
-    #     if self.ui.pin2_rand_check.isChecked():
-    #         self.parameters.set_PIN2_RAND(True)
-    #     else:
-    #         self.parameters.set_PIN2_RAND(False)
-    #
-    # def auto_puk1_func(self):
-    #     #        string = generate_8_Digit()
-    #     string = "00000000"
-    #     self.ui.puk1_text.setText(string)
-    #
-    # def puk1_rand_check(self):
-    #     if self.ui.puk1_rand_check.isChecked():
-    #         self.parameters.set_PUK1_RAND(True)
-    #     else:
-    #         self.parameters.set_PUK1_RAND(False)
-    #
-    # def auto_puk2_func(self):
-    #     #        string = generate_8_Digit()
-    #     string = "00000000"
-    #     self.ui.puk2_text.setText(string)
-    #
-    # def puk2_rand_check(self):
-    #     if self.ui.puk2_rand_check.isChecked():
-    #         self.parameters.set_PUK2_RAND(True)
-    #     else:
-    #         self.parameters.set_PUK2_RAND(False)
-    #
-    # def auto_adm1_func(self):
-    #     #        string = generate_8_Digit()
-    #     string = "00000000"
-    #     self.ui.adm1_text.setText(string)
-    #
-    # def adm1_rand_check(self):
-    #     if self.ui.adm1_rand_check.isChecked():
-    #         self.parameters.set_ADM1_RAND(True)
-    #     else:
-    #         self.parameters.set_ADM1_RAND(False)
-    #
-    # def auto_adm6_func(self):
-    #     #        string = generate_8_Digit()
-    #     string = "00000000"
-    #     self.ui.adm6_text.setText(string)
-    #
-    # def adm6_rand_check(self):
-    #     if self.ui.adm6_rand_check.isChecked():
-    #         self.parameters.set_ADM6_RAND(True)
-    #     else:
-    #         self.parameters.set_ADM6_RAND(False)
 
     def SET_ALL_FROM_SETT(self):
         self.ui.imsi_text.setText(self.parameters.get_IMSI())
@@ -476,9 +305,9 @@ class MainWindow(QMainWindow):
 
     def UPDATE_ALL(self):
         if self.ui.production_data.isChecked() is False:
-            self.get_iccid_func()
-            self.get_imsi_func()
-            self.get_data_size_func()
+            self.button_gui.get_iccid_func()
+            self.button_gui.get_imsi_func()
+            self.button_gui.get_data_size_func()
 
         self.button_gui.pin1_rand_check()
         self.button_gui.pin2_rand_check()
@@ -494,8 +323,8 @@ class MainWindow(QMainWindow):
         self.button_gui.update_adm1_text()
         self.button_gui.update_adm6_text()
 
-        self.get_k4_func()
-        self.get_op_func()
+        self.button_gui.get_k4_func()
+        self.button_gui.get_op_func()
 
     def main_generate_function(self):
         self.ui.textEdit.clear()
@@ -561,38 +390,7 @@ class MainWindow(QMainWindow):
 
     def de_main_generate_function(self):
         self.ui.de_textEdit.clear()
-        # debug = True
-        # self.UPDATE_ALL()
 
-        self.ui.de_textEdit.append("==================================")
-        if debug:
-            self.ui.de_textEdit.append("=============DEBUG================")
-        #            temp=self.parameters.GET_ALL_PARAMS_DICT()
-        #            self.ui.textEdit.append(str(temp))
-
-        self.ui.de_textEdit.append("==================================")
-
-        #        laser=self.get_data_from_table()
-        #        elect=self.e_get_data_from_table()
-        try:
-            # elect = {}  # initialize
-            elect = self.extractor_gui.de_get_data_from_table()
-            self.ui.de_textEdit.append(str(elect))
-
-            self.parameters.set_EXTRACTOR_DICT(self.extractor_gui.de_get_data_from_table())
-            # s = DataGenerationScript()
-            # #            if self.parameters.check_params():
-            # self.dataframes._GRAPH_DF = s.__LASER_DATA_EXTRACTOR(
-            #     elect, self.dataframes._INPUT_DF, True, True, ""
-            # )
-            # self.w = PreviewInput(self.dataframes._GRAPH_DF)
-            # self.w.show()
-
-            # print(self.dataframes._GRAPH_DF)
-        except KeyError:
-            self.ui.de_textEdit.append(
-                "Error : Check Input File Format \n It should be encoded and space seperated Only"
-            )
 
     def create_output_folder(self):
         # m_zong = ZongFileWriter()
@@ -628,195 +426,12 @@ class MainWindow(QMainWindow):
         self.ui.textEdit.append("==================================")
 
     def len_check(self, text, key_type, widget):
-        var = int(self.parameter_len(text))
+        var = int(parameter_len(text))
         if (var + 1) > len(key_type):
             widget.setStyleSheet(style_sheet_bad)
         else:
             widget.setStyleSheet(style_sheet_good)
 
-    # def read_json(file_path: str):
-    #     with open(file_path, "r") as json_file:
-    #         data = json.load(json_file)
-    #     return dict(data)
-
-    def fetch_op_func(self):
-        try:
-            # Define the path to the JSON file
-            path = "keys.json"
-
-            # Check if the file exists
-            if os.path.isfile(path):
-                # Read the JSON file
-                #                keys = read_json(path)
-                keys = {"op": "55555555555555555555555555555555",
-                        "k4": "6666666666666666666666666666666666666666666666666666666666666666"}
-                # Check if the JSON is not empty
-                if keys:
-                    op_key = keys.get("op")
-                    if len(op_key) == 32:
-                        # Set the op_key_text field in the UI
-                        self.ui.op_key_text.setText(str(op_key))
-                        self.statusBar().showMessage(
-                            "Loaded OP sucessfully :{} Length : {}".format(
-                                op_key, len(op_key)
-                            ),
-                            2000,
-                        )
-                    else:
-                        self.ui.textEdit.append("length of OP is invalid!")
-                        self.statusBar().showMessage(
-                            "Loaded OP Error ! :{} Length : {}".format(
-                                op_key, len(op_key)
-                            ),
-                            2000,
-                        )
-
-        except Exception as e:
-            # Handle any exceptions and display an error message
-            error_message = f"Error fetching Operator Key value : {e}"
-            self.ui.textEdit.append(error_message)
-
-    def fetch_k4_func(self):
-        try:
-            # Define the path to the JSON file
-            path = "keys.json"
-
-            # Check if the file exists
-            if os.path.isfile(path):
-                # Read the JSON file
-                #                keys = read_json(path)
-                keys = {"op": "55555555555555555555555555555555",
-                        "k4": "6666666666666666666666666666666666666666666666666666666666666666"}
-                if keys:
-                    k4_key = keys.get("k4")
-                    if len(k4_key) == 64:
-                        self.ui.k4_key_text.setText(str(k4_key))
-                        self.statusBar().showMessage(
-                            "Loaded K4 sucessfully ! : {} Length : {}".format(
-                                k4_key, len(k4_key)
-                            ),
-                            2000,
-                        )
-                    else:
-                        self.ui.textEdit.append("length of K4 is invalid!")
-                        self.statusBar().showMessage(
-                            "Loaded K4 Error ! : {} Length : {}".format(
-                                k4_key, len(k4_key)
-                            ),
-                            2000,
-                        )
-        except Exception as e:
-            # Handle any exceptions and display an error message
-            error_message = f"Error fetching Transport key value : {e}"
-            self.ui.textEdit.append(error_message)
-
-    #        self.ui.k4_key_text.setText(str(gen_k4()))
-    #        self.ui.transport_key_text.setText(str(self.parameters.get_K4()))
-
-    def auto_op_func(self):
-        """
-        This fucntion is to generate new Operator key
-        This is added for development purpose only
-        To be removed in production enviroment.
-        """
-
-        # temp_key = gen_ki()
-        temp_key = "55555555555555555555555555555555"
-
-        self.ui.op_key_text.setText(str(temp_key))
-        self.statusBar().showMessage(
-            "Auto OP generated sucessfully :{} Lenght : {}".format(
-                temp_key, len(temp_key)
-            ),
-            2000,
-        )
-
-    def auto_k4_func(self):
-        """
-        This fucntion is to generate new Transport key
-        This is added for development purpose only
-        To be removed in production enviroment.
-        """
-
-        # temp_key = gen_k4()
-        temp_key = "55555555555555555555555555555555"
-
-        self.ui.k4_key_text.setText(str(temp_key))
-        self.statusBar().showMessage(
-            "Auto K4 generated sucessfully :{} Lenght : {}".format(
-                temp_key, len(temp_key)
-            ),
-            2000,
-        )
-
-    def auto_data_size_func(self):
-        self.ui.data_size_text.setText(str(self.default_data_size))
-
-    #        self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
-
-    def auto_imsi_func(self):
-        init_imsi = self.default_init_imsi
-        #        self.parameters.set_IMSI(init_imsi)
-        if self.is_valid_imsi(init_imsi):
-            self.ui.imsi_text.setText(str(init_imsi))
-
-    def auto_iccid_func(self):
-        init_iccid = self.default_init_iccid
-        #        self.parameters.set_ICCID(init_iccid)
-        if self.is_valid_iccid(init_iccid):
-            self.ui.iccid_text.setText(str(init_iccid))
-
-    def get_op_func(self):
-        op_key = self.ui.op_key_text.text()
-        if len(op_key) == 32:
-            self.parameters.set_OP(op_key)
-        else:
-            self.ui.textEdit.append("Enter valid OP" + " len is " + str(len(op_key)))
-
-    def get_def_head(self):
-        self.parameters.get_DEFAULT_HEADER()
-
-    def get_k4_func(self):
-        transport_key = self.ui.k4_key_text.text()
-        if len(transport_key) == 64:
-            self.parameters.set_K4(transport_key)
-        else:
-            self.ui.textEdit.append("Enter valid K4")
-
-    def get_data_size_func(self):
-        size = self.ui.data_size_text.text()
-        if size.isdigit() and int(size) > 0:
-            try:
-                self.parameters.set_DATA_SIZE(size)
-            except ValueError:
-                self.ui.textEdit.append("Data Size must be a numeric value")
-        else:
-            self.parameters.set_DATA_SIZE("")
-            self.ui.textEdit.append("Enter a valid Data Size")
-
-    def get_imsi_func(self):
-        imsi = self.ui.imsi_text.text()
-        if len(imsi) == 15 and imsi.isalnum():
-            try:
-                imsi = int(imsi)
-                self.parameters.set_IMSI(imsi)
-            except ValueError:
-                self.ui.textEdit.append("IMSI must be a numeric value")
-        else:
-            self.parameters.set_IMSI("")
-            self.ui.textEdit.append("Enter valid IMSI of Size 15 Digits")
-
-    def get_iccid_func(self):
-        iccid = self.ui.iccid_text.text()
-        if len(iccid) in [18, 19, 20] and iccid.isalnum():
-            try:
-                iccid = int(iccid)
-                self.parameters.set_ICCID(iccid)
-            except ValueError:
-                self.ui.textEdit.append("ICCID must be a numeric value")
-        else:
-            self.parameters.set_ICCID("")
-            self.ui.textEdit.append("Enter a valid ICCID : Without Checksum Digit")
 
     def check_state_prod_data(self):
         if self.ui.production_data.isChecked() is False:
