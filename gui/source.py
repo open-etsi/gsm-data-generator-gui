@@ -24,7 +24,7 @@ from gui.ulits import parameter_len
 # from datagen.operators.zong.FileParser import ZongFileParser
 # from core.json_utils import JsonHandler
 # from core.settings import SETTINGS
-from gui.settings import SETTINGS
+from globals.settings import SETTINGS
 from gui.stylesheet import style_sheet_good, style_sheet_bad, style_sheet_disabled
 from gui.forms.main_ui import Ui_MainWindow
 from gui.forms.login_ui import Ui_Form as login_form
@@ -76,7 +76,7 @@ class MainWindow(QMainWindow):
         self.extractor_gui = GuiExtractor(self.ui)
         #        self.sec = messageBox()
 
-        self.user_privilges = user_role
+        self.user_privileges = user_role
         self.ui.lbl_username.setText(user_name)
         self.ui.lbl_userrole.setText(user_role)
         self.ui.btn_logout.clicked.connect(self.logout_func)
@@ -355,7 +355,7 @@ class MainWindow(QMainWindow):
             # ) = s._preview_files_gets()
             # print("data generated")
 
-            if self.user_privilges == "admin":
+            if self.user_privileges == "admin":
                 self.progress_bar()
                 messageBox.Show_message_box(
                     "Information", "Data has been generated successfully."

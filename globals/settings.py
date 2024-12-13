@@ -2,6 +2,7 @@ from PyQt6.QtCore import QSettings
 from PyQt6.QtWidgets import QWidget
 from globals.parameters import PARAMETERS
 
+
 class SETTINGS(QWidget):
     __instance = None
 
@@ -131,7 +132,6 @@ class SETTINGS(QWidget):
         self.parameters.set_ADM6_RAND(
             self.valueToBool(self.ADM6_RAND_CHECK_SETT.value("ADM6_RAND"))
         )
-
 
 # s=SETTINGS()
 # s.save_settings()
