@@ -43,6 +43,7 @@ class MainWindow(QMainWindow):
     project_path = os.getcwd()
 
     def __init__(self, *args, **kwargs):
+        global laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict
         super(MainWindow, self).__init__()
         self.config_holder = None
         self.global_elect_check = None
@@ -83,8 +84,6 @@ class MainWindow(QMainWindow):
 
         # this must not be here | remove in revision
 
-        # m_zong = ZongGenerateHandle()
-        # m_zong.set_json_to_UI()
         data = read_json("settings.json")
         if data:
             header_server_dict = list_2_dict(data["PARAMETERS"]["server_variables"])
@@ -279,7 +278,7 @@ class MainWindow(QMainWindow):
             "Logged Out", "You have successfully logged out! \n Proceed to Login?"
         )
         if result:
-            app_controller.login_screen()
+            login_screen()
         else:
             exit()
 
@@ -661,9 +660,6 @@ class MainWindow(QMainWindow):
 #        event.accept()
 
 
-def run_application():
-    pass
-
 
 # class SignUp(QDialog, messageBox, sqldatabase):
 class SignUp(QDialog, messageBox):
@@ -686,7 +682,7 @@ class SignUp(QDialog, messageBox):
     def signup_2_login_func(self):
         self.hide()
         win = AppController()
-        win.login_screen()
+        login_screen()
 
     #        win.signup_2_login()
 
@@ -731,25 +727,18 @@ class SignUp(QDialog, messageBox):
         self.hide()
 
 
-# import qdarktheme
-# import sys
-# app = QApplication(sys.argv)
-# win = SignUp()
-# qdarktheme.setup_theme("dark")
-# win.show()
-# sys.exit(app.exec())
+def main_form():
+    win = AppController()
+    main_screen()
+    del win
 
 
-# class LoginWindow(QDialog, messageBox, sqldatabase):
 class LoginWindow(QDialog, messageBox):
     def __init__(self):
         super(LoginWindow, self).__init__()
         self.ui = login_form()
         self.ui.setupUi(self)
         self.ui.label.setPixmap(QPixmap(STC_ICON))
-
-        #        self.conn = sqldatabase()
-        #        self.conn.initializeDatabase()
 
         self.setWindowIcon(QIcon(STC_ICON))
         self.setWindowTitle("Login Account")
@@ -781,36 +770,34 @@ class LoginWindow(QDialog, messageBox):
             global credentials
             credentials = {"name": user_name, "privilidges": user_role}
             self.accept()
-            self.main_form()
+            main_form()
         else:
             QMessageBox.warning(self, "Login Failed", result)
 
     def sign_up_form(self):
         self.hide()
         win = AppController()
-        win.signup_screen()
+        signup_screen()
         # self.Show_message_box("Alert", "Signup option is unavailable!")
         del win
 
-    def main_form(self):
-        win = AppController()
-        win.main_screen()
-        del win
+
+def login_screen():
+    win = LoginWindow()
+    win.exec()
+
+
+def main_screen():
+    global credentials
+    win = MainWindow(**credentials)
+    win.show()
+
+
+def signup_screen():
+    win = SignUp()
+    win.exec()
 
 
 class AppController(LoginWindow, MainWindow, SignUp):
     def __init__(self):
         pass
-
-    def login_screen(self):
-        win = LoginWindow()
-        win.exec()
-
-    def main_screen(self):
-        global credentials
-        win = MainWindow(**credentials)
-        win.show()
-
-    def signup_screen(self):
-        win = SignUp()
-        win.exec()
