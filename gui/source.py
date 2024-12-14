@@ -529,7 +529,7 @@ class MainWindow(QMainWindow):
     def browse_button_func(self):
         path = self.project_path
         path = os.path.join(path, "Json File")
-        filters = "Json File (*.json);"
+        filters = ";JSON (*.json);"
 
         fname, _ = QFileDialog.getOpenFileNames(self, "Load Json Input File", path, filter=filters)
         self.ui.textEdit.append(str(fname))
