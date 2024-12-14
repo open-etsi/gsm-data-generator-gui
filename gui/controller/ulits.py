@@ -293,7 +293,7 @@ class GuiButtons:
         # )
 
     def auto_data_size_func(self):
-#        self.ui.data_size_text.setText(str(self.default_data_size))
+        self.ui.data_size_text.setText(str(self.default_data_size))
         self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
 
     def auto_imsi_func(self):

@@ -15,7 +15,7 @@ from PyQt6.QtWidgets import (
 
 from globals.parameters import PARAMETERS, DATA_FRAMES
 from gui.screens import PreviewInput, PreviewOutput
-from gui.messages import messageBox
+from gui.messages import logout_message_box, show_message_box
 from gui.controller.ulits import set_ui_from_json
 from gui.table import GuiElect, GuiGraph, GuiExtractor
 from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
@@ -187,7 +187,7 @@ class MainWindow(QMainWindow):
         self.sett.save_settings()
         self.ui.textEdit.clear()
         self.progress_bar()
-        messageBox.Show_message_box("Information", "Settings saved successfully.")
+        show_message_box("Information", "Settings saved successfully.")
         self.progress_bar_init()
         self.ui.textEdit.append("Settings Saved!")
 
@@ -196,7 +196,7 @@ class MainWindow(QMainWindow):
         #         self.parameters.print_all_global_parameters()
         self.set_gui_from_settings()
         self.progress_bar()
-        messageBox.Show_message_box("Information", "Settings Loaded successfully.")
+        show_message_box("Information", "Settings Loaded successfully.")
         self.progress_bar_init()
         self.ui.textEdit.clear()
         self.ui.textEdit.append("Settings Loaded!")
@@ -217,7 +217,7 @@ class MainWindow(QMainWindow):
     def logout_func(self):
         self.close()
         app_controller = AppController()
-        result = messageBox.Logout_message_box(
+        result = logout_message_box(
             "Logged Out", "You have successfully logged out! \n Proceed to Login?"
         )
         if result:
@@ -299,7 +299,7 @@ class MainWindow(QMainWindow):
 
             if self.user_privileges == "admin":
                 self.progress_bar()
-                messageBox.Show_message_box(
+                show_message_box(
                     "Information", "Data has been generated successfully."
                 )
                 self.progress_bar_init()
@@ -314,7 +314,7 @@ class MainWindow(QMainWindow):
                 self.w.show()
 
             else:
-                messageBox.Show_message_box(
+                show_message_box(
                     "Information",
                     "Data has been generated successfully.\nHowever, access to view this data is restricted to "
                     "administrators only.\nPlease click the 'SAVE' to save the files in the designated directory."
@@ -328,7 +328,7 @@ class MainWindow(QMainWindow):
         #                self.ui.textEdit.append("Error! Maybe Input file is missing...")
         #                self.ui.textEdit.append(str(e))
         else:
-            messageBox.Show_message_box("Error", " Check Missing Input Parameters...")
+            show_message_box("Error", " Check Missing Input Parameters...")
 
     def de_main_generate_function(self):
         self.ui.de_textEdit.clear()
@@ -460,7 +460,7 @@ class MainWindow(QMainWindow):
             error_str = "Error! {}".format(e)
             self.ui.textEdit.append(error_str)
         com_path = os.path.join(folder_name)
-        messageBox.Show_message_box(
+        show_message_box(
             "Information",
             "Generated Data has been saved to {} successfully.".format(com_path),
         )
@@ -515,7 +515,7 @@ class MainWindow(QMainWindow):
 
 
 # class SignUp(QDialog, messageBox, sqldatabase):
-class SignUp(QDialog, messageBox):
+class SignUp(QDialog):
     def __init__(self):
         super(SignUp, self).__init__()
         self.ui = sign_up_form()
@@ -548,7 +548,7 @@ class SignUp(QDialog, messageBox):
         #        SignUp.Emailvalidator(email=email)
 
         if emailvalidator(email=email) is False:
-            self.Show_message_box("Message", "Enter Valid Email")
+            show_message_box("Message", "Enter Valid Email")
             return
 
             # if password == re_password:
@@ -566,7 +566,7 @@ class SignUp(QDialog, messageBox):
             #     self.Show_message_box("Message", result)
 
         else:
-            self.Show_message_box("Message", "Password do not match!")
+            show_message_box("Message", "Password do not match!")
 
     def close(self):
         self.hide()
@@ -578,7 +578,7 @@ def main_form():
     del win
 
 
-class LoginWindow(QDialog, messageBox):
+class LoginWindow(QDialog):
     def __init__(self):
         super(LoginWindow, self).__init__()
         self.ui = login_form()
@@ -645,4 +645,4 @@ def signup_screen():
 
 class AppController(LoginWindow, MainWindow, SignUp):
     def __init__(self):
-        pass
+        super().__init__()
