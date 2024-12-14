@@ -9,7 +9,6 @@ from gui.forms.df_ui import Ui_Dialog
 # =================================#
 
 app = QApplication([])
-# app = QApplication(sys.argv)
 
 
 class PreviewInput(QDialog):  # testing purpose only
@@ -25,16 +24,6 @@ class PreviewInput(QDialog):  # testing purpose only
         header_labels = list(dataframe.columns)
         self.ui.inputWidget.setHorizontalHeaderLabels(header_labels)
 
-    #     def populate_table_widget(self, table_widget, data_frame):
-    #         table_widget.setRowCount(data_frame.shape[0])
-    #         table_widget.setColumnCount(data_frame.shape[1])
-    #         for row in range(data_frame.shape[0]):
-    #             for column in range(data_frame.shape[1]):
-    #                 item = QTableWidgetItem(str(data_frame.iat[row, column]))
-    #                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-    #                 table_widget.setItem(row, column, item)
-    # #        self.ui.inputWidget.setVerticalHeaderLabels([x for x in range(0,data_frame.shape[0])])
-    #         table_widget.resizeColumnsToContents()
 
     def populate_table_widget(self, table_widget, data_frame):
         table_widget.setRowCount(data_frame.shape[0])
