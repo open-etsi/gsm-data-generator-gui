@@ -1,9 +1,37 @@
 import os
+from typing import Annotated
 from globals.parameters import PARAMETERS
-from gui.stylesheet import style_sheet_disabled
+from gui.stylesheet import style_sheet_disabled, style_sheet_good, style_sheet_bad
+
+class TextLengthValidator:
+    def __init__(self, ui):
+        self.ui = ui
+        self.connect_signals()
+
+    def connect_signals(self):
+        text_widgets = {
+            "K4": self.ui.k4_key_text,
+            "OP": self.ui.op_key_text,
+            "SIZE": self.ui.data_size_text,
+            "IMSI": self.ui.imsi_text,
+            "ICCID_MIN": self.ui.iccid_text,
+            "PIN1": self.ui.pin1_text,
+            "PIN2": self.ui.pin2_text,
+            "PUK1": self.ui.puk1_text,
+            "PUK2": self.ui.puk2_text,
+            "ADM1": self.ui.adm1_text,
+            "ADM6": self.ui.adm6_text,
+        }
+
+        for key_type, widget in text_widgets.items():
+            widget.textChanged.connect(lambda text, k=key_type, w=widget: len_check(k, text, w))
+
+
+
 
 class GuiCheckBox:
     def __init__(self, ui):
+        self.global_elect_check = None
         self.global_graph_check = None
         self.global_prod_check = None
         self.parameters = PARAMETERS.get_instance()
@@ -12,6 +40,9 @@ class GuiCheckBox:
         self.ui.elect_data.setChecked(self.parameters.get_ELECT_CHECK())
         self.ui.graph_data.setChecked(self.parameters.get_GRAPH_CHECK())
         self.ui.server_data.setChecked(self.parameters.get_SERVER_CHECK())
+        self.check_state_changed()
+        self.check_state_prod_data()
+
 
 
     def adm6_rand_check(self):
@@ -262,9 +293,8 @@ class GuiButtons:
         # )
 
     def auto_data_size_func(self):
-        self.ui.data_size_text.setText(str(self.default_data_size))
-
-    #        self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
+#        self.ui.data_size_text.setText(str(self.default_data_size))
+        self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
 
     def auto_imsi_func(self):
         init_imsi = self.default_init_imsi
@@ -466,10 +496,19 @@ def parameter_len(param) -> str:
     return str(length - 1)
 
 
-def is_valid_iccid(iccid):
+
+def is_valid_iccid(iccid: Annotated[int, "ICCID length validation"])->bool:
     iccid_length = len(str(iccid))
     return iccid_length in [18, 19, 20]
 
 
-def is_valid_imsi(imsi):
+def is_valid_imsi(imsi: [int, "IMSI Length Validation"])->bool:
     return len(str(imsi)) == 15
+
+
+def len_check(text, key_type, widget):
+    var = int(parameter_len(text))
+    if (var + 1) > len(key_type):
+        widget.setStyleSheet(style_sheet_bad)
+    else:
+        widget.setStyleSheet(style_sheet_good)

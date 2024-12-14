@@ -18,8 +18,9 @@ from gui.screens import PreviewInput, PreviewOutput
 from gui.messages import messageBox
 from gui.controller.ulits import set_ui_from_json
 from gui.table import GuiElect, GuiGraph, GuiExtractor
-from gui.controller.ulits import GuiButtons, GuiCheckBox
+from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
 from gui.controller.ulits import parameter_len
+from gui.controller.controller import Controller
 # from datagen.operators.zong.FileWriter import ZongFileWriter
 # from datagen.operators.zong.FileParser import ZongFileParser
 # from core.json_utils import JsonHandler
@@ -42,7 +43,6 @@ STC_ICON = "resources/stc_logo.ico"
 
 class MainWindow(QMainWindow):
     project_path = os.getcwd()
-
     def __init__(self, *args, **kwargs):
         global laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict
         super(MainWindow, self).__init__()
@@ -62,9 +62,9 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.showMaximized()
-        self.setAttribute(
-            Qt.WidgetAttribute.WA_DeleteOnClose
-        )  # to handle timer issues upon exiting app
+        # self.setAttribute(
+        #     Qt.WidgetAttribute.WA_DeleteOnClose
+        # )  # to handle timer issues upon exiting app
 
         self.ui.textEdit.setFontFamily("Cascadia Mono")
         self.ui.textEdit.setFontPointSize(10)
@@ -81,9 +81,9 @@ class MainWindow(QMainWindow):
         self.button_gui = GuiButtons(self.ui)
         self.extractor_gui = GuiExtractor(self.ui)
         self.checkbox_gui = GuiCheckBox(self.ui)
+        self.text_validator = TextLengthValidator(self.ui)
 
-
-        #        self.sec = messageBox()
+#        self.controller = Controller(self.ui)
 
         self.user_privileges = user_role
         self.ui.lbl_username.setText(user_name)
@@ -114,11 +114,17 @@ class MainWindow(QMainWindow):
         # default values
         self.default_operator_key = "0C556CE733FA0E53FE2DCF14A5006D2E"
 
-        # Move to Contoller Class
+        # Move To Controller Class
         self.ui.main_generate.clicked.connect(self.main_generate_function)
         self.ui.main_save.clicked.connect(self.save_files_function)
         self.ui.browse_button.clicked.connect(self.browse_button_func)
         self.ui.preview_in_file.clicked.connect(self.show_input_files)
+        self.ui.save_seting_button.clicked.connect(self.save_settings_func)
+        self.ui.load_seting_button.clicked.connect(self.load_settings_func)
+        self.ui.de_browse_button.clicked.connect(self.de_browse_button_func)
+        self.ui.de_preview_in_file.clicked.connect(self.de_show_input_files)
+        self.ui.de_main_preview.clicked.connect(self.de_main_generate_function)
+        self.ui.de_generate_button.clicked.connect(self.de_save_files_function)
 
         self.ui.add_text.clicked.connect(self.graph_gui.add_text_to_table)
         self.ui.del_text.clicked.connect(self.graph_gui.delete_selected_row)
@@ -138,10 +144,10 @@ class MainWindow(QMainWindow):
         self.ui.graph_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
         self.ui.elect_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
         self.ui.server_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
-        self.checkbox_gui.check_state_changed()
+#        self.checkbox_gui.check_state_changed() # added in class
 
         self.ui.production_data.stateChanged.connect(self.checkbox_gui.check_state_prod_data)
-        self.checkbox_gui.check_state_prod_data()
+#        self.checkbox_gui.check_state_prod_data() # added in class
 
         self.ui.op_key_auto.clicked.connect(self.button_gui.auto_op_func)
         self.ui.k4_key_auto.clicked.connect(self.button_gui.auto_k4_func)
@@ -150,48 +156,6 @@ class MainWindow(QMainWindow):
         self.ui.data_size_auto.clicked.connect(self.button_gui.auto_data_size_func)
         self.ui.imsi_auto.clicked.connect(self.button_gui.auto_imsi_func)
         self.ui.iccid_auto.clicked.connect(self.button_gui.auto_iccid_func)
-
-        self.ui.k4_key_text.textChanged.connect(
-            lambda: self.len_check(
-                "K4", self.ui.k4_key_text.text(), self.ui.k4_key_text
-            )
-        )
-        self.ui.op_key_text.textChanged.connect(
-            lambda: self.len_check(
-                "OP", self.ui.op_key_text.text(), self.ui.op_key_text
-            )
-        )
-        self.ui.data_size_text.textChanged.connect(
-            lambda: self.len_check(
-                "SIZE", self.ui.data_size_text.text(), self.ui.data_size_text
-            )
-        )
-        self.ui.imsi_text.textChanged.connect(
-            lambda: self.len_check("IMSI", self.ui.imsi_text.text(), self.ui.imsi_text)
-        )
-        self.ui.iccid_text.textChanged.connect(
-            lambda: self.len_check(
-                "ICCID_MIN", self.ui.iccid_text.text(), self.ui.iccid_text
-            )
-        )
-        self.ui.pin1_text.textChanged.connect(
-            lambda: self.len_check("PIN1", self.ui.pin1_text.text(), self.ui.pin1_text)
-        )
-        self.ui.pin2_text.textChanged.connect(
-            lambda: self.len_check("PIN2", self.ui.pin2_text.text(), self.ui.pin2_text)
-        )
-        self.ui.puk1_text.textChanged.connect(
-            lambda: self.len_check("PUK1", self.ui.puk1_text.text(), self.ui.puk1_text)
-        )
-        self.ui.puk2_text.textChanged.connect(
-            lambda: self.len_check("PUK2", self.ui.puk2_text.text(), self.ui.puk2_text)
-        )
-        self.ui.adm1_text.textChanged.connect(
-            lambda: self.len_check("ADM1", self.ui.adm1_text.text(), self.ui.adm1_text)
-        )
-        self.ui.adm6_text.textChanged.connect(
-            lambda: self.len_check("ADM6", self.ui.adm6_text.text(), self.ui.adm6_text)
-        )
 
         self.ui.pin1_rand_check.stateChanged.connect(self.checkbox_gui.pin1_rand_check)
         self.ui.pin2_rand_check.stateChanged.connect(self.checkbox_gui.pin2_rand_check)
@@ -207,11 +171,6 @@ class MainWindow(QMainWindow):
         self.ui.adm1_auto.clicked.connect(self.button_gui.auto_adm1_func)
         self.ui.adm6_auto.clicked.connect(self.button_gui.auto_adm6_func)
 
-        self.ui.save_seting_button.clicked.connect(self.save_settings_func)
-        self.ui.load_seting_button.clicked.connect(self.load_settings_func)
-
-        self.ui.de_browse_button.clicked.connect(self.de_browse_button_func)
-        self.ui.de_preview_in_file.clicked.connect(self.de_show_input_files)
 
         self.ui.de_add_text.clicked.connect(self.extractor_gui.de_add_text_to_table)
         self.ui.de_del_text.clicked.connect(self.extractor_gui.de_delete_selected_row)
@@ -219,8 +178,6 @@ class MainWindow(QMainWindow):
         self.ui.de_dn_button.clicked.connect(self.extractor_gui.de_move_selected_row_down)
         self.ui.de_default.clicked.connect(self.extractor_gui.de_setDefault)
 
-        self.ui.de_main_preview.clicked.connect(self.de_main_generate_function)
-        self.ui.de_generate_button.clicked.connect(self.de_save_files_function)
 
     extractor_columns = []
 
@@ -248,8 +205,8 @@ class MainWindow(QMainWindow):
     #         self.ui.elect_data.setChecked(self.parameters.get_ELECT_CHECK())
     #         self.ui.graph_data.setChecked(self.parameters.get_GRAPH_CHECK())
 
-    def extractor_function(self, dest, src):
-        print(self.dataframes._INPUT_DF)
+    # def extractor_function(self, dest, src):
+    #     print(self.dataframes._INPUT_DF)
 
 
     @staticmethod
@@ -410,12 +367,12 @@ class MainWindow(QMainWindow):
         # self.ui.textEdit.append("Path: " + os.path.join(os.getcwd(), com_path))
         self.ui.textEdit.append("==================================")
 
-    def len_check(self, text, key_type, widget):
-        var = int(parameter_len(text))
-        if (var + 1) > len(key_type):
-            widget.setStyleSheet(style_sheet_bad)
-        else:
-            widget.setStyleSheet(style_sheet_good)
+    # def len_check(self, text, key_type, widget):
+    #     var = int(parameter_len(text))
+    #     if (var + 1) > len(key_type):
+    #         widget.setStyleSheet(style_sheet_bad)
+    #     else:
+    #         widget.setStyleSheet(style_sheet_good)
 
 
 
