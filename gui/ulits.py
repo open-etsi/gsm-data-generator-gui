@@ -322,6 +322,7 @@ def set_ui_from_json(ui, config_holder):
     ui.adm6_rand_check.setChecked(bool(config_holder.DISP.adm6_fix))
 
 
+
 class GuiContoller:
     def __init__(self):
         pass

@@ -30,6 +30,7 @@ from gui.forms.main_ui import Ui_MainWindow
 from gui.forms.login_ui import Ui_Form as login_form
 from gui.forms.signup_ui import Ui_Form as sign_up_form
 from core.executor.utils import read_json, list_2_dict
+from gui.auth.utils import emailvalidator
 
 from core.parser.utils import json_loader
 
@@ -553,6 +554,8 @@ class MainWindow(QMainWindow):
 
     def show_input_files(self):
         set_ui_from_json(self.ui, self.config_holder)
+        self.elect_gui.e_setDefault()
+        self.graph_gui.g_setDefault()
 
     def de_browse_button_func(self):
         path = self.project_path
@@ -686,14 +689,6 @@ class SignUp(QDialog, messageBox):
 
     #        win.signup_2_login()
 
-    @staticmethod
-    def Emailvalidator(email):
-        import re
-
-        regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b"
-        result = True if re.fullmatch(regex, email) else False
-        return result
-
     def createAccount(self):
         username = self.ui.username.text()
         password = self.ui.password.text()
@@ -702,7 +697,7 @@ class SignUp(QDialog, messageBox):
 
         #        SignUp.Emailvalidator(email=email)
 
-        if SignUp.Emailvalidator(email=email) is False:
+        if emailvalidator(email=email) is False:
             self.Show_message_box("Message", "Enter Valid Email")
             return
 
