@@ -1,9 +1,153 @@
 import os
 from globals.parameters import PARAMETERS
+from gui.stylesheet import style_sheet_disabled
+
+class GuiCheckBox:
+    def __init__(self, ui):
+        self.global_graph_check = None
+        self.global_prod_check = None
+        self.parameters = PARAMETERS.get_instance()
+        self.ui = ui
+        self.ui.production_data.setChecked(self.parameters.get_PRODUCTION_CHECK())
+        self.ui.elect_data.setChecked(self.parameters.get_ELECT_CHECK())
+        self.ui.graph_data.setChecked(self.parameters.get_GRAPH_CHECK())
+        self.ui.server_data.setChecked(self.parameters.get_SERVER_CHECK())
+
+
+    def adm6_rand_check(self):
+        if self.ui.adm6_rand_check.isChecked():
+            self.parameters.set_ADM6_RAND(True)
+        else:
+            self.parameters.set_ADM6_RAND(False)
+    def adm1_rand_check(self):
+        if self.ui.adm1_rand_check.isChecked():
+            self.parameters.set_ADM1_RAND(True)
+        else:
+            self.parameters.set_ADM1_RAND(False)
+
+    def pin2_rand_check(self):
+        if self.ui.pin2_rand_check.isChecked():
+            self.parameters.set_PIN2_RAND(True)
+        else:
+            self.parameters.set_PIN2_RAND(False)
+    def pin1_rand_check(self):
+        if self.ui.pin1_rand_check.isChecked():
+            self.parameters.set_PIN1_RAND(True)
+        else:
+            self.parameters.set_PIN1_RAND(False)
+
+    def puk1_rand_check(self):
+        if self.ui.puk1_rand_check.isChecked():
+            self.parameters.set_PUK1_RAND(True)
+        else:
+            self.parameters.set_PUK1_RAND(False)
+
+
+    def puk2_rand_check(self):
+        if self.ui.puk2_rand_check.isChecked():
+            self.parameters.set_PUK2_RAND(True)
+        else:
+            self.parameters.set_PUK2_RAND(False)
+
+    def check_state_prod_data(self):
+        if self.ui.production_data.isChecked() is False:
+            self.global_prod_check = True
+            self.parameters.set_PRODUCTION_CHECK(False)
+            self.ui.browse_button.setDisabled(True)
+            self.ui.imsi_text.setDisabled(False)
+            self.ui.iccid_text.setDisabled(False)
+            self.ui.preview_in_file.setDisabled(True)
+            self.ui.data_size_text.setDisabled(False)
+            self.ui.imsi_auto.setDisabled(False)
+            self.ui.iccid_auto.setDisabled(False)
+            self.ui.data_size_auto.setDisabled(False)
+        else:
+            self.global_prod_check = False
+            self.parameters.set_PRODUCTION_CHECK(True)
+            self.ui.browse_button.setDisabled(False)
+
+            self.ui.filename.clear()
+
+            self.ui.imsi_text.setDisabled(True)
+            self.ui.imsi_text.clear()
+            self.ui.imsi_text.setStyleSheet(style_sheet_disabled)
+
+            self.ui.iccid_text.setDisabled(True)
+            self.ui.iccid_text.clear()
+            self.ui.iccid_text.setStyleSheet(style_sheet_disabled)
+
+            self.ui.preview_in_file.setDisabled(False)
+
+            self.ui.data_size_text.setDisabled(True)
+            self.ui.data_size_text.clear()
+            self.ui.data_size_text.setStyleSheet(style_sheet_disabled)
+
+            self.ui.imsi_auto.setDisabled(True)
+            self.ui.iccid_auto.setDisabled(True)
+            self.ui.data_size_auto.setDisabled(True)
+
+    def check_state_changed(self):
+        if self.ui.graph_data.isChecked():
+            self.global_graph_check = True
+            self.parameters.set_GRAPH_CHECK(True)
+            self.ui.comboBox.setDisabled(False)
+            self.ui.tableWidget.setDisabled(False)
+            self.ui.up_button.setDisabled(False)
+            self.ui.dn_button.setDisabled(False)
+            self.ui.add_text.setDisabled(False)
+            self.ui.del_text.setDisabled(False)
+            self.ui.g_default.setDisabled(False)
+            self.ui.g_save.setDisabled(False)
+
+            # Do this [enable respective]
+        else:
+            self.global_graph_check = False
+            self.parameters.set_GRAPH_CHECK(False)
+            self.ui.comboBox.setDisabled(True)
+            self.ui.tableWidget.setDisabled(True)
+            self.ui.up_button.setDisabled(True)
+            self.ui.dn_button.setDisabled(True)
+            self.ui.add_text.setDisabled(True)
+            self.ui.del_text.setDisabled(True)
+            self.ui.g_default.setDisabled(True)
+            self.ui.g_save.setDisabled(True)
+
+        if self.ui.elect_data.isChecked():
+            self.global_elect_check = True
+            self.parameters.set_ELECT_CHECK(True)
+            self.ui.e_comboBox.setDisabled(False)
+            self.ui.e_tableWidget.setDisabled(False)
+            self.ui.e_up_button.setDisabled(False)
+            self.ui.e_dn_button.setDisabled(False)
+            self.ui.e_add_text.setDisabled(False)
+            self.ui.e_del_text.setDisabled(False)
+            self.ui.e_default.setDisabled(False)
+            self.ui.e_save.setDisabled(False)
+            # Do this [enable respective]
+        else:
+            self.global_elect_check = False
+            self.parameters.set_ELECT_CHECK(False)
+            self.ui.e_comboBox.setDisabled(True)
+            self.ui.e_tableWidget.setDisabled(True)
+            self.ui.e_up_button.setDisabled(True)
+            self.ui.e_dn_button.setDisabled(True)
+            self.ui.e_add_text.setDisabled(True)
+            self.ui.e_del_text.setDisabled(True)
+            self.ui.e_default.setDisabled(True)
+            self.ui.e_save.setDisabled(True)
+
+        if self.ui.server_data.isChecked():
+            self.parameters.set_SERVER_CHECK(True)
+            # Do this [enable respective]
+        else:
+            self.parameters.set_SERVER_CHECK(False)
 
 
 class GuiButtons:
     def __init__(self, ui):
+        self.default_init_imsi = 410000000000000
+        self.default_init_iccid = 899000000000000000
+        self.default_data_size = 5
         self.parameters = PARAMETERS.get_instance()
         self.ui = ui
 
@@ -60,7 +204,7 @@ class GuiButtons:
                     if len(k4_key) == 64:
                         self.ui.k4_key_text.setText(str(k4_key))
                         # self.statusBar().showMessage(
-                        #     "Loaded K4 sucessfully ! : {} Length : {}".format(
+                        #     "Loaded K4 successfully ! : {} Length : {}".format(
                         #         k4_key, len(k4_key)
                         #     ),
                         #     2000,
@@ -83,9 +227,9 @@ class GuiButtons:
 
     def auto_op_func(self):
         """
-        This fucntion is to generate new Operator key
+        This function is to generate new Operator key
         This is added for development purpose only
-        To be removed in production enviroment.
+        To be removed in production environment.
         """
 
         # temp_key = gen_ki()
@@ -101,9 +245,9 @@ class GuiButtons:
 
     def auto_k4_func(self):
         """
-        This fucntion is to generate new Transport key
+        This function is to generate new Transport key
         This is added for development purpose only
-        To be removed in production enviroment.
+        To be removed in production environment.
         """
 
         # temp_key = gen_k4()
@@ -111,7 +255,7 @@ class GuiButtons:
 
         self.ui.k4_key_text.setText(str(temp_key))
         # self.statusBar().showMessage(
-        #     "Auto K4 generated sucessfully :{} Lenght : {}".format(
+        #     "Auto K4 generated successfully :{} Length : {}".format(
         #         temp_key, len(temp_key)
         #     ),
         #     2000,
@@ -125,13 +269,13 @@ class GuiButtons:
     def auto_imsi_func(self):
         init_imsi = self.default_init_imsi
         #        self.parameters.set_IMSI(init_imsi)
-        if self.is_valid_imsi(init_imsi):
+        if is_valid_imsi(init_imsi):
             self.ui.imsi_text.setText(str(init_imsi))
 
     def auto_iccid_func(self):
         init_iccid = self.default_init_iccid
         #        self.parameters.set_ICCID(init_iccid)
-        if self.is_valid_iccid(init_iccid):
+        if is_valid_iccid(init_iccid):
             self.ui.iccid_text.setText(str(init_iccid))
 
     def get_op_func(self):
@@ -239,70 +383,39 @@ class GuiButtons:
         string = "0000"
         self.ui.pin1_text.setText(string)
 
-    def pin1_rand_check(self):
-        if self.ui.pin1_rand_check.isChecked():
-            self.parameters.set_PIN1_RAND(True)
-        else:
-            self.parameters.set_PIN1_RAND(False)
 
     def auto_pin2_func(self):
         #        string = generate_4_Digit()
         string = "0000"
         self.ui.pin2_text.setText(string)
 
-    def pin2_rand_check(self):
-        if self.ui.pin2_rand_check.isChecked():
-            self.parameters.set_PIN2_RAND(True)
-        else:
-            self.parameters.set_PIN2_RAND(False)
 
     def auto_puk1_func(self):
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.puk1_text.setText(string)
 
-    def puk1_rand_check(self):
-        if self.ui.puk1_rand_check.isChecked():
-            self.parameters.set_PUK1_RAND(True)
-        else:
-            self.parameters.set_PUK1_RAND(False)
 
     def auto_puk2_func(self):
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.puk2_text.setText(string)
 
-    def puk2_rand_check(self):
-        if self.ui.puk2_rand_check.isChecked():
-            self.parameters.set_PUK2_RAND(True)
-        else:
-            self.parameters.set_PUK2_RAND(False)
 
     def auto_adm1_func(self):
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.adm1_text.setText(string)
 
-    def adm1_rand_check(self):
-        if self.ui.adm1_rand_check.isChecked():
-            self.parameters.set_ADM1_RAND(True)
-        else:
-            self.parameters.set_ADM1_RAND(False)
 
     def auto_adm6_func(self):
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.adm6_text.setText(string)
 
-    def adm6_rand_check(self):
-        if self.ui.adm6_rand_check.isChecked():
-            self.parameters.set_ADM6_RAND(True)
-        else:
-            self.parameters.set_ADM6_RAND(False)
 
 
 def set_ui_from_json(ui, config_holder):
-    ui.imsi_text.setText(config_holder.DISP.imsi)
     ui.imsi_text.setText(config_holder.DISP.imsi)
     ui.iccid_text.setText(config_holder.DISP.iccid)
     ui.pin1_text.setText(config_holder.DISP.pin1)
@@ -323,7 +436,7 @@ def set_ui_from_json(ui, config_holder):
 
 
 
-class GuiContoller:
+class GuiController:
     def __init__(self):
         pass
 

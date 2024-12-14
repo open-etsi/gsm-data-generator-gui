@@ -16,16 +16,16 @@ from PyQt6.QtWidgets import (
 from globals.parameters import PARAMETERS, DATA_FRAMES
 from gui.screens import PreviewInput, PreviewOutput
 from gui.messages import messageBox
-from gui.ulits import set_ui_from_json
+from gui.controller.ulits import set_ui_from_json
 from gui.table import GuiElect, GuiGraph, GuiExtractor
-from gui.ulits import GuiButtons
-from gui.ulits import parameter_len
+from gui.controller.ulits import GuiButtons, GuiCheckBox
+from gui.controller.ulits import parameter_len
 # from datagen.operators.zong.FileWriter import ZongFileWriter
 # from datagen.operators.zong.FileParser import ZongFileParser
 # from core.json_utils import JsonHandler
 # from core.settings import SETTINGS
 from globals.settings import SETTINGS
-from gui.stylesheet import style_sheet_good, style_sheet_bad, style_sheet_disabled
+from gui.stylesheet import style_sheet_good, style_sheet_bad
 from gui.forms.main_ui import Ui_MainWindow
 from gui.forms.login_ui import Ui_Form as login_form
 from gui.forms.signup_ui import Ui_Form as sign_up_form
@@ -71,11 +71,18 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon(STC_ICON))
         self.parameters = PARAMETERS.get_instance()
         self.dataframes = DATA_FRAMES.get_instance()
+
+
         self.sett = SETTINGS()
+
+
         self.elect_gui = GuiElect(self.ui)
         self.graph_gui = GuiGraph(self.ui)
         self.button_gui = GuiButtons(self.ui)
         self.extractor_gui = GuiExtractor(self.ui)
+        self.checkbox_gui = GuiCheckBox(self.ui)
+
+
         #        self.sec = messageBox()
 
         self.user_privileges = user_role
@@ -106,32 +113,12 @@ class MainWindow(QMainWindow):
         )
         # default values
         self.default_operator_key = "0C556CE733FA0E53FE2DCF14A5006D2E"
-        self.default_init_imsi = 789000000000000
-        self.default_init_iccid = 899222333444555000
-        self.default_PIN1 = "1234"
-        self.default_data_size = 25
-        self.default_elect_check = True
-        self.default_graph_check = True
-        self.default_prod_check = True
 
-        # self.parameters.set_ELECT_CHECK(self.default_elect_check)
-        # self.parameters.set_GRAPH_CHECK(self.default_graph_check)
-        # self.parameters.set_PRODUCTION_CHECK(self.default_prod_check)
-        # self.parameters.set_DEFAULT_HEADER(self.default_headers)
-
-        tableWidgetHeader = ["Variables", "Clip", "length"]
-        self.ui.tableWidget.setHorizontalHeaderLabels(tableWidgetHeader)
-        self.ui.e_tableWidget.setHorizontalHeaderLabels(tableWidgetHeader)
-        self.ui.de_tableWidget.setHorizontalHeaderLabels(tableWidgetHeader)
-        self.ui.de_comboBox.addItems(self.extractor_columns)
-
+        # Move to Contoller Class
         self.ui.main_generate.clicked.connect(self.main_generate_function)
         self.ui.main_save.clicked.connect(self.save_files_function)
-
-        self.ui.production_data.setChecked(self.default_prod_check)
-        self.ui.elect_data.setChecked(self.default_elect_check)
-        self.ui.graph_data.setChecked(self.default_graph_check)
-        self.ui.server_data.setChecked(True)
+        self.ui.browse_button.clicked.connect(self.browse_button_func)
+        self.ui.preview_in_file.clicked.connect(self.show_input_files)
 
         self.ui.add_text.clicked.connect(self.graph_gui.add_text_to_table)
         self.ui.del_text.clicked.connect(self.graph_gui.delete_selected_row)
@@ -147,16 +134,14 @@ class MainWindow(QMainWindow):
         self.ui.e_default.clicked.connect(self.elect_gui.e_setDefault)
         self.ui.e_save.clicked.connect(self.elect_gui.e_getDefault)
 
-        self.ui.browse_button.clicked.connect(self.browse_button_func)
-        self.ui.preview_in_file.clicked.connect(self.show_input_files)
 
-        self.ui.graph_data.stateChanged.connect(self.check_state_changed)
-        self.ui.elect_data.stateChanged.connect(self.check_state_changed)
-        self.ui.server_data.stateChanged.connect(self.check_state_changed)
-        self.check_state_changed()
+        self.ui.graph_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
+        self.ui.elect_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
+        self.ui.server_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
+        self.checkbox_gui.check_state_changed()
 
-        self.ui.production_data.stateChanged.connect(self.check_state_prod_data)
-        self.check_state_prod_data()
+        self.ui.production_data.stateChanged.connect(self.checkbox_gui.check_state_prod_data)
+        self.checkbox_gui.check_state_prod_data()
 
         self.ui.op_key_auto.clicked.connect(self.button_gui.auto_op_func)
         self.ui.k4_key_auto.clicked.connect(self.button_gui.auto_k4_func)
@@ -208,12 +193,12 @@ class MainWindow(QMainWindow):
             lambda: self.len_check("ADM6", self.ui.adm6_text.text(), self.ui.adm6_text)
         )
 
-        self.ui.pin1_rand_check.stateChanged.connect(self.button_gui.pin1_rand_check)
-        self.ui.pin2_rand_check.stateChanged.connect(self.button_gui.pin2_rand_check)
-        self.ui.puk1_rand_check.stateChanged.connect(self.button_gui.puk1_rand_check)
-        self.ui.puk2_rand_check.stateChanged.connect(self.button_gui.puk2_rand_check)
-        self.ui.adm1_rand_check.stateChanged.connect(self.button_gui.adm1_rand_check)
-        self.ui.adm6_rand_check.stateChanged.connect(self.button_gui.adm6_rand_check)
+        self.ui.pin1_rand_check.stateChanged.connect(self.checkbox_gui.pin1_rand_check)
+        self.ui.pin2_rand_check.stateChanged.connect(self.checkbox_gui.pin2_rand_check)
+        self.ui.puk1_rand_check.stateChanged.connect(self.checkbox_gui.puk1_rand_check)
+        self.ui.puk2_rand_check.stateChanged.connect(self.checkbox_gui.puk2_rand_check)
+        self.ui.adm1_rand_check.stateChanged.connect(self.checkbox_gui.adm1_rand_check)
+        self.ui.adm6_rand_check.stateChanged.connect(self.checkbox_gui.adm6_rand_check)
 
         self.ui.pin1_auto.clicked.connect(self.button_gui.auto_pin1_func)
         self.ui.pin2_auto.clicked.connect(self.button_gui.auto_pin2_func)
@@ -252,7 +237,7 @@ class MainWindow(QMainWindow):
     def load_settings_func(self):
         self.sett.load_settings()
         #         self.parameters.print_all_global_parameters()
-        self.SET_ALL_FROM_SETT()
+        self.set_gui_from_settings()
         self.progress_bar()
         messageBox.Show_message_box("Information", "Settings Loaded successfully.")
         self.progress_bar_init()
@@ -284,7 +269,7 @@ class MainWindow(QMainWindow):
             exit()
 
 
-    def SET_ALL_FROM_SETT(self):
+    def set_gui_from_settings(self):
         self.ui.imsi_text.setText(self.parameters.get_IMSI())
         self.ui.iccid_text.setText(self.parameters.get_ICCID())
         self.ui.pin1_text.setText(self.parameters.get_PIN1())
@@ -309,12 +294,12 @@ class MainWindow(QMainWindow):
             self.button_gui.get_imsi_func()
             self.button_gui.get_data_size_func()
 
-        self.button_gui.pin1_rand_check()
-        self.button_gui.pin2_rand_check()
-        self.button_gui.puk1_rand_check()
-        self.button_gui.puk2_rand_check()
-        self.button_gui.adm1_rand_check()
-        self.button_gui.adm6_rand_check()
+        self.checkbox_gui.pin1_rand_check()
+        self.checkbox_gui.pin2_rand_check()
+        self.checkbox_gui.puk1_rand_check()
+        self.checkbox_gui.puk2_rand_check()
+        self.checkbox_gui.adm1_rand_check()
+        self.checkbox_gui.adm6_rand_check()
 
         self.button_gui.update_pin1_text()
         self.button_gui.update_pin2_text()
@@ -433,103 +418,11 @@ class MainWindow(QMainWindow):
             widget.setStyleSheet(style_sheet_good)
 
 
-    def check_state_prod_data(self):
-        if self.ui.production_data.isChecked() is False:
-            self.global_prod_check = True
-            self.parameters.set_PRODUCTION_CHECK(False)
-            self.ui.browse_button.setDisabled(True)
-            self.ui.imsi_text.setDisabled(False)
-            self.ui.iccid_text.setDisabled(False)
-            self.ui.preview_in_file.setDisabled(True)
-            self.ui.data_size_text.setDisabled(False)
-            self.ui.imsi_auto.setDisabled(False)
-            self.ui.iccid_auto.setDisabled(False)
-            self.ui.data_size_auto.setDisabled(False)
-        else:
-            self.global_prod_check = False
-            self.parameters.set_PRODUCTION_CHECK(True)
-            self.ui.browse_button.setDisabled(False)
-
-            self.ui.filename.clear()
-
-            self.ui.imsi_text.setDisabled(True)
-            self.ui.imsi_text.clear()
-            self.ui.imsi_text.setStyleSheet(style_sheet_disabled)
-
-            self.ui.iccid_text.setDisabled(True)
-            self.ui.iccid_text.clear()
-            self.ui.iccid_text.setStyleSheet(style_sheet_disabled)
-
-            self.ui.preview_in_file.setDisabled(False)
-
-            self.ui.data_size_text.setDisabled(True)
-            self.ui.data_size_text.clear()
-            self.ui.data_size_text.setStyleSheet(style_sheet_disabled)
-
-            self.ui.imsi_auto.setDisabled(True)
-            self.ui.iccid_auto.setDisabled(True)
-            self.ui.data_size_auto.setDisabled(True)
-
-    def check_state_changed(self):
-        if self.ui.graph_data.isChecked():
-            self.global_graph_check = True
-            self.parameters.set_GRAPH_CHECK(True)
-            self.ui.comboBox.setDisabled(False)
-            self.ui.tableWidget.setDisabled(False)
-            self.ui.up_button.setDisabled(False)
-            self.ui.dn_button.setDisabled(False)
-            self.ui.add_text.setDisabled(False)
-            self.ui.del_text.setDisabled(False)
-            self.ui.g_default.setDisabled(False)
-            self.ui.g_save.setDisabled(False)
-
-            # Do this [enable respective]
-        else:
-            self.global_graph_check = False
-            self.parameters.set_GRAPH_CHECK(False)
-            self.ui.comboBox.setDisabled(True)
-            self.ui.tableWidget.setDisabled(True)
-            self.ui.up_button.setDisabled(True)
-            self.ui.dn_button.setDisabled(True)
-            self.ui.add_text.setDisabled(True)
-            self.ui.del_text.setDisabled(True)
-            self.ui.g_default.setDisabled(True)
-            self.ui.g_save.setDisabled(True)
-
-        if self.ui.elect_data.isChecked():
-            self.global_elect_check = True
-            self.parameters.set_ELECT_CHECK(True)
-            self.ui.e_comboBox.setDisabled(False)
-            self.ui.e_tableWidget.setDisabled(False)
-            self.ui.e_up_button.setDisabled(False)
-            self.ui.e_dn_button.setDisabled(False)
-            self.ui.e_add_text.setDisabled(False)
-            self.ui.e_del_text.setDisabled(False)
-            self.ui.e_default.setDisabled(False)
-            self.ui.e_save.setDisabled(False)
-            # Do this [enable respective]
-        else:
-            self.global_elect_check = False
-            self.parameters.set_ELECT_CHECK(False)
-            self.ui.e_comboBox.setDisabled(True)
-            self.ui.e_tableWidget.setDisabled(True)
-            self.ui.e_up_button.setDisabled(True)
-            self.ui.e_dn_button.setDisabled(True)
-            self.ui.e_add_text.setDisabled(True)
-            self.ui.e_del_text.setDisabled(True)
-            self.ui.e_default.setDisabled(True)
-            self.ui.e_save.setDisabled(True)
-
-        if self.ui.server_data.isChecked():
-            self.parameters.set_SERVER_CHECK(True)
-            # Do this [enable respective]
-        else:
-            self.parameters.set_SERVER_CHECK(False)
 
     def browse_button_func(self):
         path = self.project_path
         path = os.path.join(path, "Json File")
-        filters = ";JSON (*.json);"
+        filters = "JSON (*.json);"
 
         fname, _ = QFileDialog.getOpenFileNames(self, "Load Json Input File", path, filter=filters)
         self.ui.textEdit.append(str(fname))

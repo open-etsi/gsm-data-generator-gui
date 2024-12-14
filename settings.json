@@ -18,7 +18,7 @@
     "prod_check": true,
     "elect_check": true,
     "graph_check": true,
-    "server_check": true,
+    "server_check": false,
     "pin1_fix": false,
     "puk1_fix": false,
     "pin2_fix": false,

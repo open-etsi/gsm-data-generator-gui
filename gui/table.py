@@ -5,14 +5,17 @@ from PyQt6.QtWidgets import (
     QTableWidgetItem,
 )
 
-from gui.ulits import parameter_len
+from gui.controller.ulits import parameter_len
 
 
 class GuiElect:
+    tableWidgetHeader = ["Variables", "Clip", "length"]
     def __init__(self, ui):
         self.default_elect = None
         self.ui = ui
         self.parameters = PARAMETERS.get_instance()
+
+        self.ui.e_tableWidget.setHorizontalHeaderLabels(GuiElect.tableWidgetHeader)
 
     def e_setDefault(self):
         d = self.parameters.get_ELECT_DICT()
@@ -115,11 +118,13 @@ class GuiElect:
 
 
 class GuiGraph:
+    tableWidgetHeader = ["Variables", "Clip", "length"]
     def __init__(self, ui):
         self.default_graph = None
         self.combo_box = None
         self.ui = ui
         self.parameters = PARAMETERS.get_instance()
+        self.ui.tableWidget.setHorizontalHeaderLabels(GuiGraph.tableWidgetHeader)
 
     def g_table_append(self, text: str, l: str):
         drop_down_menu = ["Normal", "Right", "Center", "Left"]
