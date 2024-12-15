@@ -1,4 +1,4 @@
-from globals.parameters import PARAMETERS
+from globals.parameters import Parameters
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QComboBox,
@@ -13,7 +13,7 @@ class GuiElect:
     def __init__(self, ui):
         self.default_elect = None
         self.ui = ui
-        self.parameters = PARAMETERS.get_instance()
+        self.parameters = Parameters.get_instance()
 
         self.ui.e_tableWidget.setHorizontalHeaderLabels(GuiElect.tableWidgetHeader)
 
@@ -123,7 +123,7 @@ class GuiGraph:
         self.default_graph = None
         self.combo_box = None
         self.ui = ui
-        self.parameters = PARAMETERS.get_instance()
+        self.parameters = Parameters.get_instance()
         self.ui.tableWidget.setHorizontalHeaderLabels(GuiGraph.tableWidgetHeader)
 
     def g_table_append(self, text: str, l: str):
@@ -245,7 +245,7 @@ class GuiExtractor:
     def __init__(self, ui):
         self.combo_box = None
         self.ui = ui
-        self.parameters = PARAMETERS.get_instance()
+        self.parameters = Parameters.get_instance()
 
     def de_setDefault(self):
         #        for items in self.default_elect:

@@ -47,7 +47,7 @@ from core.generator.utils import (
     DataGenerator,
     DataProcessing,
 )
-from globals.parameters import DATA_FRAMES, PARAMETERS
+from globals.parameters import DataFrames, Parameters
 
 # Commented-out imports (if needed in the future)
 # from pydantic import BaseModel, Field

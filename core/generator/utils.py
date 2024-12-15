@@ -19,7 +19,7 @@ This code include following :
 # you can use requirements.txt
 # from core.GlobalParams import PARAMETERS, DATA_FRAMES
 # from GlobalParams import PARAMETERS, DATA_FRAMES
-from globals.parameters import PARAMETERS, DATA_FRAMES
+from globals.parameters import Parameters, DataFrames
 
 # from custom_json import JsonHandler
 from typing import Optional, List, Dict, Any, Tuple

@@ -1,23 +1,24 @@
 from PyQt6.QtCore import QSettings
 from PyQt6.QtWidgets import QWidget
-from globals.parameters import PARAMETERS
+from globals.parameters import Parameters
 
 
 class SETTINGS(QWidget):
     __instance = None
 
-    def __init__(self):
+    def __init__(self, ui):
         """
         GET and SET settings for GUI
         """
         super().__init__()
+        self.ui = ui
         if SETTINGS.__instance is not None:
             raise Exception(
                 "SETTINGS class is a singleton! Use get_instance() to access the instance."
             )
         else:
             SETTINGS.__instance = self
-        self.parameters = PARAMETERS.get_instance()
+        self.parameters = Parameters.get_instance()
         self.IMSI_SETT = QSettings("IMSI", "")
         self.ICCID_SETT = QSettings("ICCID", "")
         self.PIN1_SETT = QSettings("PIN1", "")
@@ -45,7 +46,7 @@ class SETTINGS(QWidget):
     #     return SETTINGS.__instance
 
     def __del__(self):
-        self.save_settings()
+        self.save_global_params_to_settings()
 
     @staticmethod
     def BoolToValue(value: bool):
@@ -67,7 +68,26 @@ class SETTINGS(QWidget):
         else:
             return value
 
-    def save_settings(self):
+    def set_gui_from_settings(self):
+        self.ui.imsi_text.setText(self.parameters.get_IMSI())
+        self.ui.iccid_text.setText(self.parameters.get_ICCID())
+        self.ui.pin1_text.setText(self.parameters.get_PIN1())
+        self.ui.puk1_text.setText(self.parameters.get_PUK1())
+        self.ui.pin2_text.setText(self.parameters.get_PIN2())
+        self.ui.puk2_text.setText(self.parameters.get_PUK2())
+        self.ui.adm1_text.setText(self.parameters.get_ADM1())
+        self.ui.adm6_text.setText(self.parameters.get_ADM6())
+        self.ui.k4_key_text.setText(self.parameters.get_K4())
+        self.ui.op_key_text.setText(self.parameters.get_OP())
+        self.ui.data_size_text.setText(self.parameters.get_DATA_SIZE())
+        self.ui.pin1_rand_check.setChecked(bool(self.parameters.get_PIN1_RAND()))
+        self.ui.pin2_rand_check.setChecked(bool(self.parameters.get_PIN2_RAND()))
+        self.ui.puk1_rand_check.setChecked(bool(self.parameters.get_PUK1_RAND()))
+        self.ui.puk2_rand_check.setChecked(bool(self.parameters.get_PUK2_RAND()))
+        self.ui.adm1_rand_check.setChecked(bool(self.parameters.get_ADM1_RAND()))
+        self.ui.adm6_rand_check.setChecked(bool(self.parameters.get_ADM6_RAND()))
+
+    def save_global_params_to_settings(self):
         self.IMSI_SETT.setValue("IMSI", self.parameters.get_IMSI())
         self.ICCID_SETT.setValue("ICCID", self.parameters.get_ICCID())
         self.PIN1_SETT.setValue("PIN1", self.parameters.get_PIN1())
@@ -76,15 +96,11 @@ class SETTINGS(QWidget):
         self.PUK2_SETT.setValue("PUK2", self.parameters.get_PUK2())
         self.ADM1_SETT.setValue("ADM1", self.parameters.get_ADM1())
         self.ADM6_SETT.setValue("ADM6", self.parameters.get_ADM6())
-        #        self.K4_SETT.setValue("K4", self.parameters.get_K4())
-        #        self.OP_SETT.setValue("OP", self.parameters.get_OP())
-        self.K4_SETT.setValue("K4", "")
-        self.OP_SETT.setValue("OP", "")
+        self.K4_SETT.setValue("K4", self.parameters.get_K4())
+        self.OP_SETT.setValue("OP", self.parameters.get_OP())
         self.DATA_SIZE_SETT.setValue("DATA_SIZE", self.parameters.get_DATA_SIZE())
 
-        self.PIN1_RAND_CHECK_SETT.setValue(
-            "PIN1_RAND", self.BoolToValue(self.parameters.get_PIN1_RAND())
-        )
+        self.PIN1_RAND_CHECK_SETT.setValue("PIN1_RAND", self.BoolToValue(self.parameters.get_PIN1_RAND()))
         self.PIN2_RAND_CHECK_SETT.setValue(
             "PIN2_RAND", self.BoolToValue(self.parameters.get_PIN2_RAND())
         )
@@ -101,7 +117,7 @@ class SETTINGS(QWidget):
             "ADM6_RAND", self.BoolToValue(self.parameters.get_ADM6_RAND())
         )
 
-    def load_settings(self):
+    def load_settings_to_global(self):
         self.parameters.set_IMSI(self.IMSI_SETT.value("IMSI"))
         self.parameters.set_ICCID(self.ICCID_SETT.value("ICCID"))
         self.parameters.set_PIN1(self.PIN1_SETT.value("PIN1"))

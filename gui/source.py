@@ -2,8 +2,6 @@ import datetime
 import os
 import time
 
-import pandas as pd
-from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtWidgets import (
     QFileDialog,
@@ -13,28 +11,18 @@ from PyQt6.QtWidgets import (
     QDialog,
 )
 
-from globals.parameters import PARAMETERS, DATA_FRAMES
-from gui.screens import PreviewInput, PreviewOutput
-from gui.messages import logout_message_box, show_message_box
-from gui.controller.ulits import set_ui_from_json
-from gui.table import GuiElect, GuiGraph, GuiExtractor
-from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
-from gui.controller.ulits import parameter_len
-from gui.controller.controller import Controller
-# from datagen.operators.zong.FileWriter import ZongFileWriter
-# from datagen.operators.zong.FileParser import ZongFileParser
-# from core.json_utils import JsonHandler
-# from core.settings import SETTINGS
+from globals.parameters import Parameters, DataFrames
 from globals.settings import SETTINGS
-from gui.stylesheet import style_sheet_good, style_sheet_bad
+
 from gui.forms.main_ui import Ui_MainWindow
 from gui.forms.login_ui import Ui_Form as login_form
-from gui.forms.signup_ui import Ui_Form as sign_up_form
+from gui.screens import PreviewOutput
+from gui.messages import show_message_box
+from gui.table import GuiElect, GuiGraph, GuiExtractor
+from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
+from gui.controller.controller import Controller
 from core.executor.utils import read_json, list_2_dict
-from gui.auth.utils import emailvalidator
-
 from core.parser.utils import json_loader
-
 # from core.executor.script import DataGenerationScript
 
 debug = False
@@ -44,7 +32,7 @@ STC_ICON = "resources/stc_logo.ico"
 class MainWindow(QMainWindow):
     project_path = os.getcwd()
     def __init__(self, *args, **kwargs):
-        global laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict
+        (laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict) = (None, None, None, None)
         super(MainWindow, self).__init__()
         self.config_holder = None
         self.global_elect_check = None
@@ -69,26 +57,25 @@ class MainWindow(QMainWindow):
         self.ui.textEdit.setFontFamily("Cascadia Mono")
         self.ui.textEdit.setFontPointSize(10)
         self.setWindowIcon(QIcon(STC_ICON))
-        self.parameters = PARAMETERS.get_instance()
-        self.dataframes = DATA_FRAMES.get_instance()
+        self.parameters = Parameters.get_instance()
+        self.dataframes = DataFrames.get_instance()
 
 
-        self.sett = SETTINGS()
+        self.sett = SETTINGS(self.ui)
 
 
-        self.elect_gui = GuiElect(self.ui)
-        self.graph_gui = GuiGraph(self.ui)
-        self.button_gui = GuiButtons(self.ui)
-        self.extractor_gui = GuiExtractor(self.ui)
-        self.checkbox_gui = GuiCheckBox(self.ui)
+#        self.elect_gui = GuiElect(self.ui)
+#        self.graph_gui = GuiGraph(self.ui)
+#        self.button_gui = GuiButtons(self.ui)
+#        self.checkbox_gui = GuiCheckBox(self.ui)
+#        self.extractor_gui = GuiExtractor(self.ui)
         self.text_validator = TextLengthValidator(self.ui)
 
-#        self.controller = Controller(self.ui)
+        self.controller = Controller(self.ui)
 
         self.user_privileges = user_role
         self.ui.lbl_username.setText(user_name)
         self.ui.lbl_userrole.setText(user_role)
-        self.ui.btn_logout.clicked.connect(self.logout_func)
 
         # this must not be here | remove in revision
 
@@ -121,70 +108,15 @@ class MainWindow(QMainWindow):
         self.ui.preview_in_file.clicked.connect(self.show_input_files)
         self.ui.save_seting_button.clicked.connect(self.save_settings_func)
         self.ui.load_seting_button.clicked.connect(self.load_settings_func)
-        self.ui.de_browse_button.clicked.connect(self.de_browse_button_func)
-        self.ui.de_preview_in_file.clicked.connect(self.de_show_input_files)
-        self.ui.de_main_preview.clicked.connect(self.de_main_generate_function)
-        self.ui.de_generate_button.clicked.connect(self.de_save_files_function)
 
-        self.ui.add_text.clicked.connect(self.graph_gui.add_text_to_table)
-        self.ui.del_text.clicked.connect(self.graph_gui.delete_selected_row)
-        self.ui.up_button.clicked.connect(self.graph_gui.move_selected_row_up)
-        self.ui.dn_button.clicked.connect(self.graph_gui.move_selected_row_down)
-        self.ui.g_default.clicked.connect(self.graph_gui.g_setDefault)
-        self.ui.g_save.clicked.connect(self.graph_gui.g_getDefault)
-
-        self.ui.e_add_text.clicked.connect(self.elect_gui.e_add_text_to_table)
-        self.ui.e_del_text.clicked.connect(self.elect_gui.e_delete_selected_row)
-        self.ui.e_up_button.clicked.connect(self.elect_gui.e_move_selected_row_up)
-        self.ui.e_dn_button.clicked.connect(self.elect_gui.e_move_selected_row_down)
-        self.ui.e_default.clicked.connect(self.elect_gui.e_setDefault)
-        self.ui.e_save.clicked.connect(self.elect_gui.e_getDefault)
-
-
-        self.ui.graph_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
-        self.ui.elect_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
-        self.ui.server_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
-#        self.checkbox_gui.check_state_changed() # added in class
-
-        self.ui.production_data.stateChanged.connect(self.checkbox_gui.check_state_prod_data)
-#        self.checkbox_gui.check_state_prod_data() # added in class
-
-        self.ui.op_key_auto.clicked.connect(self.button_gui.auto_op_func)
-        self.ui.k4_key_auto.clicked.connect(self.button_gui.auto_k4_func)
-        self.ui.op_key_fetch.clicked.connect(self.button_gui.fetch_op_func)
-        self.ui.k4_key_fetch.clicked.connect(self.button_gui.fetch_k4_func)
-        self.ui.data_size_auto.clicked.connect(self.button_gui.auto_data_size_func)
-        self.ui.imsi_auto.clicked.connect(self.button_gui.auto_imsi_func)
-        self.ui.iccid_auto.clicked.connect(self.button_gui.auto_iccid_func)
-
-        self.ui.pin1_rand_check.stateChanged.connect(self.checkbox_gui.pin1_rand_check)
-        self.ui.pin2_rand_check.stateChanged.connect(self.checkbox_gui.pin2_rand_check)
-        self.ui.puk1_rand_check.stateChanged.connect(self.checkbox_gui.puk1_rand_check)
-        self.ui.puk2_rand_check.stateChanged.connect(self.checkbox_gui.puk2_rand_check)
-        self.ui.adm1_rand_check.stateChanged.connect(self.checkbox_gui.adm1_rand_check)
-        self.ui.adm6_rand_check.stateChanged.connect(self.checkbox_gui.adm6_rand_check)
-
-        self.ui.pin1_auto.clicked.connect(self.button_gui.auto_pin1_func)
-        self.ui.pin2_auto.clicked.connect(self.button_gui.auto_pin2_func)
-        self.ui.puk1_auto.clicked.connect(self.button_gui.auto_puk1_func)
-        self.ui.puk2_auto.clicked.connect(self.button_gui.auto_puk2_func)
-        self.ui.adm1_auto.clicked.connect(self.button_gui.auto_adm1_func)
-        self.ui.adm6_auto.clicked.connect(self.button_gui.auto_adm6_func)
-
-
-        self.ui.de_add_text.clicked.connect(self.extractor_gui.de_add_text_to_table)
-        self.ui.de_del_text.clicked.connect(self.extractor_gui.de_delete_selected_row)
-        self.ui.de_up_button.clicked.connect(self.extractor_gui.de_move_selected_row_up)
-        self.ui.de_dn_button.clicked.connect(self.extractor_gui.de_move_selected_row_down)
-        self.ui.de_default.clicked.connect(self.extractor_gui.de_setDefault)
 
 
     extractor_columns = []
 
     def save_settings_func(self):
-        self.UPDATE_ALL()
-        #        self.parameters.print_all_global_parameters()
-        self.sett.save_settings()
+        self.controller.gui_to_global_params()
+        self.sett.save_global_params_to_settings()
+
         self.ui.textEdit.clear()
         self.progress_bar()
         show_message_box("Information", "Settings saved successfully.")
@@ -192,9 +124,9 @@ class MainWindow(QMainWindow):
         self.ui.textEdit.append("Settings Saved!")
 
     def load_settings_func(self):
-        self.sett.load_settings()
-        #         self.parameters.print_all_global_parameters()
-        self.set_gui_from_settings()
+        self.sett.load_settings_to_global()
+        self.sett.set_gui_from_settings()
+
         self.progress_bar()
         show_message_box("Information", "Settings Loaded successfully.")
         self.progress_bar_init()
@@ -214,79 +146,47 @@ class MainWindow(QMainWindow):
         if not os.path.exists(folder_name):
             os.makedirs(folder_name)
 
-    def logout_func(self):
-        self.close()
-        app_controller = AppController()
-        result = logout_message_box(
-            "Logged Out", "You have successfully logged out! \n Proceed to Login?"
-        )
-        if result:
-            login_screen()
-        else:
-            exit()
 
 
-    def set_gui_from_settings(self):
-        self.ui.imsi_text.setText(self.parameters.get_IMSI())
-        self.ui.iccid_text.setText(self.parameters.get_ICCID())
-        self.ui.pin1_text.setText(self.parameters.get_PIN1())
-        self.ui.puk1_text.setText(self.parameters.get_PUK1())
-        self.ui.pin2_text.setText(self.parameters.get_PIN2())
-        self.ui.puk2_text.setText(self.parameters.get_PUK2())
-        self.ui.adm1_text.setText(self.parameters.get_ADM1())
-        self.ui.adm6_text.setText(self.parameters.get_ADM6())
-        self.ui.k4_key_text.setText(self.parameters.get_K4())
-        self.ui.op_key_text.setText(self.parameters.get_OP())
-        self.ui.data_size_text.setText(self.parameters.get_DATA_SIZE())
-        self.ui.pin1_rand_check.setChecked(bool(self.parameters.get_PIN1_RAND()))
-        self.ui.pin2_rand_check.setChecked(bool(self.parameters.get_PIN2_RAND()))
-        self.ui.puk1_rand_check.setChecked(bool(self.parameters.get_PUK1_RAND()))
-        self.ui.puk2_rand_check.setChecked(bool(self.parameters.get_PUK2_RAND()))
-        self.ui.adm1_rand_check.setChecked(bool(self.parameters.get_ADM1_RAND()))
-        self.ui.adm6_rand_check.setChecked(bool(self.parameters.get_ADM6_RAND()))
 
-    def UPDATE_ALL(self):
-        if self.ui.production_data.isChecked() is False:
-            self.button_gui.get_iccid_func()
-            self.button_gui.get_imsi_func()
-            self.button_gui.get_data_size_func()
+#   def update_all(self):
+        # if self.ui.production_data.isChecked() is False:
+        #     self.button_gui.get_iccid_func()
+        #     self.button_gui.get_imsi_func()
+        #     self.button_gui.get_data_size_func()
+        #
+        # self.button_gui.get_iccid_func()
+        # self.button_gui.get_imsi_func()
+        # self.button_gui.get_data_size_func()
 
-        self.checkbox_gui.pin1_rand_check()
-        self.checkbox_gui.pin2_rand_check()
-        self.checkbox_gui.puk1_rand_check()
-        self.checkbox_gui.puk2_rand_check()
-        self.checkbox_gui.adm1_rand_check()
-        self.checkbox_gui.adm6_rand_check()
-
-        self.button_gui.update_pin1_text()
-        self.button_gui.update_pin2_text()
-        self.button_gui.update_puk1_text()
-        self.button_gui.update_puk2_text()
-        self.button_gui.update_adm1_text()
-        self.button_gui.update_adm6_text()
-
-        self.button_gui.get_k4_func()
-        self.button_gui.get_op_func()
+        # self.checkbox_gui.pin1_rand_check()
+        # self.checkbox_gui.pin2_rand_check()
+        # self.checkbox_gui.puk1_rand_check()
+        # self.checkbox_gui.puk2_rand_check()
+        # self.checkbox_gui.adm1_rand_check()
+        # self.checkbox_gui.adm6_rand_check()
+        #
+        # self.button_gui.update_pin1_text()
+        # self.button_gui.update_pin2_text()
+        # self.button_gui.update_puk1_text()
+        # self.button_gui.update_puk2_text()
+        # self.button_gui.update_adm1_text()
+        # self.button_gui.update_adm6_text()
+        #
+        # self.button_gui.get_k4_func()
+        # self.button_gui.get_op_func()
 
     def main_generate_function(self):
         self.ui.textEdit.clear()
-        # debug = False
-        self.UPDATE_ALL()
-
-        self.ui.textEdit.append("==================================")
-        if debug:
-            self.ui.textEdit.append("=============DEBUG================")
-            temp = self.parameters.GET_ALL_PARAMS_DICT()
-            self.ui.textEdit.append(str(temp))
-
-        self.ui.textEdit.append("==================================")
-
-        self.parameters.set_GRAPH_DICT(self.graph_gui.get_data_from_table())
-        self.parameters.set_ELECT_DICT(self.elect_gui.e_get_data_from_table())
+#        self.update_all()
+#        temp = self.parameters.get_all_params_dict()
+#        print("----->", temp)
+        self.controller.gui_to_global_params()
+        print(self.controller.global_params_to_json())
         #        self.parameters.set_SERVER_DICT(header_server_dict)
 
-        #        self.parameters.dict1 is test dictionary
         if self.parameters.check_params():
+            pass
             #            try:
             # s = DataGenerationScript()
             # (
@@ -297,41 +197,38 @@ class MainWindow(QMainWindow):
             # ) = s._preview_files_gets()
             # print("data generated")
 
-            if self.user_privileges == "admin":
-                self.progress_bar()
-                show_message_box(
-                    "Information", "Data has been generated successfully."
-                )
-                self.progress_bar_init()
-                self.w = PreviewOutput(
-                    self.dataframes.__ELECT_DF,
-                    self.dataframes.__GRAPH_DF,
-                    self.dataframes.__SERVR_DF,
-                    True,
-                    False,
-                    True,
-                )
-                self.w.show()
-
-            else:
-                show_message_box(
-                    "Information",
-                    "Data has been generated successfully.\nHowever, access to view this data is restricted to "
-                    "administrators only.\nPlease click the 'SAVE' to save the files in the designated directory."
-                    # "Data is generated but only admin has access to view data\nPress GENERATE to save files in
-                    # DIR",
-                )
-        #            except Exception as e:
-        #                messageBox.Show_message_box(
-        #                    "Error", "Error! Maybe Input file is missing..."
-        #                )
-        #                self.ui.textEdit.append("Error! Maybe Input file is missing...")
-        #                self.ui.textEdit.append(str(e))
-        else:
-            show_message_box("Error", " Check Missing Input Parameters...")
-
-    def de_main_generate_function(self):
-        self.ui.de_textEdit.clear()
+        #     if self.user_privileges == "admin":
+        #         self.progress_bar()
+        #         show_message_box(
+        #             "Information", "Data has been generated successfully."
+        #         )
+        #         self.progress_bar_init()
+        #         self.w = PreviewOutput(
+        #             self.dataframes.__ELECT_DF,
+        #             self.dataframes.__GRAPH_DF,
+        #             self.dataframes.__SERVR_DF,
+        #             True,
+        #             False,
+        #             True,
+        #         )
+        #         self.w.show()
+        #
+        #     else:
+        #         show_message_box(
+        #             "Information",
+        #             "Data has been generated successfully.\nHowever, access to view this data is restricted to "
+        #             "administrators only.\nPlease click the 'SAVE' to save the files in the designated directory."
+        #             # "Data is generated but only admin has access to view data\nPress GENERATE to save files in
+        #             # DIR",
+        #         )
+        # #            except Exception as e:
+        # #                messageBox.Show_message_box(
+        # #                    "Error", "Error! Maybe Input file is missing..."
+        # #                )
+        # #                self.ui.textEdit.append("Error! Maybe Input file is missing...")
+        # #                self.ui.textEdit.append(str(e))
+        # else:
+        #     show_message_box("Error", " Check Missing Input Parameters...")
 
 
     def create_output_folder(self):
@@ -379,7 +276,7 @@ class MainWindow(QMainWindow):
     def browse_button_func(self):
         path = self.project_path
         path = os.path.join(path, "Json File")
-        filters = "JSON (*.json);"
+        filters = "JSON (*.json)"
 
         fname, _ = QFileDialog.getOpenFileNames(self, "Load Json Input File", path, filter=filters)
         self.ui.textEdit.append(str(fname))
@@ -403,82 +300,15 @@ class MainWindow(QMainWindow):
             # print(dfs["SERVER"].to_csv("SERVER.csv"))
 
     def show_input_files(self):
-        set_ui_from_json(self.ui, self.config_holder)
-        self.elect_gui.e_setDefault()
-        self.graph_gui.g_setDefault()
-
-    def de_browse_button_func(self):
-        path = self.project_path
-        path = os.path.join(path, "Input Files")
-        fname, _ = QFileDialog.getOpenFileNames(self, "Single File", path)
-        self.ui.de_textEdit.append(str(fname))
-        if len(fname) != 0:
-            self.ui.de_filename.setText(", ".join(fname))
-            self.ui.de_textEdit.append(f"Selected {len(fname)} file(s).")
-            self.parameters.set_INPUT_PATH(fname[0])
-
-    def de_show_input_files(self):
-        path = self.parameters.get_INPUT_PATH()
-        df_input = pd.DataFrame()
-        match path:
-            case "" | " ":
-                self.ui.textEdit.append("No file selected")
-            case _:
-                #                self.dataframes.INPUT_DF=pd.read_csv(path,dtype=str,sep=" ")
-                self.dataframes.set_INPUT_DF(pd.read_csv(path, dtype=str, sep=" "))
-                temp = self.dataframes.get_INPUT_DF().columns
-
-                self.extractor_columns = temp
-                self.ui.de_comboBox.clear()
-                self.ui.de_comboBox.addItems(self.extractor_columns)
-
-                if not self.dataframes._INPUT_DF.empty:
-                    self.w = PreviewInput(self.dataframes._INPUT_DF)
-                    self.w.show()
+        self.controller.set_ui_from_json(self.config_holder)
+#        self.elect_gui.e_setDefault()
+#        self.graph_gui.g_setDefault()
 
 
     def save_files_function(self):
         self.progress_bar()
         self.create_output_folder()
 
-    def de_create_output_folder(self):
-        folder_name = self.parameters.get_LASER_EXT_PATH()
-        self.create_folder(folder_name)
-        #        m_zong = ZongGenerateHandle()
-        #        m_zong.set_json_to_UI()
-        #        m_zong.Generate_laser_file(
-        #            dict_2_list(self.parameters.get_GRAPH_DICT()), self.dataframes.GRAPH_DF
-        #        )
-        df = self.dataframes.get_GRAPH_DF()
-        p_time = time.strftime("%H_%M_%S", time.localtime())
-        p_date = datetime.date.today().strftime("%Y_%m_%d")
-        date_time = f"{p_date}_{p_time}"
-        path = os.path.join(folder_name, "laser_extracted_{}.txt".format(date_time))
-        try:
-            df.to_csv(path, sep=" ", index=False)
-        except Exception as e:
-            error_str = "Error! {}".format(e)
-            self.ui.textEdit.append(error_str)
-        com_path = os.path.join(folder_name)
-        show_message_box(
-            "Information",
-            "Generated Data has been saved to {} successfully.".format(com_path),
-        )
-        self.progress_bar_init()
-
-        self.ui.textEdit.append("==================================")
-        self.ui.textEdit.append(f"Created folder '{com_path}'")
-
-        self.ui.textEdit.append(
-            f"Path: " + f'<a href="{com_path}" style="color: #FFFFFF;">{com_path}</a>'
-        )
-
-        self.ui.textEdit.append("Path: " + os.path.join(os.getcwd(), folder_name))
-        self.ui.textEdit.append("==================================")
-
-    def de_save_files_function(self):
-        self.progress_bar()
-        self.de_create_output_folder()
 
     def progress_bar(self):
         float_value = 0
@@ -495,90 +325,17 @@ class MainWindow(QMainWindow):
         self.ui.progressBar.setValue(0)
 
 
-    # def read_json(self, file_path: str):
-    #     with open(file_path, "r") as json_file:
-    #         data = json.load(json_file)
-    #     return dict(data)
-
-    # def login_form(self):
-    #     self.hide()
-    #     win=LoginWindow()
-    #     win.show()
-
     def closeEvent(self, event):
-        print("AUTOMATIC SETTING SAVED SUCESSFULLY")
+        print("AUTOMATIC SETTING SAVED SUCCESSFULLY")
 
-
-#        self.save_settings_func()
-#        event.accept()
-
-
-
-# class SignUp(QDialog, messageBox, sqldatabase):
-class SignUp(QDialog):
-    def __init__(self):
-        super(SignUp, self).__init__()
-        self.ui = sign_up_form()
-        self.ui.setupUi(self)
-        self.ui.label.setPixmap(QPixmap(STC_ICON))
-        #        self.db=database()
-
-        self.setWindowIcon(QIcon(STC_ICON))
-        self.setWindowTitle("Create Login Account")
-
-        #        self.conn = sqldatabase()
-        #        self.conn.initializeDatabase()
-
-        self.ui.btn_signup.clicked.connect(self.signup_2_login_func)
-        self.ui.btn_login.clicked.connect(self.createAccount)
-
-    def signup_2_login_func(self):
-        self.hide()
-        win = AppController()
-        login_screen()
-
-    #        win.signup_2_login()
-
-    def createAccount(self):
-        username = self.ui.username.text()
-        password = self.ui.password.text()
-        re_password = self.ui.re_password.text()
-        email = self.ui.email.text()
-
-        #        SignUp.Emailvalidator(email=email)
-
-        if emailvalidator(email=email) is False:
-            show_message_box("Message", "Enter Valid Email")
-            return
-
-            # if password == re_password:
-            #     result, success = self.conn.insertData(
-            #         user_name=username,
-            #         user_pass=password,
-            #         user_email=email,
-            #         user_role="user",
-            #     )
-
-            # if success is True:
-            #     self.Show_message_box("Message", "Login Created Successfully")
-            #
-            # else:
-            #     self.Show_message_box("Message", result)
-
-        else:
-            show_message_box("Message", "Password do not match!")
 
     def close(self):
         self.hide()
 
 
-def main_form():
-    win = AppController()
-    main_screen()
-    del win
-
 
 class LoginWindow(QDialog):
+    credentials = None
     def __init__(self):
         super(LoginWindow, self).__init__()
         self.ui = login_form()
@@ -593,7 +350,6 @@ class LoginWindow(QDialog):
 
         self.ui.btn_login.clicked.connect(self.login)
         self.ui.btn_signup.setCheckable(True)
-        self.ui.btn_signup.clicked.connect(self.sign_up_form)
 
     def login(self):
         username = self.ui.username.text()
@@ -612,37 +368,10 @@ class LoginWindow(QDialog):
             user_role = "admin"
 
             user_name = username
-            global credentials
-            credentials = {"name": user_name, "privilidges": user_role}
+            credentials = {"name": user_name, "privileges": user_role}
             self.accept()
-            main_form()
         else:
             QMessageBox.warning(self, "Login Failed", result)
 
-    def sign_up_form(self):
-        self.hide()
-        win = AppController()
-        signup_screen()
-        # self.Show_message_box("Alert", "Signup option is unavailable!")
-        del win
 
 
-def login_screen():
-    win = LoginWindow()
-    win.exec()
-
-
-def main_screen():
-    global credentials
-    win = MainWindow(**credentials)
-    win.show()
-
-
-def signup_screen():
-    win = SignUp()
-    win.exec()
-
-
-class AppController(LoginWindow, MainWindow, SignUp):
-    def __init__(self):
-        super().__init__()

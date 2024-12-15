@@ -47,7 +47,7 @@ from core.generator.utils import (
     DataGenerator,
     DataProcessing,
 )
-from globals.parameters import DATA_FRAMES, PARAMETERS
+from globals.parameters import DataFrames, Parameters
 from core.executor.utils import list_2_dict, dict_2_list, default_headers, copy_function
 # Commented-out imports (if needed in the future)
 
@@ -55,14 +55,14 @@ class DataGenerationScript:
 
     def __init__(self, config_holder):
         self.config_holder = config_holder
-        self.params = PARAMETERS.get_instance()
-        self.dataframes = DATA_FRAMES.get_instance()
+        self.params = Parameters.get_instance()
+        self.dataframes = DataFrames.get_instance()
         self.crypto_utils = CryptoUtils()
         self.data_generator = DataGenerator()
         self.data_processor = DataProcessing()
         self.df_processor = DataFrameProcessor()
 
-    def SET_ALL_DISP_PARAMS(self):
+    def json_to_global_params(self):
         self.params.set_SERVER_SEP(self.config_holder.DISP.server_data_sep)
         self.params.set_ELECT_SEP(self.config_holder.DISP.elect_data_sep)
         self.params.set_GRAPH_SEP(self.config_holder.DISP.graph_data_sep)
@@ -84,10 +84,10 @@ class DataGenerationScript:
         self.params.set_SERVER_CHECK(self.config_holder.DISP.server_check)
 
         self.params.set_SERVER_DICT(
-            list_2_dict(self.config_holder.PARAMETERS.server_variables)
+            list_2_dict(self.config_holder.Parameters.server_variables)
         )
-        self.params.set_ELECT_DICT(list_2_dict(self.config_holder.PARAMETERS.data_variables))
-        self.params.set_GRAPH_DICT((self.config_holder.PARAMETERS.laser_variables))
+        self.params.set_ELECT_DICT(list_2_dict(self.config_holder.Parameters.data_variables))
+        self.params.set_GRAPH_DICT(self.config_holder.Parameters.laser_variables)
         #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
         self.params.set_INPUT_PATH(self.config_holder.PATHS.INPUT_FILE_PATH)
 
@@ -166,7 +166,7 @@ class DataGenerationScript:
         return self.apply_functions(df)
 
     def generate_non_demo_data(self):
-        input_df = self.dataframes.get_INPUT_DF()
+        input_df = self.dataframes.get_input_df()
         df = self.df_processor.generate_empty_dataframe(default_headers, len(input_df))
         self.df_processor.initialize_column(df, 'OP', self.params.get_OP(), increment=False)
         self.df_processor.initialize_column(df, 'K4', self.params.get_K4(), increment=False)

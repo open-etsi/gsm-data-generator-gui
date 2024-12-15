@@ -16,8 +16,8 @@ class PreviewInput(QDialog):  # testing purpose only
         super().__init__()
         self.ui = input_ui()
         self.ui.setupUi(self)
-        availabe_screen = app.primaryScreen().availableGeometry()
-        self.setFixedSize(availabe_screen.width(), availabe_screen.height())
+        available_screen = app.primaryScreen().availableGeometry()
+        self.setFixedSize(available_screen.width(), available_screen.height())
         self.showMaximized()
 
         self.populate_table_widget(self.ui.inputWidget, dataframe)
@@ -25,7 +25,8 @@ class PreviewInput(QDialog):  # testing purpose only
         self.ui.inputWidget.setHorizontalHeaderLabels(header_labels)
 
 
-    def populate_table_widget(self, table_widget, data_frame):
+    @staticmethod
+    def populate_table_widget(table_widget, data_frame):
         table_widget.setRowCount(data_frame.shape[0])
         table_widget.setColumnCount(data_frame.shape[1])
 
@@ -92,8 +93,8 @@ class PreviewOutput(QDialog):  # testing purpose only
         self.ui.setupUi(self)
         self.installEventFilter(self)
 
-        availabe_screen = app.primaryScreen().availableGeometry()
-        self.setFixedSize(availabe_screen.width(), availabe_screen.height())
+        available_screen = app.primaryScreen().availableGeometry()
+        self.setFixedSize(available_screen.width(), available_screen.height())
 
         self.populate_table_widget(self.ui.elect_tableWidget, dataframe_elect)
         elect_labels_header = list(dataframe_elect.columns)
@@ -120,7 +121,8 @@ class PreviewOutput(QDialog):  # testing purpose only
     #             table_widget.setItem(row, column, item)
     #     table_widget.resizeColumnsToContents()
 
-    def populate_table_widget(self, table_widget, data_frame):
+    @staticmethod
+    def populate_table_widget(table_widget, data_frame):
         table_widget.setRowCount(data_frame.shape[0])
         table_widget.setColumnCount(data_frame.shape[1])
 

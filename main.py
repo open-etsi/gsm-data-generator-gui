@@ -26,13 +26,11 @@ def run():
     try:
         #if files_exist(paths):
         if True:
-            from gui.source import AppController, MainWindow
+            from gui.source import MainWindow
             app = QApplication(sys.argv)
             credentials = {"name": "admin", "privileges": "admin"}
             win = MainWindow(**credentials)
             win.show()
-#            win = AppController()
-#            win.login_screen()
             sys.exit(app.exec())
         else:
             raise NoSettingsFilePresent("No Settings File Present")

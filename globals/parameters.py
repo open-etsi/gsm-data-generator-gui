@@ -4,16 +4,16 @@ from typing import List, Dict
 debug = False
 
 
-class DATA_FRAMES:
+class DataFrames:
     __instance = None
 
     def __init__(self):
-        if DATA_FRAMES.__instance is not None:
+        if DataFrames.__instance is not None:
             raise Exception(
                 "GlobalParameters class is a singleton! Use get_instance() to access the instance."
             )
         else:
-            DATA_FRAMES.__instance = self
+            DataFrames.__instance = self
             self.__INPUT_DF = pd.DataFrame()
             self.__ELECT_DF = pd.DataFrame()
             self.__GRAPH_DF = pd.DataFrame()
@@ -22,9 +22,9 @@ class DATA_FRAMES:
 
     @staticmethod
     def get_instance():
-        if DATA_FRAMES.__instance is None:
-            DATA_FRAMES.__instance = DATA_FRAMES()
-        return DATA_FRAMES.__instance
+        if DataFrames.__instance is None:
+            DataFrames.__instance = DataFrames()
+        return DataFrames.__instance
 
     def set_ELECT_DF(self, value):
         self.__ELECT_DF = pd.DataFrame()
@@ -53,11 +53,11 @@ class DATA_FRAMES:
     def get_KEYS(self):
         return self.__KEYS
 
-    def set_INPUT_DF(self, value):
+    def set_input_df(self, value):
         self.__INPUT_DF = pd.DataFrame()
         self.__INPUT_DF = value
 
-    def get_INPUT_DF(self):
+    def get_input_df(self):
         return self.__INPUT_DF
 
     # def is_VALID_DF(self, param, param_name: str) -> bool:
@@ -67,7 +67,7 @@ class DATA_FRAMES:
     #         return False
 
 
-class PARAMETERS(DATA_FRAMES):
+class Parameters(DataFrames):
     __instance = None
 
     def __init__(self):
@@ -75,12 +75,12 @@ class PARAMETERS(DATA_FRAMES):
         self.__def_head = None
         self.EXTRCATOR_DICT = None
         self.__EXTRACTOR_DICT = None
-        if PARAMETERS.__instance is not None:
+        if Parameters.__instance is not None:
             raise Exception(
                 "GlobalParameters class is a singleton! Use get_instance() to access the instance."
             )
         else:
-            PARAMETERS.__instance = self
+            Parameters.__instance = self
             self.__ICCID = ""
             self.__IMSI = ""
             self.__PIN1 = ""
@@ -140,9 +140,9 @@ class PARAMETERS(DATA_FRAMES):
 
     @staticmethod
     def get_instance():
-        if PARAMETERS.__instance is None:
-            PARAMETERS.__instance = PARAMETERS()
-        return PARAMETERS.__instance
+        if Parameters.__instance is None:
+            Parameters.__instance = Parameters()
+        return Parameters.__instance
 
     def set_ELECT_SEP(self, value: str) -> None:
         self.__ELECT_SEP = str(value)
@@ -378,7 +378,7 @@ class PARAMETERS(DATA_FRAMES):
     def get_EXTRACTOR_DICT(self):
         return self.EXTRCATOR_DICT
 
-    def GET_ALL_PARAMS_DICT(self) -> dict:
+    def get_all_params_dict(self) -> dict:
         param_dict = {
             "Demo Data": self.get_PRODUCTION_CHECK(),
             "OP": self.get_OP(),

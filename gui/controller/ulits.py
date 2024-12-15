@@ -1,6 +1,6 @@
 import os
 from typing import Annotated
-from globals.parameters import PARAMETERS
+from globals.parameters import Parameters
 from gui.stylesheet import style_sheet_disabled, style_sheet_good, style_sheet_bad
 
 class TextLengthValidator:
@@ -34,7 +34,7 @@ class GuiCheckBox:
         self.global_elect_check = None
         self.global_graph_check = None
         self.global_prod_check = None
-        self.parameters = PARAMETERS.get_instance()
+        self.parameters = Parameters.get_instance()
         self.ui = ui
         self.ui.production_data.setChecked(self.parameters.get_PRODUCTION_CHECK())
         self.ui.elect_data.setChecked(self.parameters.get_ELECT_CHECK())
@@ -61,6 +61,7 @@ class GuiCheckBox:
             self.parameters.set_PIN2_RAND(True)
         else:
             self.parameters.set_PIN2_RAND(False)
+
     def pin1_rand_check(self):
         if self.ui.pin1_rand_check.isChecked():
             self.parameters.set_PIN1_RAND(True)
@@ -179,7 +180,7 @@ class GuiButtons:
         self.default_init_imsi = 410000000000000
         self.default_init_iccid = 899000000000000000
         self.default_data_size = 5
-        self.parameters = PARAMETERS.get_instance()
+        self.parameters = Parameters.get_instance()
         self.ui = ui
 
     def fetch_op_func(self):
@@ -308,105 +309,54 @@ class GuiButtons:
         if is_valid_iccid(init_iccid):
             self.ui.iccid_text.setText(str(init_iccid))
 
-    def get_op_func(self):
-        op_key = self.ui.op_key_text.text()
-        if len(op_key) == 32:
-            self.parameters.set_OP(op_key)
-        else:
-            self.ui.textEdit.append("Enter valid OP" + " len is " + str(len(op_key)))
 
-    def get_def_head(self):
-        self.parameters.get_DEFAULT_HEADER()
-
-    def get_k4_func(self):
-        transport_key = self.ui.k4_key_text.text()
-        if len(transport_key) == 64:
-            self.parameters.set_K4(transport_key)
-        else:
-            self.ui.textEdit.append("Enter valid K4")
-
-    def get_data_size_func(self):
-        size = self.ui.data_size_text.text()
-        if size.isdigit() and int(size) > 0:
-            try:
-                self.parameters.set_DATA_SIZE(size)
-            except ValueError:
-                self.ui.textEdit.append("Data Size must be a numeric value")
-        else:
-            self.parameters.set_DATA_SIZE("")
-            self.ui.textEdit.append("Enter a valid Data Size")
-
-    def get_imsi_func(self):
-        imsi = self.ui.imsi_text.text()
-        if len(imsi) == 15 and imsi.isalnum():
-            try:
-                imsi = int(imsi)
-                self.parameters.set_IMSI(imsi)
-            except ValueError:
-                self.ui.textEdit.append("IMSI must be a numeric value")
-        else:
-            self.parameters.set_IMSI("")
-            self.ui.textEdit.append("Enter valid IMSI of Size 15 Digits")
-
-    def get_iccid_func(self):
-        iccid = self.ui.iccid_text.text()
-        if len(iccid) in [18, 19, 20] and iccid.isalnum():
-            try:
-                iccid = int(iccid)
-                self.parameters.set_ICCID(iccid)
-            except ValueError:
-                self.ui.textEdit.append("ICCID must be a numeric value")
-        else:
-            self.parameters.set_ICCID("")
-            self.ui.textEdit.append("Enter a valid ICCID : Without Checksum Digit")
-
-    def update_pin1_text(self):
-        var = self.ui.pin1_text.text()
-        if len(var) == 4:
-            self.parameters.set_PIN1(var)
-        else:
-            self.parameters.set_PIN1("")
-            self.ui.textEdit.append("Enter valid PIN1")
-
-    def update_pin2_text(self):
-        var = self.ui.pin2_text.text()
-        if len(var) == 4:
-            self.parameters.set_PIN2(var)
-        else:
-            self.parameters.set_PIN2("")
-            self.ui.textEdit.append("Enter valid PIN2")
-
-    def update_puk1_text(self):
-        var = self.ui.puk1_text.text()
-        if len(var) == 8:
-            self.parameters.set_PUK1(var)
-        else:
-            self.parameters.set_PUK1("")
-            self.ui.textEdit.append("Enter valid PUK1")
-
-    def update_puk2_text(self):
-        var = self.ui.puk2_text.text()
-        if len(var) == 8:
-            self.parameters.set_PUK2(var)
-        else:
-            self.parameters.set_PUK2("")
-            self.ui.textEdit.append("Enter valid PUK2")
-
-    def update_adm1_text(self):
-        var = self.ui.adm1_text.text()
-        if len(var) == 8:
-            self.parameters.set_ADM1(var)
-        else:
-            self.parameters.set_ADM1("")
-            self.ui.textEdit.append("Enter valid ADM1")
-
-    def update_adm6_text(self):
-        var = self.ui.adm6_text.text()
-        if len(var) == 8:
-            self.parameters.set_ADM6(var)
-        else:
-            self.parameters.set_ADM6("")
-            self.ui.textEdit.append("Enter valid ADM6")
+    # def update_pin1_text(self):
+    #     var = self.ui.pin1_text.text()
+    #     if len(var) == 4:
+    #         self.parameters.set_PIN1(var)
+    #     else:
+    #         self.parameters.set_PIN1("")
+    #         self.ui.textEdit.append("Enter valid PIN1")
+    #
+    # def update_pin2_text(self):
+    #     var = self.ui.pin2_text.text()
+    #     if len(var) == 4:
+    #         self.parameters.set_PIN2(var)
+    #     else:
+    #         self.parameters.set_PIN2("")
+    #         self.ui.textEdit.append("Enter valid PIN2")
+    #
+    # def update_puk1_text(self):
+    #     var = self.ui.puk1_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_PUK1(var)
+    #     else:
+    #         self.parameters.set_PUK1("")
+    #         self.ui.textEdit.append("Enter valid PUK1")
+    #
+    # def update_puk2_text(self):
+    #     var = self.ui.puk2_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_PUK2(var)
+    #     else:
+    #         self.parameters.set_PUK2("")
+    #         self.ui.textEdit.append("Enter valid PUK2")
+    #
+    # def update_adm1_text(self):
+    #     var = self.ui.adm1_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_ADM1(var)
+    #     else:
+    #         self.parameters.set_ADM1("")
+    #         self.ui.textEdit.append("Enter valid ADM1")
+    #
+    # def update_adm6_text(self):
+    #     var = self.ui.adm6_text.text()
+    #     if len(var) == 8:
+    #         self.parameters.set_ADM6(var)
+    #     else:
+    #         self.parameters.set_ADM6("")
+    #         self.ui.textEdit.append("Enter valid ADM6")
 
     def auto_pin1_func(self):
         # string = generate_4_Digit()
@@ -444,25 +394,6 @@ class GuiButtons:
         self.ui.adm6_text.setText(string)
 
 
-
-def set_ui_from_json(ui, config_holder):
-    ui.imsi_text.setText(config_holder.DISP.imsi)
-    ui.iccid_text.setText(config_holder.DISP.iccid)
-    ui.pin1_text.setText(config_holder.DISP.pin1)
-    ui.puk1_text.setText(config_holder.DISP.puk1)
-    ui.pin2_text.setText(config_holder.DISP.pin2)
-    ui.puk2_text.setText(config_holder.DISP.puk2)
-    ui.adm1_text.setText(config_holder.DISP.adm1)
-    ui.adm6_text.setText(config_holder.DISP.adm6)
-    ui.k4_key_text.setText(config_holder.DISP.K4)
-    ui.op_key_text.setText(config_holder.DISP.op)
-    ui.data_size_text.setText(str(config_holder.DISP.size))
-    ui.pin1_rand_check.setChecked(bool(config_holder.DISP.pin1_fix))
-    ui.pin2_rand_check.setChecked(bool(config_holder.DISP.pin2_fix))
-    ui.puk1_rand_check.setChecked(bool(config_holder.DISP.puk1_fix))
-    ui.puk2_rand_check.setChecked(bool(config_holder.DISP.puk2_fix))
-    ui.adm1_rand_check.setChecked(bool(config_holder.DISP.adm1_fix))
-    ui.adm6_rand_check.setChecked(bool(config_holder.DISP.adm6_fix))
 
 
 

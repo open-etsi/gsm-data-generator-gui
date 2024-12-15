@@ -36,7 +36,7 @@ def logout_message_box(title, message) -> bool:
     else:
         return False
 
-def signup_message_box(cls, title, message) -> bool:
+def signup_message_box(title, message) -> bool:
     message_box = QMessageBox()
     message_box.setIcon(QMessageBox.Icon.Information)
     message_box.setWindowIcon(QIcon(stc_icon))
