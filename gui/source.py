@@ -1,4 +1,5 @@
 import datetime
+import json
 import os
 import time
 
@@ -22,8 +23,8 @@ from gui.table import GuiElect, GuiGraph, GuiExtractor
 from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
 from gui.controller.controller import Controller
 from core.executor.utils import read_json, list_2_dict
-from core.parser.utils import json_loader
-# from core.executor.script import DataGenerationScript
+from core.parser.utils import json_loader, gui_loader, json_loader1
+from core.executor.script import DataGenerationScript
 
 debug = False
 STC_ICON = "resources/stc_logo.ico"
@@ -79,17 +80,18 @@ class MainWindow(QMainWindow):
 
         # this must not be here | remove in revision
 
-        data = read_json("settings.json")
-        if data:
-            header_server_dict = list_2_dict(data["PARAMETERS"]["server_variables"])
-            headers_laser_dict = data["PARAMETERS"]["laser_variables"]
-            headers_data_dict = list_2_dict(data["PARAMETERS"]["data_variables"])
-            laser_ext_path = data["PATHS"]["OUTPUT_FILES_LASER_EXT"]
+        # data = read_json("settings.json")
+        # if data:
+        #     header_server_dict = list_2_dict(data["PARAMETERS"]["server_variables"])
+        #     headers_laser_dict = data["PARAMETERS"]["laser_variables"]
+        #     headers_data_dict = list_2_dict(data["PARAMETERS"]["data_variables"])
+        #     laser_ext_path = data["PATHS"]["OUTPUT_FILES_LASER_EXT"]
+        #
+        # self.parameters.set_LASER_EXT_PATH(laser_ext_path)
+        # self.parameters.set_ELECT_DICT(headers_data_dict)
+        # self.parameters.set_GRAPH_DICT(headers_laser_dict)
+        # self.parameters.set_SERVER_DICT(header_server_dict)
 
-        self.parameters.set_LASER_EXT_PATH(laser_ext_path)
-        self.parameters.set_ELECT_DICT(headers_data_dict)
-        self.parameters.set_GRAPH_DICT(headers_laser_dict)
-        self.parameters.set_SERVER_DICT(header_server_dict)
 
         # ==========================================#
         # ============DEFAULT VALUES================#
@@ -149,41 +151,31 @@ class MainWindow(QMainWindow):
 
 
 
-#   def update_all(self):
-        # if self.ui.production_data.isChecked() is False:
-        #     self.button_gui.get_iccid_func()
-        #     self.button_gui.get_imsi_func()
-        #     self.button_gui.get_data_size_func()
-        #
-        # self.button_gui.get_iccid_func()
-        # self.button_gui.get_imsi_func()
-        # self.button_gui.get_data_size_func()
-
-        # self.checkbox_gui.pin1_rand_check()
-        # self.checkbox_gui.pin2_rand_check()
-        # self.checkbox_gui.puk1_rand_check()
-        # self.checkbox_gui.puk2_rand_check()
-        # self.checkbox_gui.adm1_rand_check()
-        # self.checkbox_gui.adm6_rand_check()
-        #
-        # self.button_gui.update_pin1_text()
-        # self.button_gui.update_pin2_text()
-        # self.button_gui.update_puk1_text()
-        # self.button_gui.update_puk2_text()
-        # self.button_gui.update_adm1_text()
-        # self.button_gui.update_adm6_text()
-        #
-        # self.button_gui.get_k4_func()
-        # self.button_gui.get_op_func()
 
     def main_generate_function(self):
         self.ui.textEdit.clear()
 #        self.update_all()
 #        temp = self.parameters.get_all_params_dict()
 #        print("----->", temp)
-        self.controller.gui_to_global_params()
-        print(self.controller.global_params_to_json())
-        #        self.parameters.set_SERVER_DICT(header_server_dict)
+        try:
+#        if True:
+            self.controller.gui_to_global_params()
+            t = self.controller.global_params_to_json()
+            c = json_loader1(t)
+            d = DataGenerationScript(c)
+            (dfs, keys) = d.generate_all_data()
+
+
+            print("-----> ",self.parameters.get_SERVER_DICT())
+            print("-----> ",self.parameters.get_SERVER_CHECK())
+            self.dataframes.ELECT_DF = dfs["ELECT"]
+            self.dataframes.GRAPH_DF = dfs["GRAPH"]
+            self.dataframes.SERVER_DF = dfs["SERVER"]
+            print("------------------------------------>",dfs["SERVER"])
+        except Exception as e:
+            self.ui.textEdit.clear()
+            self.ui.textEdit.append("--->")
+            self.ui.textEdit.append(str(e))
 
         if self.parameters.check_params():
             pass
@@ -203,15 +195,22 @@ class MainWindow(QMainWindow):
         #             "Information", "Data has been generated successfully."
         #         )
         #         self.progress_bar_init()
-        #         self.w = PreviewOutput(
-        #             self.dataframes.__ELECT_DF,
-        #             self.dataframes.__GRAPH_DF,
-        #             self.dataframes.__SERVR_DF,
-        #             True,
-        #             False,
-        #             True,
-        #         )
-        #         self.w.show()
+        try:
+            print(self.dataframes.ELECT_DF)
+
+            self.w = PreviewOutput(
+                    self.dataframes.ELECT_DF,
+                    self.dataframes.GRAPH_DF,
+                    self.dataframes.SERVER_DF,
+                    True,
+                    False,
+                    True,
+                )
+            self.w.show()
+        except Exception as e:
+#            self.ui.textEdit.clear()
+            self.ui.textEdit.append("===>")
+            self.ui.textEdit.append(str(e))
         #
         #     else:
         #         show_message_box(
@@ -300,9 +299,12 @@ class MainWindow(QMainWindow):
             # print(dfs["SERVER"].to_csv("SERVER.csv"))
 
     def show_input_files(self):
-        self.controller.set_ui_from_json(self.config_holder)
-#        self.elect_gui.e_setDefault()
-#        self.graph_gui.g_setDefault()
+        try:
+            self.controller.json_to_global_params(self.config_holder, self.parameters)
+            self.controller.global_params_to_gui(self.parameters)
+        except Exception as e:
+            print(e)
+            self.ui.textEdit.append(str(e))
 
 
     def save_files_function(self):

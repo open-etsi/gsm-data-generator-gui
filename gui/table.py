@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import (
 )
 
 from gui.controller.ulits import parameter_len
-
+from core.executor.utils import list_2_dict
 
 class GuiElect:
     tableWidgetHeader = ["Variables", "Clip", "length"]
@@ -126,6 +126,15 @@ class GuiGraph:
         self.parameters = Parameters.get_instance()
         self.ui.tableWidget.setHorizontalHeaderLabels(GuiGraph.tableWidgetHeader)
 
+
+    def g_setDefault(self):
+        d = self.parameters.get_GRAPH_DICT()
+        for items in d:
+            self.g_table_append(d[items][0], d[items][2])
+
+    def g_getDefault(self):
+        self.default_graph = self.get_data_from_table()
+
     def g_table_append(self, text: str, l: str):
         drop_down_menu = ["Normal", "Right", "Center", "Left"]
 
@@ -224,13 +233,6 @@ class GuiGraph:
             dict_ret[str(i)] = [str(var.lstrip()), str(clip), cell_value]
         return dict_ret
 
-    def g_setDefault(self):
-        d = self.parameters.get_GRAPH_DICT()
-        for items in d:
-            self.g_table_append(d[items][0], d[items][2])
-
-    def g_getDefault(self):
-        self.default_graph = self.get_data_from_table()
 
     # ===================================================================================#
     # ===================================================================================#

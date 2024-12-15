@@ -61,26 +61,26 @@ class Controller:
         self.ui.adm1_auto.clicked.connect(self.button_gui.auto_adm1_func)
         self.ui.adm6_auto.clicked.connect(self.button_gui.auto_adm6_func)
 
-    def set_ui_from_json(self, config_holder):
-        self.ui.imsi_text.setText(config_holder.DISP.imsi)
-        self.ui.iccid_text.setText(config_holder.DISP.iccid)
-        self.ui.pin1_text.setText(config_holder.DISP.pin1)
-        self.ui.puk1_text.setText(config_holder.DISP.puk1)
-        self.ui.pin2_text.setText(config_holder.DISP.pin2)
-        self.ui.puk2_text.setText(config_holder.DISP.puk2)
-        self.ui.adm1_text.setText(config_holder.DISP.adm1)
-        self.ui.adm6_text.setText(config_holder.DISP.adm6)
-        self.ui.k4_key_text.setText(config_holder.DISP.K4)
-        self.ui.op_key_text.setText(config_holder.DISP.op)
-        self.ui.data_size_text.setText(str(config_holder.DISP.size))
-        self.ui.pin1_rand_check.setChecked(bool(config_holder.DISP.pin1_fix))
-        self.ui.pin2_rand_check.setChecked(bool(config_holder.DISP.pin2_fix))
-        self.ui.puk1_rand_check.setChecked(bool(config_holder.DISP.puk1_fix))
-        self.ui.puk2_rand_check.setChecked(bool(config_holder.DISP.puk2_fix))
-        self.ui.adm1_rand_check.setChecked(bool(config_holder.DISP.adm1_fix))
-        self.ui.adm6_rand_check.setChecked(bool(config_holder.DISP.adm6_fix))
-        self.elect_gui.e_setDefault()
-        self.graph_gui.g_setDefault()
+    # def set_ui_from_json(self, config_holder):
+    #     self.ui.imsi_text.setText(config_holder.DISP.imsi)
+    #     self.ui.iccid_text.setText(config_holder.DISP.iccid)
+    #     self.ui.pin1_text.setText(config_holder.DISP.pin1)
+    #     self.ui.puk1_text.setText(config_holder.DISP.puk1)
+    #     self.ui.pin2_text.setText(config_holder.DISP.pin2)
+    #     self.ui.puk2_text.setText(config_holder.DISP.puk2)
+    #     self.ui.adm1_text.setText(config_holder.DISP.adm1)
+    #     self.ui.adm6_text.setText(config_holder.DISP.adm6)
+    #     self.ui.k4_key_text.setText(config_holder.DISP.K4)
+    #     self.ui.op_key_text.setText(config_holder.DISP.op)
+    #     self.ui.data_size_text.setText(str(config_holder.DISP.size))
+    #     self.ui.pin1_rand_check.setChecked(bool(config_holder.DISP.pin1_fix))
+    #     self.ui.pin2_rand_check.setChecked(bool(config_holder.DISP.pin2_fix))
+    #     self.ui.puk1_rand_check.setChecked(bool(config_holder.DISP.puk1_fix))
+    #     self.ui.puk2_rand_check.setChecked(bool(config_holder.DISP.puk2_fix))
+    #     self.ui.adm1_rand_check.setChecked(bool(config_holder.DISP.adm1_fix))
+    #     self.ui.adm6_rand_check.setChecked(bool(config_holder.DISP.adm6_fix))
+    #     self.elect_gui.set_table_from_json(config_holder)
+    #     self.graph_gui.set_table_from_json(config_holder)
 
 
     def show_tables(self):
@@ -133,8 +133,10 @@ class Controller:
         self.parameters.set_ELECT_DICT((self.elect_gui.e_get_data_from_table()))
         self.parameters.set_GRAPH_DICT((self.graph_gui.get_data_from_table()))
 
+        self.parameters.set_ELECT_CHECK()
+
     def global_params_to_json(self) -> json:
-        param_dict = {
+        param_dict:json = {
             "DISP": {
                 "elect_data_sep": ".",
                 "server_data_sep": ".",
@@ -170,25 +172,38 @@ class Controller:
                 "OUTPUT_FILES_LASER_EXT": "laser_extracted"
             },
             "PARAMETERS": {
-                "server_variables": [
-                    "IMSI",
-                    "EKI",
-                    "ICCID",
-                    "PIN1",
-                    "PUK1",
-                    "PIN2",
-                    "PUK2",
-                    "ADM1",
-                    "ADM6"
-                ],
-                "data_variables": self.parameters.get_ELECT_DICT(),
-                "laser_variables": dict_2_list(self.parameters.get_GRAPH_DICT())
+                "server_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
+                "data_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
+                "laser_variables": self.parameters.get_GRAPH_DICT()
             }
         }
-        print(param_dict)
+#        print(param_dict)
+#        j = json.dumps(param_dict)
+
         return param_dict
 
 
+
+    def global_params_to_gui(self, params):
+        self.ui.imsi_text.setText(params.get_IMSI())
+        self.ui.iccid_text.setText(params.get_ICCID())
+        self.ui.pin1_text.setText(params.get_PIN1())
+        self.ui.puk1_text.setText(params.get_PUK1())
+        self.ui.pin2_text.setText(params.get_PIN2())
+        self.ui.puk2_text.setText(params.get_PUK2())
+        self.ui.adm1_text.setText(params.get_ADM1())
+        self.ui.adm6_text.setText(params.get_ADM6())
+        self.ui.k4_key_text.setText(params.get_K4())
+        self.ui.op_key_text.setText(params.get_OP())
+        self.ui.data_size_text.setText(params.get_DATA_SIZE())
+        self.ui.pin1_rand_check.setChecked(bool(params.get_PIN1_RAND()))
+        self.ui.pin2_rand_check.setChecked(bool(params.get_PIN2_RAND()))
+        self.ui.puk1_rand_check.setChecked(bool(params.get_PUK1_RAND()))
+        self.ui.puk2_rand_check.setChecked(bool(params.get_PUK2_RAND()))
+        self.ui.adm1_rand_check.setChecked(bool(params.get_ADM1_RAND()))
+        self.ui.adm6_rand_check.setChecked(bool(params.get_ADM6_RAND()))
+        self.graph_gui.g_setDefault()
+        self.elect_gui.e_setDefault()
 
     @staticmethod
     def json_to_global_params(config_holder, params):
@@ -212,9 +227,9 @@ class Controller:
         params.set_GRAPH_CHECK(config_holder.DISP.graph_check)
         params.set_SERVER_CHECK(config_holder.DISP.server_check)
 
-        params.set_SERVER_DICT(list_2_dict(config_holder.Parameters.server_variables))
-        params.set_ELECT_DICT(list_2_dict(config_holder.Parameters.data_variables))
-        params.set_GRAPH_DICT(config_holder.Parameters.laser_variables)
+        params.set_SERVER_DICT(list_2_dict(config_holder.PARAMETERS.server_variables))
+        params.set_ELECT_DICT(list_2_dict(config_holder.PARAMETERS.data_variables))
+        params.set_GRAPH_DICT(config_holder.PARAMETERS.laser_variables)
             #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
         params.set_INPUT_PATH(config_holder.PATHS.INPUT_FILE_PATH)
 

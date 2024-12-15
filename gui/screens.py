@@ -140,21 +140,14 @@ class PreviewOutput(QDialog):  # testing purpose only
         table_widget.resizeColumnsToContents()
 
 
-# app = QtWidgets.QApplication([])
-# dialog = MyDialog()
-# button = QtWidgets.QPushButton("Click Me")
-# button.clicked.connect(dialog.on_button_clicked)
-
-# layout = QtWidgets.QVBoxLayout(dialog)
-# layout.addWidget(button)
-
+# import  pandas as pd
+#
 # dataframe_elect = pd.DataFrame()
 # dataframe_laser = pd.DataFrame()
-
-# dataframe_elect = pd.read_csv("Input Files/demo2.csv")
-# dataframe_laser = pd.read_csv("Input Files/demo2.csv")
-# dataframe_server = pd.read_csv("Input Files/demo2.csv")
-
+# dataframe_elect = pd.read_csv("test.csv")
+# dataframe_laser = pd.read_csv("test.csv")
+# dataframe_server = pd.read_csv("test.csv")
+#
 # w = PreviewOutput(dataframe_laser,dataframe_elect,dataframe_server,True,False,True)
 # w.show()
 # app.exec()

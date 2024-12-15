@@ -18,7 +18,6 @@ class DISP(BaseModel):
     puk2: constr(min_length=8, max_length=8)  # type: ignore
     adm1: constr(min_length=8, max_length=8)  # type: ignore
     adm6: constr(min_length=8, max_length=8)  # type: ignore
-    acc: constr(min_length=4, max_length=4)  # type: ignore
     size: conint(ge=1, le=1000)  # type: ignore
     prod_check: bool
     elect_check: bool
@@ -33,11 +32,11 @@ class DISP(BaseModel):
 
 
 class PATHS(BaseModel):
-#    TEMPLATE_JSON: str
-#    INPUT_FILE_PATH: str
-#    INPUT_CSV: str
+    TEMPLATE_JSON: str
+    INPUT_FILE_PATH: str
+    INPUT_CSV: str
     OUTPUT_FILES_DIR: str
-#    OUTPUT_FILES_LASER_EXT: str
+    OUTPUT_FILES_LASER_EXT: str
 
 
 class PARAMETERS(BaseModel):
@@ -69,6 +68,23 @@ def json_loader(path: str) -> ConfigHolder:
     config = ConfigData(**data)
     config_holder = ConfigHolder.from_config(config)
     return config_holder
+
+
+def json_loader1(input_data: dict | str) -> ConfigHolder:
+    if isinstance(input_data, str):
+        try:
+            data = json.loads(input_data)
+        except json.JSONDecodeError as e:
+            raise ValueError("Invalid JSON string provided.") from e
+    elif isinstance(input_data, dict):
+        data = input_data
+    else:
+        raise ValueError("Input must be a dictionary or JSON string.")
+
+    # Validate and create ConfigData instance
+    config = ConfigData(**data)
+    # Create and return ConfigHolder instance
+    return ConfigHolder.from_config(config)
 
 
 def gui_loader(path: json) -> ConfigHolder:

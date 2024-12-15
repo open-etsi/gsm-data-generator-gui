@@ -28,7 +28,7 @@
   },
   "PATHS": {
     "TEMPLATE_JSON": "operators/zong/template.json",
-    "INPUT_FILE_PATH": "",
+    "INPUT_FILE_PATH": "<<<",
     "INPUT_CSV": "operators/zong/input_dataframe.csv",
     "OUTPUT_FILES_DIR": "output_files1",
     "OUTPUT_FILES_LASER_EXT": "laser_extracted"

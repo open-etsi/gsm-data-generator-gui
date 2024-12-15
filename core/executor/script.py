@@ -84,10 +84,10 @@ class DataGenerationScript:
         self.params.set_SERVER_CHECK(self.config_holder.DISP.server_check)
 
         self.params.set_SERVER_DICT(
-            list_2_dict(self.config_holder.Parameters.server_variables)
+            list_2_dict(self.config_holder.PARAMETERS.server_variables)
         )
-        self.params.set_ELECT_DICT(list_2_dict(self.config_holder.Parameters.data_variables))
-        self.params.set_GRAPH_DICT(self.config_holder.Parameters.laser_variables)
+        self.params.set_ELECT_DICT(list_2_dict(self.config_holder.PARAMETERS.data_variables))
+        self.params.set_GRAPH_DICT(self.config_holder.PARAMETERS.laser_variables)
         #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
         self.params.set_INPUT_PATH(self.config_holder.PATHS.INPUT_FILE_PATH)
 

@@ -4,7 +4,9 @@ from core.parser.utils import ConfigHolder, json_loader
 
 if __name__ == "__main__":
     config_holder: ConfigHolder = json_loader("C:/Users/DELL/Desktop/datadecryption_poetry/settings.json")
+    print(config_holder)
     s = DataGenerationScript(config_holder=config_holder)
+
     s.json_to_global_params()  # testing
     (dfs, keys) = s.generate_all_data()
 

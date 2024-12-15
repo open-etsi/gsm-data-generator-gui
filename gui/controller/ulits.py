@@ -119,6 +119,7 @@ class GuiCheckBox:
             self.ui.data_size_auto.setDisabled(True)
 
     def check_state_changed(self):
+        print("check_state_changed()")
         if self.ui.graph_data.isChecked():
             self.global_graph_check = True
             self.parameters.set_GRAPH_CHECK(True)
@@ -392,14 +393,6 @@ class GuiButtons:
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.adm6_text.setText(string)
-
-
-
-
-
-class GuiController:
-    def __init__(self):
-        pass
 
 
 def parameter_len(param) -> str:

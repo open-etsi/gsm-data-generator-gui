@@ -15,9 +15,9 @@ class DataFrames:
         else:
             DataFrames.__instance = self
             self.__INPUT_DF = pd.DataFrame()
-            self.__ELECT_DF = pd.DataFrame()
-            self.__GRAPH_DF = pd.DataFrame()
-            self.__SERVR_DF = pd.DataFrame()
+            self.ELECT_DF = pd.DataFrame()
+            self.GRAPH_DF = pd.DataFrame()
+            self.SERVER_DF = pd.DataFrame()
             self.__KEYS = {}
 
     @staticmethod
@@ -27,25 +27,25 @@ class DataFrames:
         return DataFrames.__instance
 
     def set_ELECT_DF(self, value):
-        self.__ELECT_DF = pd.DataFrame()
-        self.__ELECT_DF = value
+        self.ELECT_DF = pd.DataFrame()
+        self.ELECT_DF = value
 
     def get_ELECT_DF(self):
-        return self.__ELECT_DF
+        return self.ELECT_DF
 
     def set_GRAPH_DF(self, value):
-        self.__GRAPH_DF = pd.DataFrame()
-        self.__GRAPH_DF = value
+        self.GRAPH_DF = pd.DataFrame()
+        self.GRAPH_DF = value
 
     def get_GRAPH_DF(self):
-        return self.__GRAPH_DF
+        return self.GRAPH_DF
 
     def set_SERVER_DF(self, value):
-        self.__SERVR_DF = pd.DataFrame()
-        self.__SERVR_DF = value
+        self.SERVER_DF = pd.DataFrame()
+        self.SERVER_DF = value
 
     def get_SERVER_DF(self):
-        return self.__SERVR_DF
+        return self.SERVER_DF
 
     def set_KEYS(self, value):
         self.__KEYS = value
