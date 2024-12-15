@@ -133,7 +133,7 @@ class Controller:
         self.parameters.set_ELECT_DICT((self.elect_gui.e_get_data_from_table()))
         self.parameters.set_GRAPH_DICT((self.graph_gui.get_data_from_table()))
 
-        self.parameters.set_ELECT_CHECK()
+        self.parameters.set_SERVER_CHECK(True)
 
     def global_params_to_json(self) -> json:
         param_dict:json = {
@@ -165,9 +165,7 @@ class Controller:
                 "adm6_fix": self.parameters.get_ADM6_RAND()
             },
             "PATHS": {
-                "TEMPLATE_JSON": "operators/zong/template.json",
-                "INPUT_FILE_PATH": "",
-                "INPUT_CSV": "operators/zong/input_dataframe.csv",
+                "FILE_NAME": self.parameters.get_file_name(),
                 "OUTPUT_FILES_DIR": "output_files1",
                 "OUTPUT_FILES_LASER_EXT": "laser_extracted"
             },
@@ -231,7 +229,8 @@ class Controller:
         params.set_ELECT_DICT(list_2_dict(config_holder.PARAMETERS.data_variables))
         params.set_GRAPH_DICT(config_holder.PARAMETERS.laser_variables)
             #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
-        params.set_INPUT_PATH(config_holder.PATHS.INPUT_FILE_PATH)
+        params.set_file_name(config_holder.PATHS.FILE_NAME)
+        params.set_OUTPUT_FILES_DIR(config_holder.PATHS.OUTPUT_FILES_DIR)
 
             # ========================================#
             # ========================================#

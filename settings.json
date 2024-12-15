@@ -1,8 +1,8 @@
 {
   "DISP": {
-    "elect_data_sep": ".",
-    "server_data_sep": ".",
-    "graph_data_sep": ".",
+    "elect_data_sep": ",",
+    "server_data_sep": ",",
+    "graph_data_sep": ",",
     "K4": "1111111111111111111111111111111111111111111111111111111111111111",
     "op": "11111111111111111111111111111111",
     "imsi": "111111111111111",
@@ -27,9 +27,7 @@
     "adm6_fix": false
   },
   "PATHS": {
-    "TEMPLATE_JSON": "operators/zong/template.json",
-    "INPUT_FILE_PATH": "<<<",
-    "INPUT_CSV": "operators/zong/input_dataframe.csv",
+    "FILE_NAME": "TP15209",
     "OUTPUT_FILES_DIR": "output_files1",
     "OUTPUT_FILES_LASER_EXT": "laser_extracted"
   },
@@ -43,7 +41,18 @@
       "PIN2",
       "PUK2",
       "ADM1",
-      "ADM6"
+      "ADM6",
+      "ACC",
+      "KIC1",
+      "KID1",
+      "KIK1",
+      "KIC2",
+      "KID2",
+      "KIK2",
+      "KIC3",
+      "KID3",
+      "KIK3"
+
     ],
     "data_variables": [
       "IMSI",
@@ -78,7 +87,9 @@
       "7": ["PIN1", "Normal", "0-3"],
       "8": ["PUK1", "Normal", "0-7"],
       "9": ["PIN2", "Normal", "0-3"],
-      "10": ["PUK2", "Normal", "0-7"]
+      "10": ["PUK2", "Normal", "0-7"],
+      "11": ["IMSI", "Normal", "0-5"],
+      "12": ["IMSI", "Normal", "6-15"]
     }
   }
 }

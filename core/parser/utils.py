@@ -32,12 +32,9 @@ class DISP(BaseModel):
 
 
 class PATHS(BaseModel):
-    TEMPLATE_JSON: str
-    INPUT_FILE_PATH: str
-    INPUT_CSV: str
+    FILE_NAME: str
     OUTPUT_FILES_DIR: str
     OUTPUT_FILES_LASER_EXT: str
-
 
 class PARAMETERS(BaseModel):
     server_variables: List[str]

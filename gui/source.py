@@ -231,6 +231,13 @@ class MainWindow(QMainWindow):
 
 
     def create_output_folder(self):
+        try:
+            com_path = self.parameters.get_OUTPUT_FILES_DIR()+"/"+self.parameters.get_OUTPUT_FILES_DIR()+"/{}.txt".format(self.parameters.get_file_name())
+            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR(), exist_ok=True)
+            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR()+"/"+self.parameters.get_file_name(), exist_ok=True)
+            self.dataframes.get_ELECT_DF().to_csv(com_path, sep=self.parameters.get_ELECT_SEP(), index=False)
+        except Exception as e:
+            self.ui.textEdit.append("===>", e)
         # m_zong = ZongFileWriter()
         # m_zong.set_json_to_UI()
         # m_zong.Generate_laser_file(
@@ -243,12 +250,14 @@ class MainWindow(QMainWindow):
         #     dict_2_list(self.parameters.get_ELECT_DICT()), self.dataframes.__ELECT_DF
         # )
 
-        # com_path = os.path.join(m_zong.get_output_dir())
-        # messageBox.Show_message_box(
+        # com_path = os.path.join(self.parameters.get_OUTPUT_FILES_DIR(),
+        #                         "{}.txt".format(self.parameters.get_file_name()))
+        #
+        # show_message_box(
         #     "Information",
         #     "Generated Data has been saved to {} successfully.".format(com_path),
         # )
-        # self.progress_bar_init()
+#        self.progress_bar_init()
 
         self.ui.textEdit.append("==================================")
         #        self.ui.textEdit.append(f"Created folder '{folder_name}'")
@@ -273,22 +282,24 @@ class MainWindow(QMainWindow):
 
 
     def browse_button_func(self):
-        path = self.project_path
-        path = os.path.join(path, "Json File")
-        filters = "JSON (*.json)"
+        try:
+            path = self.project_path
+            path = os.path.join(path, "Json File")
+            filters = "JSON (*.json)"
 
-        fname, _ = QFileDialog.getOpenFileNames(self, "Load Json Input File", path, filter=filters)
-        self.ui.textEdit.append(str(fname))
-        if len(fname) != 0:
-            self.ui.filename.setText(", ".join(fname))
-            #            self.ui.textEdit.append(str(fname))
-            self.ui.textEdit.append(f"Selected {len(fname)} file(s).")
-            #            self.global_input_path=fname[0]
-            #            self.parameters.set_INPUT_PATH(fname[0])
-            self.parameters.set_INPUT_FILE_PATH(fname[0])
+            fname, _ = QFileDialog.getOpenFileNames(self, "Load Json Input File", path, filter=filters)
+            self.ui.textEdit.append(str(fname))
+            if len(fname) != 0:
+                self.ui.filename.setText(", ".join(fname))
+                #            self.ui.textEdit.append(str(fname))
+                self.ui.textEdit.append(f"Selected {len(fname)} file(s).")
+                #            self.global_input_path=fname[0]
+                #            self.parameters.set_INPUT_PATH(fname[0])
+                self.parameters.set_INPUT_FILE_PATH(fname[0])
 
-            self.config_holder = json_loader(fname[0])
-
+                self.config_holder = json_loader(fname[0])
+        except Exception as e:
+            self.ui.textEdit.append(str(e))
             # s = DataGenerationScript(config_holder=config_holder)
             # s.SET_ALL_DISP_PARAMS()  # testing
             # (dfs, keys) = s.generate_all_data()

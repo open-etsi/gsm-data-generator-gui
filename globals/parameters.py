@@ -114,7 +114,7 @@ class Parameters(DataFrames):
             self.__SERVER_DICT = {}
 
             self.__INPUT_FILE_PARAMETERS = {}
-
+            self.file_name: str
             # ===========================-=================#
             # ================= SEPERATOR==================#
             # =============================================#
@@ -132,6 +132,7 @@ class Parameters(DataFrames):
             self.__INPUT_CSV = None
             self.__OUTPUT_FILES_DIR = None
             self.__OUTPUT_FILES_LASER_EXT = None
+            self.file_name = None
 
     #           self.__LASER_DICT = None
     #           self.__SERVER_LIST = None
@@ -377,6 +378,12 @@ class Parameters(DataFrames):
 
     def get_EXTRACTOR_DICT(self):
         return self.EXTRCATOR_DICT
+
+    def set_file_name(self, value: str):
+        self.file_name = value
+
+    def get_file_name(self)->str:
+        return self.file_name
 
     def get_all_params_dict(self) -> dict:
         param_dict = {

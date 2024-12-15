@@ -82,41 +82,41 @@ class GuiCheckBox:
             self.parameters.set_PUK2_RAND(False)
 
     def check_state_prod_data(self):
-        if self.ui.production_data.isChecked() is False:
+        #if self.ui.production_data.isChecked() is False:
             self.global_prod_check = True
             self.parameters.set_PRODUCTION_CHECK(False)
-            self.ui.browse_button.setDisabled(True)
+            self.ui.browse_button.setDisabled(False)
+            self.ui.preview_in_file.setDisabled(False)
             self.ui.imsi_text.setDisabled(False)
             self.ui.iccid_text.setDisabled(False)
-            self.ui.preview_in_file.setDisabled(True)
             self.ui.data_size_text.setDisabled(False)
             self.ui.imsi_auto.setDisabled(False)
             self.ui.iccid_auto.setDisabled(False)
             self.ui.data_size_auto.setDisabled(False)
-        else:
-            self.global_prod_check = False
-            self.parameters.set_PRODUCTION_CHECK(True)
-            self.ui.browse_button.setDisabled(False)
-
-            self.ui.filename.clear()
-
-            self.ui.imsi_text.setDisabled(True)
-            self.ui.imsi_text.clear()
-            self.ui.imsi_text.setStyleSheet(style_sheet_disabled)
-
-            self.ui.iccid_text.setDisabled(True)
-            self.ui.iccid_text.clear()
-            self.ui.iccid_text.setStyleSheet(style_sheet_disabled)
-
-            self.ui.preview_in_file.setDisabled(False)
-
-            self.ui.data_size_text.setDisabled(True)
-            self.ui.data_size_text.clear()
-            self.ui.data_size_text.setStyleSheet(style_sheet_disabled)
-
-            self.ui.imsi_auto.setDisabled(True)
-            self.ui.iccid_auto.setDisabled(True)
-            self.ui.data_size_auto.setDisabled(True)
+        # else:
+        #     self.global_prod_check = False
+        #     self.parameters.set_PRODUCTION_CHECK(True)
+        #     self.ui.browse_button.setDisabled(False)
+        #
+        #     self.ui.filename.clear()
+        #
+        #     self.ui.imsi_text.setDisabled(True)
+        #     self.ui.imsi_text.clear()
+        #     self.ui.imsi_text.setStyleSheet(style_sheet_disabled)
+        #
+        #     self.ui.iccid_text.setDisabled(True)
+        #     self.ui.iccid_text.clear()
+        #     self.ui.iccid_text.setStyleSheet(style_sheet_disabled)
+        #
+        #     self.ui.preview_in_file.setDisabled(False)
+        #
+        #     self.ui.data_size_text.setDisabled(True)
+        #     self.ui.data_size_text.clear()
+        #     self.ui.data_size_text.setStyleSheet(style_sheet_disabled)
+        #
+        #     self.ui.imsi_auto.setDisabled(True)
+        #     self.ui.iccid_auto.setDisabled(True)
+        #     self.ui.data_size_auto.setDisabled(True)
 
     def check_state_changed(self):
         print("check_state_changed()")
