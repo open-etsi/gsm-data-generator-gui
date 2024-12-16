@@ -32,6 +32,7 @@ STC_ICON = "resources/stc_logo.ico"
 
 class MainWindow(QMainWindow):
     project_path = os.getcwd()
+
     def __init__(self, *args, **kwargs):
         (laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict) = (None, None, None, None)
         super(MainWindow, self).__init__()
@@ -61,15 +62,13 @@ class MainWindow(QMainWindow):
         self.parameters = Parameters.get_instance()
         self.dataframes = DataFrames.get_instance()
 
-
         self.sett = SETTINGS(self.ui)
 
-
-#        self.elect_gui = GuiElect(self.ui)
-#        self.graph_gui = GuiGraph(self.ui)
-#        self.button_gui = GuiButtons(self.ui)
-#        self.checkbox_gui = GuiCheckBox(self.ui)
-#        self.extractor_gui = GuiExtractor(self.ui)
+        #        self.elect_gui = GuiElect(self.ui)
+        #        self.graph_gui = GuiGraph(self.ui)
+        #        self.button_gui = GuiButtons(self.ui)
+        #        self.checkbox_gui = GuiCheckBox(self.ui)
+        #        self.extractor_gui = GuiExtractor(self.ui)
         self.text_validator = TextLengthValidator(self.ui)
 
         self.controller = Controller(self.ui)
@@ -92,7 +91,6 @@ class MainWindow(QMainWindow):
         # self.parameters.set_GRAPH_DICT(headers_laser_dict)
         # self.parameters.set_SERVER_DICT(header_server_dict)
 
-
         # ==========================================#
         # ============DEFAULT VALUES================#
         # ==========================================#
@@ -110,8 +108,6 @@ class MainWindow(QMainWindow):
         self.ui.preview_in_file.clicked.connect(self.show_input_files)
         self.ui.save_seting_button.clicked.connect(self.save_settings_func)
         self.ui.load_seting_button.clicked.connect(self.load_settings_func)
-
-
 
     extractor_columns = []
 
@@ -142,36 +138,36 @@ class MainWindow(QMainWindow):
     # def extractor_function(self, dest, src):
     #     print(self.dataframes._INPUT_DF)
 
-
     @staticmethod
     def create_folder(folder_name: str):
         if not os.path.exists(folder_name):
             os.makedirs(folder_name)
 
-
-
-
-
     def main_generate_function(self):
         self.ui.textEdit.clear()
-#        self.update_all()
-#        temp = self.parameters.get_all_params_dict()
-#        print("----->", temp)
+        #        self.update_all()
+        #        temp = self.parameters.get_all_params_dict()
+        #        print("----->", temp)
         try:
-#        if True:
             self.controller.gui_to_global_params()
             t = self.controller.global_params_to_json()
             c = json_loader1(t)
             d = DataGenerationScript(c)
+            d.json_to_global_params()
             (dfs, keys) = d.generate_all_data()
 
-
-            print("-----> ",self.parameters.get_SERVER_DICT())
-            print("-----> ",self.parameters.get_SERVER_CHECK())
+            # print("-----> ", self.parameters.get_SERVER_DICT())
+            # print("-----> ", self.parameters.get_SERVER_CHECK())
             self.dataframes.ELECT_DF = dfs["ELECT"]
             self.dataframes.GRAPH_DF = dfs["GRAPH"]
             self.dataframes.SERVER_DF = dfs["SERVER"]
-            print("------------------------------------>",dfs["SERVER"])
+
+            print("-----> ", self.parameters.get_ELECT_CHECK(), self.parameters.get_GRAPH_CHECK(),
+                  self.parameters.get_SERVER_CHECK())
+            #            print("------------------------------------>", dfs["SERVER"])
+
+            show_message_box("Information", "Data has been generated successfully.")
+
         except Exception as e:
             self.ui.textEdit.clear()
             self.ui.textEdit.append("--->")
@@ -199,16 +195,16 @@ class MainWindow(QMainWindow):
             print(self.dataframes.ELECT_DF)
 
             self.w = PreviewOutput(
-                    self.dataframes.ELECT_DF,
-                    self.dataframes.GRAPH_DF,
-                    self.dataframes.SERVER_DF,
-                    True,
-                    False,
-                    True,
-                )
+                self.dataframes.ELECT_DF,
+                self.dataframes.GRAPH_DF,
+                self.dataframes.SERVER_DF,
+                self.parameters.get_ELECT_CHECK(),
+                self.parameters.get_GRAPH_CHECK(),
+                self.parameters.get_SERVER_CHECK()
+            )
             self.w.show()
         except Exception as e:
-#            self.ui.textEdit.clear()
+            #            self.ui.textEdit.clear()
             self.ui.textEdit.append("===>")
             self.ui.textEdit.append(str(e))
         #
@@ -229,13 +225,29 @@ class MainWindow(QMainWindow):
         # else:
         #     show_message_box("Error", " Check Missing Input Parameters...")
 
-
     def create_output_folder(self):
         try:
-            com_path = self.parameters.get_OUTPUT_FILES_DIR()+"/"+self.parameters.get_OUTPUT_FILES_DIR()+"/{}.txt".format(self.parameters.get_file_name())
-            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR(), exist_ok=True)
-            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR()+"/"+self.parameters.get_file_name(), exist_ok=True)
-            self.dataframes.get_ELECT_DF().to_csv(com_path, sep=self.parameters.get_ELECT_SEP(), index=False)
+
+            parent_folder = self.parameters.get_OUTPUT_FILES_DIR()
+            sub_folder = self.parameters.get_file_name()
+            nested_folder = os.path.join(parent_folder, sub_folder)
+            os.makedirs(nested_folder, exist_ok=True)
+
+            elect_com_path = nested_folder + "/DATA_{}.txt".format(self.parameters.get_file_name())
+            graph_com_path = nested_folder + "/LASER_{}.txt".format(self.parameters.get_file_name())
+            server_com_path = nested_folder + "/{}.out".format(self.parameters.get_file_name())
+            print(elect_com_path)
+            print(self.parameters.get_OUTPUT_FILES_DIR())
+
+            #            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR(), exist_ok=True)
+            if self.parameters.get_ELECT_CHECK():
+                self.dataframes.get_ELECT_DF().to_csv(elect_com_path, sep=self.parameters.get_ELECT_SEP(), index=False)
+            if self.parameters.get_GRAPH_CHECK():
+                self.dataframes.get_GRAPH_DF().to_csv(graph_com_path, sep=self.parameters.get_GRAPH_SEP(), index=False)
+            if self.parameters.get_SERVER_CHECK():
+                self.dataframes.get_SERVER_DF().to_csv(server_com_path, sep=self.parameters.get_SERVER_SEP(),
+                                                       index=False)
+
         except Exception as e:
             self.ui.textEdit.append("===>", e)
         # m_zong = ZongFileWriter()
@@ -257,7 +269,7 @@ class MainWindow(QMainWindow):
         #     "Information",
         #     "Generated Data has been saved to {} successfully.".format(com_path),
         # )
-#        self.progress_bar_init()
+        #        self.progress_bar_init()
 
         self.ui.textEdit.append("==================================")
         #        self.ui.textEdit.append(f"Created folder '{folder_name}'")
@@ -278,8 +290,6 @@ class MainWindow(QMainWindow):
     #         widget.setStyleSheet(style_sheet_bad)
     #     else:
     #         widget.setStyleSheet(style_sheet_good)
-
-
 
     def browse_button_func(self):
         try:
@@ -317,11 +327,9 @@ class MainWindow(QMainWindow):
             print(e)
             self.ui.textEdit.append(str(e))
 
-
     def save_files_function(self):
         self.progress_bar()
         self.create_output_folder()
-
 
     def progress_bar(self):
         float_value = 0
@@ -337,18 +345,16 @@ class MainWindow(QMainWindow):
     def progress_bar_init(self):
         self.ui.progressBar.setValue(0)
 
-
     def closeEvent(self, event):
         print("AUTOMATIC SETTING SAVED SUCCESSFULLY")
-
 
     def close(self):
         self.hide()
 
 
-
 class LoginWindow(QDialog):
     credentials = None
+
     def __init__(self):
         super(LoginWindow, self).__init__()
         self.ui = login_form()
@@ -385,6 +391,3 @@ class LoginWindow(QDialog):
             self.accept()
         else:
             QMessageBox.warning(self, "Login Failed", result)
-
-
-

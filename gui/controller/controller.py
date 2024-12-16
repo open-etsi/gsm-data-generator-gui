@@ -1,9 +1,11 @@
-import  json
+import json
 from gui.table import GuiElect, GuiGraph, GuiExtractor
 from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
 
 from globals.parameters import Parameters
 from core.executor.utils import list_2_dict, dict_2_list
+
+
 class Controller:
     def __init__(self, ui):
         self.ui = ui
@@ -34,10 +36,10 @@ class Controller:
         self.ui.graph_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
         self.ui.elect_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
         self.ui.server_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
-        #        self.checkbox_gui.check_state_changed() # added in class
+        self.checkbox_gui.check_state_changed()  # added in class
 
         self.ui.production_data.stateChanged.connect(self.checkbox_gui.check_state_prod_data)
-        #        self.checkbox_gui.check_state_prod_data() # added in class
+        self.checkbox_gui.check_state_prod_data()  # added in class
 
         self.ui.op_key_auto.clicked.connect(self.button_gui.auto_op_func)
         self.ui.k4_key_auto.clicked.connect(self.button_gui.auto_k4_func)
@@ -81,7 +83,6 @@ class Controller:
     #     self.ui.adm6_rand_check.setChecked(bool(config_holder.DISP.adm6_fix))
     #     self.elect_gui.set_table_from_json(config_holder)
     #     self.graph_gui.set_table_from_json(config_holder)
-
 
     def show_tables(self):
         self.elect_gui.e_setDefault()
@@ -133,10 +134,12 @@ class Controller:
         self.parameters.set_ELECT_DICT((self.elect_gui.e_get_data_from_table()))
         self.parameters.set_GRAPH_DICT((self.graph_gui.get_data_from_table()))
 
-        self.parameters.set_SERVER_CHECK(True)
+        self.parameters.set_ELECT_CHECK(self.checkbox_gui.get_elect_check())
+        self.parameters.set_GRAPH_CHECK(self.checkbox_gui.get_graph_check())
+        self.parameters.set_SERVER_CHECK(self.checkbox_gui.get_server_check())
 
     def global_params_to_json(self) -> json:
-        param_dict:json = {
+        param_dict: json = {
             "DISP": {
                 "elect_data_sep": ".",
                 "server_data_sep": ".",
@@ -175,12 +178,10 @@ class Controller:
                 "laser_variables": self.parameters.get_GRAPH_DICT()
             }
         }
-#        print(param_dict)
-#        j = json.dumps(param_dict)
+        #        print(param_dict)
+        #        j = json.dumps(param_dict)
 
         return param_dict
-
-
 
     def global_params_to_gui(self, params):
         self.ui.imsi_text.setText(params.get_IMSI())
@@ -228,13 +229,13 @@ class Controller:
         params.set_SERVER_DICT(list_2_dict(config_holder.PARAMETERS.server_variables))
         params.set_ELECT_DICT(list_2_dict(config_holder.PARAMETERS.data_variables))
         params.set_GRAPH_DICT(config_holder.PARAMETERS.laser_variables)
-            #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
+        #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
         params.set_file_name(config_holder.PATHS.FILE_NAME)
         params.set_OUTPUT_FILES_DIR(config_holder.PATHS.OUTPUT_FILES_DIR)
 
-            # ========================================#
-            # ========================================#
-            # ========================================#
+        # ========================================#
+        # ========================================#
+        # ========================================#
 
         params.set_PIN1_RAND(config_holder.DISP.pin1_fix)
         params.set_PUK1_RAND(config_holder.DISP.puk1_fix)

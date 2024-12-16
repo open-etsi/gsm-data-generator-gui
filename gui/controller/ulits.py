@@ -3,6 +3,7 @@ from typing import Annotated
 from globals.parameters import Parameters
 from gui.stylesheet import style_sheet_disabled, style_sheet_good, style_sheet_bad
 
+
 class TextLengthValidator:
     def __init__(self, ui):
         self.ui = ui
@@ -27,8 +28,6 @@ class TextLengthValidator:
             widget.textChanged.connect(lambda text, k=key_type, w=widget: len_check(k, text, w))
 
 
-
-
 class GuiCheckBox:
     def __init__(self, ui):
         self.global_elect_check = None
@@ -43,13 +42,21 @@ class GuiCheckBox:
         self.check_state_changed()
         self.check_state_prod_data()
 
+    def get_elect_check(self) -> bool:
+        return self.ui.elect_data.isChecked()
 
+    def get_graph_check(self) -> bool:
+        return self.ui.graph_data.isChecked()
+
+    def get_server_check(self) -> bool:
+        return self.ui.server_data.isChecked()
 
     def adm6_rand_check(self):
         if self.ui.adm6_rand_check.isChecked():
             self.parameters.set_ADM6_RAND(True)
         else:
             self.parameters.set_ADM6_RAND(False)
+
     def adm1_rand_check(self):
         if self.ui.adm1_rand_check.isChecked():
             self.parameters.set_ADM1_RAND(True)
@@ -74,7 +81,6 @@ class GuiCheckBox:
         else:
             self.parameters.set_PUK1_RAND(False)
 
-
     def puk2_rand_check(self):
         if self.ui.puk2_rand_check.isChecked():
             self.parameters.set_PUK2_RAND(True)
@@ -82,41 +88,42 @@ class GuiCheckBox:
             self.parameters.set_PUK2_RAND(False)
 
     def check_state_prod_data(self):
-        #if self.ui.production_data.isChecked() is False:
-            self.global_prod_check = True
-            self.parameters.set_PRODUCTION_CHECK(False)
-            self.ui.browse_button.setDisabled(False)
-            self.ui.preview_in_file.setDisabled(False)
-            self.ui.imsi_text.setDisabled(False)
-            self.ui.iccid_text.setDisabled(False)
-            self.ui.data_size_text.setDisabled(False)
-            self.ui.imsi_auto.setDisabled(False)
-            self.ui.iccid_auto.setDisabled(False)
-            self.ui.data_size_auto.setDisabled(False)
-        # else:
-        #     self.global_prod_check = False
-        #     self.parameters.set_PRODUCTION_CHECK(True)
-        #     self.ui.browse_button.setDisabled(False)
-        #
-        #     self.ui.filename.clear()
-        #
-        #     self.ui.imsi_text.setDisabled(True)
-        #     self.ui.imsi_text.clear()
-        #     self.ui.imsi_text.setStyleSheet(style_sheet_disabled)
-        #
-        #     self.ui.iccid_text.setDisabled(True)
-        #     self.ui.iccid_text.clear()
-        #     self.ui.iccid_text.setStyleSheet(style_sheet_disabled)
-        #
-        #     self.ui.preview_in_file.setDisabled(False)
-        #
-        #     self.ui.data_size_text.setDisabled(True)
-        #     self.ui.data_size_text.clear()
-        #     self.ui.data_size_text.setStyleSheet(style_sheet_disabled)
-        #
-        #     self.ui.imsi_auto.setDisabled(True)
-        #     self.ui.iccid_auto.setDisabled(True)
-        #     self.ui.data_size_auto.setDisabled(True)
+        # if self.ui.production_data.isChecked() is False:
+        self.global_prod_check = True
+        self.parameters.set_PRODUCTION_CHECK(False)
+        self.ui.browse_button.setDisabled(False)
+        self.ui.preview_in_file.setDisabled(False)
+        self.ui.imsi_text.setDisabled(False)
+        self.ui.iccid_text.setDisabled(False)
+        self.ui.data_size_text.setDisabled(False)
+        self.ui.imsi_auto.setDisabled(False)
+        self.ui.iccid_auto.setDisabled(False)
+        self.ui.data_size_auto.setDisabled(False)
+
+    # else:
+    #     self.global_prod_check = False
+    #     self.parameters.set_PRODUCTION_CHECK(True)
+    #     self.ui.browse_button.setDisabled(False)
+    #
+    #     self.ui.filename.clear()
+    #
+    #     self.ui.imsi_text.setDisabled(True)
+    #     self.ui.imsi_text.clear()
+    #     self.ui.imsi_text.setStyleSheet(style_sheet_disabled)
+    #
+    #     self.ui.iccid_text.setDisabled(True)
+    #     self.ui.iccid_text.clear()
+    #     self.ui.iccid_text.setStyleSheet(style_sheet_disabled)
+    #
+    #     self.ui.preview_in_file.setDisabled(False)
+    #
+    #     self.ui.data_size_text.setDisabled(True)
+    #     self.ui.data_size_text.clear()
+    #     self.ui.data_size_text.setStyleSheet(style_sheet_disabled)
+    #
+    #     self.ui.imsi_auto.setDisabled(True)
+    #     self.ui.iccid_auto.setDisabled(True)
+    #     self.ui.data_size_auto.setDisabled(True)
 
     def check_state_changed(self):
         print("check_state_changed()")
@@ -310,7 +317,6 @@ class GuiButtons:
         if is_valid_iccid(init_iccid):
             self.ui.iccid_text.setText(str(init_iccid))
 
-
     # def update_pin1_text(self):
     #     var = self.ui.pin1_text.text()
     #     if len(var) == 4:
@@ -364,30 +370,25 @@ class GuiButtons:
         string = "0000"
         self.ui.pin1_text.setText(string)
 
-
     def auto_pin2_func(self):
         #        string = generate_4_Digit()
         string = "0000"
         self.ui.pin2_text.setText(string)
-
 
     def auto_puk1_func(self):
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.puk1_text.setText(string)
 
-
     def auto_puk2_func(self):
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.puk2_text.setText(string)
 
-
     def auto_adm1_func(self):
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.adm1_text.setText(string)
-
 
     def auto_adm6_func(self):
         #        string = generate_8_Digit()
@@ -420,13 +421,12 @@ def parameter_len(param) -> str:
     return str(length - 1)
 
 
-
-def is_valid_iccid(iccid: Annotated[int, "ICCID length validation"])->bool:
+def is_valid_iccid(iccid: Annotated[int, "ICCID length validation"]) -> bool:
     iccid_length = len(str(iccid))
     return iccid_length in [18, 19, 20]
 
 
-def is_valid_imsi(imsi: [int, "IMSI Length Validation"])->bool:
+def is_valid_imsi(imsi: [int, "IMSI Length Validation"]) -> bool:
     return len(str(imsi)) == 15
 
 

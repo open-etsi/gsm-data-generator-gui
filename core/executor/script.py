@@ -79,21 +79,14 @@ class DataGenerationScript:
         self.params.set_DATA_SIZE(self.config_holder.DISP.size)
 
         self.params.set_PRODUCTION_CHECK(False)
+
         self.params.set_ELECT_CHECK(self.config_holder.DISP.elect_check)
         self.params.set_GRAPH_CHECK(self.config_holder.DISP.graph_check)
         self.params.set_SERVER_CHECK(self.config_holder.DISP.server_check)
 
-        self.params.set_SERVER_DICT(
-            list_2_dict(self.config_holder.PARAMETERS.server_variables)
-        )
         self.params.set_ELECT_DICT(list_2_dict(self.config_holder.PARAMETERS.data_variables))
         self.params.set_GRAPH_DICT(self.config_holder.PARAMETERS.laser_variables)
-        #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
-        self.params.set_INPUT_PATH(self.config_holder.PATHS.INPUT_FILE_PATH)
-
-        # ========================================#
-        # ========================================#
-        # ========================================#
+        self.params.set_SERVER_DICT(list_2_dict(self.config_holder.PARAMETERS.server_variables))
 
         self.params.set_PIN1_RAND(self.config_holder.DISP.pin1_fix)
         self.params.set_PUK1_RAND(self.config_holder.DISP.puk1_fix)
@@ -101,7 +94,6 @@ class DataGenerationScript:
         self.params.set_PUK2_RAND(self.config_holder.DISP.puk2_fix)
         self.params.set_ADM1_RAND(self.config_holder.DISP.adm1_fix)
         self.params.set_ADM6_RAND(self.config_holder.DISP.adm6_fix)
-#        self.params.set_ACC_RAND(self.config_holder.DISP.pin1_rand)
 
     def generate_eki(self, ki):
         return self.data_generator.generate_eki(self.params.get_K4(), ki)
@@ -228,6 +220,7 @@ class DataGenerationScript:
         }
         result_dfs = {}
         for data_type, (check, dict_func, clip, encoding) in data_types.items():
+            print(data_type, (check, dict_func, clip, encoding))
             if check:
                 result_dfs[data_type] = self.process_final_data(
                     dict_func, initial_df, clip, encoding
