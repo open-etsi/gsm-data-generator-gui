@@ -565,7 +565,6 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
-                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -633,6 +632,9 @@ border:2px solid black;
 }
 </string>
                             </property>
+                            <property name="inputMethodHints">
+                             <set>Qt::ImhSensitiveData</set>
+                            </property>
                             <property name="maxLength">
                              <number>64</number>
                             </property>
@@ -640,7 +642,7 @@ border:2px solid black;
                              <bool>false</bool>
                             </property>
                             <property name="echoMode">
-                             <enum>QLineEdit::Password</enum>
+                             <enum>QLineEdit::Normal</enum>
                             </property>
                             <property name="readOnly">
                              <bool>true</bool>
@@ -1107,7 +1109,6 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
-                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1158,6 +1159,9 @@ QLineEdit:hover{
 border:2px solid black;
 }</string>
                             </property>
+                            <property name="inputMethodHints">
+                             <set>Qt::ImhSensitiveData</set>
+                            </property>
                             <property name="maxLength">
                              <number>32</number>
                             </property>
@@ -1165,7 +1169,7 @@ border:2px solid black;
                              <bool>true</bool>
                             </property>
                             <property name="echoMode">
-                             <enum>QLineEdit::Password</enum>
+                             <enum>QLineEdit::Normal</enum>
                             </property>
                             <property name="readOnly">
                              <bool>true</bool>
@@ -1249,7 +1253,6 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
-                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1414,7 +1417,6 @@ border:2px solid black;
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
-                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1488,7 +1490,6 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
-                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1965,6 +1966,9 @@ background-color:rgba(32,33,36,255);
                       <property name="text">
                        <string>Graphical Data</string>
                       </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
                       <property name="tristate">
                        <bool>false</bool>
                       </property>
@@ -2000,6 +2004,9 @@ background-color:rgba(32,33,36,255);
                       </property>
                       <property name="text">
                        <string>Electrical Data</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
                       </property>
                       <property name="autoRepeatDelay">
                        <number>300</number>
@@ -2038,7 +2045,7 @@ color:white;
                        <bool>true</bool>
                       </property>
                       <property name="checked">
-                       <bool>false</bool>
+                       <bool>true</bool>
                       </property>
                       <property name="tristate">
                        <bool>false</bool>
@@ -2109,10 +2116,16 @@ color:white;
                       <property name="text">
                        <string>Server Data</string>
                       </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item row="0" column="1" colspan="3">
                      <widget class="QComboBox" name="comboVendor">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">QComboBox#comboVendor{
     border:                 none;
@@ -2148,6 +2161,14 @@ QListView::item:hover{
 
 </string>
                       </property>
+                      <property name="editable">
+                       <bool>false</bool>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </item>
                       <item>
                        <property name="text">
                         <string>ZONG</string>
@@ -2172,7 +2193,7 @@ QListView::item:hover{
                     </sizepolicy>
                    </property>
                    <property name="title">
-                    <string>INPUT FILE</string>
+                    <string>Input Config File</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_10">
                     <item row="0" column="0">
@@ -2239,7 +2260,6 @@ border:2px solid black;
                        <font>
                         <family>Segoe UI</family>
                         <pointsize>9</pointsize>
-                        <weight>75</weight>
                         <italic>false</italic>
                         <bold>true</bold>
                        </font>
@@ -2277,7 +2297,6 @@ background-color:rgba(32,33,36,255);
                        <font>
                         <family>Segoe UI</family>
                         <pointsize>9</pointsize>
-                        <weight>75</weight>
                         <italic>false</italic>
                         <bold>true</bold>
                        </font>
@@ -2828,7 +2847,6 @@ background-color:rgba(32,33,36,255);
                          <property name="font">
                           <font>
                            <family>Segoe UI</family>
-                           <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>
@@ -3586,7 +3604,6 @@ QListView::item:hover{
                     <font>
                      <family>Segoe UI</family>
                      <pointsize>9</pointsize>
-                     <weight>68</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -4201,7 +4218,6 @@ border:2px solid black;
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
-                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -4239,7 +4255,6 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
-                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -4813,7 +4828,6 @@ background-color:rgba(32,33,36,255);
                          <property name="font">
                           <font>
                            <family>Segoe UI</family>
-                           <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>

@@ -3,8 +3,9 @@ import sys
 from PyQt6.QtWidgets import QApplication
 from core.exception.exceptions import NoSettingsFilePresent, NoTemplateFilePresent
 
-#paths = ["settings.json", "operators/zong/template.json"]
+# paths = ["settings.json", "operators/zong/template.json"]
 paths = ["settings.json"]
+
 
 def files_exist(path_str: str):
     try:
@@ -24,9 +25,10 @@ def files_exist(path_str: str):
 
 def run():
     try:
-        #if files_exist(paths):
+        # if files_exist(paths):
         if True:
             from gui.source import MainWindow
+
             app = QApplication(sys.argv)
             credentials = {"name": "admin", "privileges": "admin"}
             win = MainWindow(**credentials)
@@ -41,5 +43,13 @@ def run():
     except NoTemplateFilePresent:
         print("No Template File Present")
 
+
+from core.generator.utils import EncodingUtils
+
 if __name__ == "__main__":
     run()
+
+#    print(EncodingUtils.enc_iccid("7860078699999980000"))
+#    print(EncodingUtils.enc_imsi("410092078601999"))
+#    print(EncodingUtils.s2h("81201204"))
+#    print(EncodingUtils.s2h("75542294"))

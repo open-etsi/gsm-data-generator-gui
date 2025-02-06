@@ -7,11 +7,11 @@
   },
   {
    "optionDest": "filenames",
-   "value": "C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/security-layer/datagen-v39-vscode-v2 - (xDataBase)/setup.py"
+   "value": "D:/STC_APP/improvements/security-layer/datadecryption_poetry/main.py"
   },
   {
    "optionDest": "onefile",
-   "value": true
+   "value": false
   },
   {
    "optionDest": "console",
@@ -19,15 +19,19 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/security-layer/datagen-v39-vscode-v2 - (xDataBase)/resources/style/icons/stc_logo.ico"
+   "value": "D:/STC_APP/improvements/security-layer/datadecryption_poetry/resources/stc_logo.ico"
   },
   {
    "optionDest": "name",
-   "value": "DataGenerator"
+   "value": "DataGenerator V 0.1"
   },
   {
    "optionDest": "clean_build",
    "value": false
+  },
+  {
+   "optionDest": "loglevel",
+   "value": "ERROR"
   },
   {
    "optionDest": "strip",
@@ -60,10 +64,6 @@
   {
    "optionDest": "bootloader_ignore_signals",
    "value": false
-  },
-  {
-   "optionDest": "datas",
-   "value": "C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/security-layer/datagen-v39-vscode-v2 - (xDataBase)/settings.json;."
   }
  ],
  "nonPyinstallerOptions": {

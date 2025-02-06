@@ -34,7 +34,12 @@ class MainWindow(QMainWindow):
     project_path = os.getcwd()
 
     def __init__(self, *args, **kwargs):
-        (laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict) = (None, None, None, None)
+        (laser_ext_path, headers_data_dict, headers_laser_dict, header_server_dict) = (
+            None,
+            None,
+            None,
+            None,
+        )
         super(MainWindow, self).__init__()
         self.config_holder = None
         self.global_elect_check = None
@@ -95,11 +100,9 @@ class MainWindow(QMainWindow):
         # ============DEFAULT VALUES================#
         # ==========================================#
         self.input_path = ""
-        self.default_transport_key = (
-            "0C556CE733FA0E53FE2DCF14A5006D2E0C556CE733FA0E53FE2DCF14A5006D2E"
-        )
+        self.default_transport_key = ""
         # default values
-        self.default_operator_key = "0C556CE733FA0E53FE2DCF14A5006D2E"
+        self.default_operator_key = ""
 
         # Move To Controller Class
         self.ui.main_generate.clicked.connect(self.main_generate_function)
@@ -156,14 +159,16 @@ class MainWindow(QMainWindow):
             d.json_to_global_params()
             (dfs, keys) = d.generate_all_data()
 
+            print("------------> keys used are: ", keys)
+
             # print("-----> ", self.parameters.get_SERVER_DICT())
             # print("-----> ", self.parameters.get_SERVER_CHECK())
             self.dataframes.ELECT_DF = dfs["ELECT"]
             self.dataframes.GRAPH_DF = dfs["GRAPH"]
             self.dataframes.SERVER_DF = dfs["SERVER"]
 
-            print("-----> ", self.parameters.get_ELECT_CHECK(), self.parameters.get_GRAPH_CHECK(),
-                  self.parameters.get_SERVER_CHECK())
+            # print("-----> ", self.parameters.get_ELECT_CHECK(), self.parameters.get_GRAPH_CHECK(),
+            #      self.parameters.get_SERVER_CHECK())
             #            print("------------------------------------>", dfs["SERVER"])
 
             show_message_box("Information", "Data has been generated successfully.")
@@ -200,7 +205,7 @@ class MainWindow(QMainWindow):
                 self.dataframes.SERVER_DF,
                 self.parameters.get_ELECT_CHECK(),
                 self.parameters.get_GRAPH_CHECK(),
-                self.parameters.get_SERVER_CHECK()
+                self.parameters.get_SERVER_CHECK(),
             )
             self.w.show()
         except Exception as e:
@@ -227,26 +232,38 @@ class MainWindow(QMainWindow):
 
     def create_output_folder(self):
         try:
+            self.ui.textEdit.append("=====>", self.parameters.get_ELECT_SEP())
 
             parent_folder = self.parameters.get_OUTPUT_FILES_DIR()
             sub_folder = self.parameters.get_file_name()
             nested_folder = os.path.join(parent_folder, sub_folder)
             os.makedirs(nested_folder, exist_ok=True)
 
-            elect_com_path = nested_folder + "/DATA_{}.txt".format(self.parameters.get_file_name())
-            graph_com_path = nested_folder + "/LASER_{}.txt".format(self.parameters.get_file_name())
-            server_com_path = nested_folder + "/{}.out".format(self.parameters.get_file_name())
+            elect_com_path = nested_folder + "/DATA_{}.txt".format(
+                self.parameters.get_file_name()
+            )
+            graph_com_path = nested_folder + "/LASER_{}.txt".format(
+                self.parameters.get_file_name()
+            )
+            server_com_path = nested_folder + "/{}.out".format(
+                self.parameters.get_file_name()
+            )
             print(elect_com_path)
             print(self.parameters.get_OUTPUT_FILES_DIR())
 
             #            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR(), exist_ok=True)
             if self.parameters.get_ELECT_CHECK():
-                self.dataframes.get_ELECT_DF().to_csv(elect_com_path, sep=self.parameters.get_ELECT_SEP(), index=False)
+                self.dataframes.get_ELECT_DF().to_csv(
+                    elect_com_path, sep=self.parameters.get_ELECT_SEP(), index=False
+                )
             if self.parameters.get_GRAPH_CHECK():
-                self.dataframes.get_GRAPH_DF().to_csv(graph_com_path, sep=self.parameters.get_GRAPH_SEP(), index=False)
+                self.dataframes.get_GRAPH_DF().to_csv(
+                    graph_com_path, sep=self.parameters.get_GRAPH_SEP(), index=False
+                )
             if self.parameters.get_SERVER_CHECK():
-                self.dataframes.get_SERVER_DF().to_csv(server_com_path, sep=self.parameters.get_SERVER_SEP(),
-                                                       index=False)
+                self.dataframes.get_SERVER_DF().to_csv(
+                    server_com_path, sep=self.parameters.get_SERVER_SEP(), index=False
+                )
 
         except Exception as e:
             self.ui.textEdit.append("===>", e)
@@ -297,7 +314,9 @@ class MainWindow(QMainWindow):
             path = os.path.join(path, "Json File")
             filters = "JSON (*.json)"
 
-            fname, _ = QFileDialog.getOpenFileNames(self, "Load Json Input File", path, filter=filters)
+            fname, _ = QFileDialog.getOpenFileNames(
+                self, "Load Json Input File", path, filter=filters
+            )
             self.ui.textEdit.append(str(fname))
             if len(fname) != 0:
                 self.ui.filename.setText(", ".join(fname))

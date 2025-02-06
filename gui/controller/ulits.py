@@ -25,7 +25,9 @@ class TextLengthValidator:
         }
 
         for key_type, widget in text_widgets.items():
-            widget.textChanged.connect(lambda text, k=key_type, w=widget: len_check(k, text, w))
+            widget.textChanged.connect(
+                lambda text, k=key_type, w=widget: len_check(k, text, w)
+            )
 
 
 class GuiCheckBox:
@@ -200,8 +202,10 @@ class GuiButtons:
             if os.path.isfile(path):
                 # Read the JSON file
                 #                keys = read_json(path)
-                keys = {"op": "55555555555555555555555555555555",
-                        "k4": "6666666666666666666666666666666666666666666666666666666666666666"}
+                keys = {
+                    "op": "55555555555555555555555555555555",
+                    "k4": "6666666666666666666666666666666666666666666666666666666666666666",
+                }
                 # Check if the JSON is not empty
                 if keys:
                     op_key = keys.get("op")
@@ -237,11 +241,13 @@ class GuiButtons:
             if os.path.isfile(path):
                 # Read the JSON file
                 #                keys = read_json(path)
-                keys = {"op": "55555555555555555555555555555555",
-                        "k4": "6666666666666666666666666666666666666666666666666666666666666666"}
+                keys = {
+                    "op": "55555555555555555555555555555555",
+                    "k4": "6666666666666666666666666666666666666666666666666666666666666666",
+                }
                 if keys:
                     k4_key = keys.get("k4")
-                    if len(k4_key) == 64:
+                    if len(k4_key) == 64 or len(k4_key) == 32:
                         self.ui.k4_key_text.setText(str(k4_key))
                         # self.statusBar().showMessage(
                         #     "Loaded K4 successfully ! : {} Length : {}".format(
