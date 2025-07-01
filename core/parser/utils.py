@@ -8,7 +8,7 @@ class DISP(BaseModel):
     elect_data_sep: str = Field(..., min_length=1)
     server_data_sep: str = Field(..., min_length=1)
     graph_data_sep: str = Field(..., min_length=1)
-    K4: constr(min_length=64, max_length=64)  # type: ignore
+    K4: constr(min_length=32, max_length=64)  # type: ignore
     op: constr(min_length=32, max_length=32)  # type: ignore
     imsi: constr(min_length=15, max_length=15)  # type: ignore
     iccid: constr(min_length=18, max_length=19)  # type: ignore
@@ -18,7 +18,7 @@ class DISP(BaseModel):
     puk2: constr(min_length=8, max_length=8)  # type: ignore
     adm1: constr(min_length=8, max_length=8)  # type: ignore
     adm6: constr(min_length=8, max_length=8)  # type: ignore
-    size: conint(ge=1, le=1000)  # type: ignore
+    size: conint(ge=1, le=1000000)  # type: ignore
     prod_check: bool
     elect_check: bool
     graph_check: bool
@@ -35,6 +35,7 @@ class PATHS(BaseModel):
     FILE_NAME: str
     OUTPUT_FILES_DIR: str
     OUTPUT_FILES_LASER_EXT: str
+
 
 class PARAMETERS(BaseModel):
     server_variables: List[str]
@@ -85,7 +86,7 @@ def json_loader1(input_data: dict | str) -> ConfigHolder:
 
 
 def gui_loader(path: json) -> ConfigHolder:
-#    data = json.load(path)
+    #    data = json.load(path)
     data = path
     config = ConfigData(**data)
     config_holder = ConfigHolder.from_config(config)
