@@ -1,4 +1,5 @@
-from globals.parameters import Parameters
+# from globals.parameters import Parameters
+from globals import Parameters
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QComboBox,
@@ -339,3 +340,6 @@ class GuiExtractor:
                 cell_value = str(cell_text)
             dict_ret[str(i)] = [str(var.lstrip()), str(clip), cell_value]
         return dict_ret
+
+
+__all__ = ["GuiElect", "GuiGraph", "GuiExtractor"]

@@ -88,4 +88,12 @@ class SwMatchError(Exception):
         )
 
 
-__all__ = []
+__all__ = [
+    "NoSettingsFilePresent",
+    "NoTemplateFilePresent",
+    "NoJsonFilePresent",
+    "NoCardError",
+    "ProtocolError",
+    "ReaderError",
+    "SwMatchError",
+]

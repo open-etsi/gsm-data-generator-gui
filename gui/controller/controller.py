@@ -2,7 +2,7 @@ import json
 from gui.table import GuiElect, GuiGraph, GuiExtractor
 from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
 
-from globals.parameters import Parameters
+from globals import Parameters
 from core.executor.utils import list_2_dict, dict_2_list
 
 
@@ -252,3 +252,6 @@ class Controller:
         params.set_ADM6_RAND(config_holder.DISP.adm6_fix)
 
     #        params.set_ACC_RAND(config_holder.DISP.pin1_rand)
+
+
+__all__ = ["Controller"]

@@ -155,3 +155,5 @@ class SETTINGS(QWidget):
 # s=SETTINGS()
 # s.save_settings()
 # s.load_settings()
+
+__all__ = ["SETTINGS"]

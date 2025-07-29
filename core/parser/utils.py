@@ -105,3 +105,13 @@ def gui_loader(path: json) -> ConfigHolder:
 #     data = json.load(f)
 # config = ConfigData(**data)
 # config_holder = ConfigHolder.from_config(config)
+
+__all__ = [
+    "DISP",
+    "PATHS",
+    "PARAMETERS",
+    "ConfigHolder",
+    "json_loader",
+    "json_loader1",
+    "gui_loader",
+]

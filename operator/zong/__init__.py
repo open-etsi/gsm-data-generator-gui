@@ -1,4 +1,2 @@
-__version__ = "3.1"
-
-__version__ = 0.0
-__import__ = []
+from FileParser import *
+from FileWriter import *
