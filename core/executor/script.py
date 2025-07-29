@@ -248,3 +248,6 @@ class DataGenerationScript:
                     dict_func, initial_df, clip, encoding
                 )
         return result_dfs, keys_dict
+
+
+__all__ = []

@@ -86,3 +86,6 @@ class SwMatchError(Exception):
             self.sw_expected,
             self.sw_actual,
         )
+
+
+__all__ = []
