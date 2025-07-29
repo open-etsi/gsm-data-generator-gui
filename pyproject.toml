@@ -12,6 +12,7 @@ pyqt6 = "^6.7.1"
 pandas = "^2.2.3"
 pycryptodome = "^3.21.0"
 pydantic = "^2.10.3"
+black = "^25.1.0"
 
 
 [build-system]

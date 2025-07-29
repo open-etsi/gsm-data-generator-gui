@@ -100,7 +100,9 @@ class SETTINGS(QWidget):
         self.OP_SETT.setValue("OP", self.parameters.get_OP())
         self.DATA_SIZE_SETT.setValue("DATA_SIZE", self.parameters.get_DATA_SIZE())
 
-        self.PIN1_RAND_CHECK_SETT.setValue("PIN1_RAND", self.BoolToValue(self.parameters.get_PIN1_RAND()))
+        self.PIN1_RAND_CHECK_SETT.setValue(
+            "PIN1_RAND", self.BoolToValue(self.parameters.get_PIN1_RAND())
+        )
         self.PIN2_RAND_CHECK_SETT.setValue(
             "PIN2_RAND", self.BoolToValue(self.parameters.get_PIN2_RAND())
         )
@@ -148,6 +150,7 @@ class SETTINGS(QWidget):
         self.parameters.set_ADM6_RAND(
             self.valueToBool(self.ADM6_RAND_CHECK_SETT.value("ADM6_RAND"))
         )
+
 
 # s=SETTINGS()
 # s.save_settings()

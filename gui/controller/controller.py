@@ -38,7 +38,9 @@ class Controller:
         self.ui.server_data.stateChanged.connect(self.checkbox_gui.check_state_changed)
         self.checkbox_gui.check_state_changed()  # added in class
 
-        self.ui.production_data.stateChanged.connect(self.checkbox_gui.check_state_prod_data)
+        self.ui.production_data.stateChanged.connect(
+            self.checkbox_gui.check_state_prod_data
+        )
         self.checkbox_gui.check_state_prod_data()  # added in class
 
         self.ui.op_key_auto.clicked.connect(self.button_gui.auto_op_func)
@@ -102,12 +104,17 @@ class Controller:
 
     def update_all_texts(self):
         fields = {
-            "pin1": ("PIN1", 4), "pin2": ("PIN2", 4),
-            "puk1": ("PUK1", 8), "puk2": ("PUK2", 8),
-            "adm1": ("ADM1", 8), "adm6": ("ADM6", 8),
-            "op_key": ("OP", 32), "k4_key": ("K4", 64),
-            "data_size": ("DATA_SIZE", 1), "imsi": ("IMSI", 15),
-            "iccid": ("ICCID", 20)
+            "pin1": ("PIN1", 4),
+            "pin2": ("PIN2", 4),
+            "puk1": ("PUK1", 8),
+            "puk2": ("PUK2", 8),
+            "adm1": ("ADM1", 8),
+            "adm6": ("ADM6", 8),
+            "op_key": ("OP", 32),
+            "k4_key": ("K4", 64),
+            "data_size": ("DATA_SIZE", 1),
+            "imsi": ("IMSI", 15),
+            "iccid": ("ICCID", 20),
         }
 
         for field_name, (param_name, expected_len) in fields.items():
@@ -121,7 +128,7 @@ class Controller:
             "pin2_rand": "PIN2_RAND",
             "pin1_rand": "PIN1_RAND",
             "puk1_rand": "PUK1_RAND",
-            "puk2_rand": "PUK2_RAND"
+            "puk2_rand": "PUK2_RAND",
         }
 
         for check_name, param_name in checks.items():
@@ -165,18 +172,18 @@ class Controller:
                 "pin2_fix": self.parameters.get_PIN2_RAND(),
                 "puk2_fix": self.parameters.get_PUK2_RAND(),
                 "adm1_fix": self.parameters.get_ADM1_RAND(),
-                "adm6_fix": self.parameters.get_ADM6_RAND()
+                "adm6_fix": self.parameters.get_ADM6_RAND(),
             },
             "PATHS": {
                 "FILE_NAME": self.parameters.get_file_name(),
                 "OUTPUT_FILES_DIR": "output_files1",
-                "OUTPUT_FILES_LASER_EXT": "laser_extracted"
+                "OUTPUT_FILES_LASER_EXT": "laser_extracted",
             },
             "PARAMETERS": {
                 "server_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
                 "data_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
-                "laser_variables": self.parameters.get_GRAPH_DICT()
-            }
+                "laser_variables": self.parameters.get_GRAPH_DICT(),
+            },
         }
         #        print(param_dict)
         #        j = json.dumps(param_dict)
@@ -243,4 +250,5 @@ class Controller:
         params.set_PUK2_RAND(config_holder.DISP.puk2_fix)
         params.set_ADM1_RAND(config_holder.DISP.adm1_fix)
         params.set_ADM6_RAND(config_holder.DISP.adm6_fix)
+
     #        params.set_ACC_RAND(config_holder.DISP.pin1_rand)

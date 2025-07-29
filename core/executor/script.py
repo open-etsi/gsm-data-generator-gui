@@ -49,7 +49,9 @@ from core.generator.utils import (
 )
 from globals.parameters import DataFrames, Parameters
 from core.executor.utils import list_2_dict, dict_2_list, default_headers, copy_function
+
 # Commented-out imports (if needed in the future)
+
 
 class DataGenerationScript:
 
@@ -84,9 +86,13 @@ class DataGenerationScript:
         self.params.set_GRAPH_CHECK(self.config_holder.DISP.graph_check)
         self.params.set_SERVER_CHECK(self.config_holder.DISP.server_check)
 
-        self.params.set_ELECT_DICT(list_2_dict(self.config_holder.PARAMETERS.data_variables))
+        self.params.set_ELECT_DICT(
+            list_2_dict(self.config_holder.PARAMETERS.data_variables)
+        )
         self.params.set_GRAPH_DICT(self.config_holder.PARAMETERS.laser_variables)
-        self.params.set_SERVER_DICT(list_2_dict(self.config_holder.PARAMETERS.server_variables))
+        self.params.set_SERVER_DICT(
+            list_2_dict(self.config_holder.PARAMETERS.server_variables)
+        )
 
         self.params.set_PIN1_RAND(self.config_holder.DISP.pin1_fix)
         self.params.set_PUK1_RAND(self.config_holder.DISP.puk1_fix)
@@ -133,7 +139,9 @@ class DataGenerationScript:
         df["ADM6"] = df["ADM6"].apply(lambda x: self.generate_adm("ADM6"))
 
         df["KI"] = df["KI"].apply(lambda x: self.data_generator.generate_ki())
-        df["ACC"] = df["IMSI"].apply(lambda imsi: self.data_processor.generate_acc(imsi=str(imsi)))
+        df["ACC"] = df["IMSI"].apply(
+            lambda imsi: self.data_processor.generate_acc(imsi=str(imsi))
+        )
 
         #        self.apply_function(df, "EKI", "KI", functions)
         self.apply_function(df, "EKI", "KI", self.generate_eki)
@@ -146,22 +154,32 @@ class DataGenerationScript:
                     df[col] = df["KI"].apply(
                         lambda x: self.data_generator.generate_otas()
                     )
-#        df.to_csv("temp.csv")
+        #        df.to_csv("temp.csv")
         return df
 
     def generate_demo_data(self):
-        df = self.df_processor.generate_empty_dataframe(default_headers, self.params.get_DATA_SIZE())
+        df = self.df_processor.generate_empty_dataframe(
+            default_headers, self.params.get_DATA_SIZE()
+        )
         self.df_processor.initialize_column(df, "ICCID", self.params.get_ICCID())
         self.df_processor.initialize_column(df, "IMSI", self.params.get_IMSI())
-        self.df_processor.initialize_column(df, "OP", self.params.get_OP(), increment=False)
-        self.df_processor.initialize_column(df, "K4", self.params.get_K4(), increment=False)
+        self.df_processor.initialize_column(
+            df, "OP", self.params.get_OP(), increment=False
+        )
+        self.df_processor.initialize_column(
+            df, "K4", self.params.get_K4(), increment=False
+        )
         return self.apply_functions(df)
 
     def generate_non_demo_data(self):
         input_df = self.dataframes.get_input_df()
         df = self.df_processor.generate_empty_dataframe(default_headers, len(input_df))
-        self.df_processor.initialize_column(df, 'OP', self.params.get_OP(), increment=False)
-        self.df_processor.initialize_column(df, 'K4', self.params.get_K4(), increment=False)
+        self.df_processor.initialize_column(
+            df, "OP", self.params.get_OP(), increment=False
+        )
+        self.df_processor.initialize_column(
+            df, "K4", self.params.get_K4(), increment=False
+        )
         df["ICCID"] = input_df["ICCID"]
         df["IMSI"] = input_df["IMSI"]
         return self.apply_functions(df)
@@ -177,13 +195,17 @@ class DataGenerationScript:
             "op": self.params.get_OP(),
         }
 
-    def process_final_data(self, input_dict: dict, df_input: pd.DataFrame, clip: bool, encoding: bool):
-#        print("In process_final_data()", clip, encoding)
+    def process_final_data(
+        self, input_dict: dict, df_input: pd.DataFrame, clip: bool, encoding: bool
+    ):
+        #        print("In process_final_data()", clip, encoding)
         df = df_input.copy(deep=True)
         if encoding:
             df = self.df_processor.encode_dataframe(df)
 
-        headers, _, _, _, left_ranges, right_ranges = (self.data_processor.extract_parameter_info(input_dict))
+        headers, _, _, _, left_ranges, right_ranges = (
+            self.data_processor.extract_parameter_info(input_dict)
+        )
         df = self.df_processor.add_duplicate_columns(df, 10, headers)
 
         if clip:
@@ -226,5 +248,3 @@ class DataGenerationScript:
                     dict_func, initial_df, clip, encoding
                 )
         return result_dfs, keys_dict
-
-

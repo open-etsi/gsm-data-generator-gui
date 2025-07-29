@@ -1,9 +1,10 @@
-
 from core.executor.script import DataGenerationScript
 from core.parser.utils import ConfigHolder, json_loader
 
 if __name__ == "__main__":
-    config_holder: ConfigHolder = json_loader("C:/Users/DELL/Desktop/datadecryption_poetry/settings.json")
+    config_holder: ConfigHolder = json_loader(
+        "C:/Users/DELL/Desktop/datadecryption_poetry/settings.json"
+    )
     print(config_holder)
     s = DataGenerationScript(config_holder=config_holder)
 

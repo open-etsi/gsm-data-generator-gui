@@ -152,9 +152,13 @@ class EncodingUtils:
     @staticmethod
     def enc_imsi(imsi):
         imsi = str(imsi)
-        l = EncodingUtils.half_round_up(len(imsi) + 1)  # Required bytes - include space for odd/even indicator
+        l = EncodingUtils.half_round_up(
+            len(imsi) + 1
+        )  # Required bytes - include space for odd/even indicator
         oe = len(imsi) & 1  # Odd (1) / Even (0)
-        ei = "%02x" % l + EncodingUtils.swap_nibbles("%01x%s" % ((oe << 3) | 1, EncodingUtils.rpad(imsi, 15)))
+        ei = "%02x" % l + EncodingUtils.swap_nibbles(
+            "%01x%s" % ((oe << 3) | 1, EncodingUtils.rpad(imsi, 15))
+        )
         return ei
 
     @staticmethod
@@ -272,7 +276,7 @@ class DataProcessing:
 
     @staticmethod
     def extract_parameter_info(
-        param_dict: Dict[str, List[str]]
+        param_dict: Dict[str, List[str]],
     ) -> Tuple[List[str], List[str], set, List[str], List[int], List[int]]:
         values, classes, ranges = [], [], []
         for item in param_dict.values():

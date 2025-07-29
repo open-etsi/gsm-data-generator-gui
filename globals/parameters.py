@@ -382,7 +382,7 @@ class Parameters(DataFrames):
     def set_file_name(self, value: str):
         self.file_name = value
 
-    def get_file_name(self)->str:
+    def get_file_name(self) -> str:
         return self.file_name
 
     def get_all_params_dict(self) -> dict:
@@ -412,9 +412,9 @@ class Parameters(DataFrames):
         match param_name:
             case "ICCID":
                 result = (
-                        len(str(param)) == 20
-                        or len(str(param)) == 19
-                        or len(str(param)) == 18
+                    len(str(param)) == 20
+                    or len(str(param)) == 19
+                    or len(str(param)) == 18
                 )
             case "IMSI":
                 result = len(str(param)) == 15
@@ -448,34 +448,34 @@ class Parameters(DataFrames):
             result = (
                 #                self.is_valid(self.get_IMSI(), "IMSI")
                 #                and self.is_valid(self.get_ICCID(), "ICCID")
-                    self.is_valid(self.get_PIN1(), "PIN1")
-                    and self.is_valid(self.get_PUK1(), "PUK1")
-                    and self.is_valid(self.get_PIN2(), "PIN2")
-                    and self.is_valid(self.get_PUK2(), "PUK2")
-                    and self.is_valid(self.get_ADM1(), "ADM1")
-                    and self.is_valid(self.get_ADM6(), "ADM6")
-                    and self.is_valid(self.get_OP(), "OP")
-                    and self.is_valid(self.get_K4(), "K4")
-                    #                and self.is_valid(self.get_DATA_SIZE(), "SIZE")
-                    and self.is_valid(self.get_ELECT_DICT(), "DICT")
-                    and self.is_valid(self.get_GRAPH_DICT(), "DICT")
+                self.is_valid(self.get_PIN1(), "PIN1")
+                and self.is_valid(self.get_PUK1(), "PUK1")
+                and self.is_valid(self.get_PIN2(), "PIN2")
+                and self.is_valid(self.get_PUK2(), "PUK2")
+                and self.is_valid(self.get_ADM1(), "ADM1")
+                and self.is_valid(self.get_ADM6(), "ADM6")
+                and self.is_valid(self.get_OP(), "OP")
+                and self.is_valid(self.get_K4(), "K4")
+                #                and self.is_valid(self.get_DATA_SIZE(), "SIZE")
+                and self.is_valid(self.get_ELECT_DICT(), "DICT")
+                and self.is_valid(self.get_GRAPH_DICT(), "DICT")
             )
         else:
             print("=================Demo===================")
             result = (
-                    self.is_valid(self.get_IMSI(), "IMSI")
-                    and self.is_valid(self.get_ICCID(), "ICCID")
-                    and self.is_valid(self.get_DATA_SIZE(), "SIZE")
-                    and self.is_valid(self.get_PIN1(), "PIN1")
-                    and self.is_valid(self.get_PUK1(), "PUK1")
-                    and self.is_valid(self.get_PIN2(), "PIN2")
-                    and self.is_valid(self.get_PUK2(), "PUK2")
-                    and self.is_valid(self.get_ADM1(), "ADM1")
-                    and self.is_valid(self.get_ADM6(), "ADM6")
-                    and self.is_valid(self.get_OP(), "OP")
-                    and self.is_valid(self.get_K4(), "K4")
-                    and self.is_valid(self.get_ELECT_DICT(), "DICT")
-                    and self.is_valid(self.get_GRAPH_DICT(), "DICT")
+                self.is_valid(self.get_IMSI(), "IMSI")
+                and self.is_valid(self.get_ICCID(), "ICCID")
+                and self.is_valid(self.get_DATA_SIZE(), "SIZE")
+                and self.is_valid(self.get_PIN1(), "PIN1")
+                and self.is_valid(self.get_PUK1(), "PUK1")
+                and self.is_valid(self.get_PIN2(), "PIN2")
+                and self.is_valid(self.get_PUK2(), "PUK2")
+                and self.is_valid(self.get_ADM1(), "ADM1")
+                and self.is_valid(self.get_ADM6(), "ADM6")
+                and self.is_valid(self.get_OP(), "OP")
+                and self.is_valid(self.get_K4(), "K4")
+                and self.is_valid(self.get_ELECT_DICT(), "DICT")
+                and self.is_valid(self.get_GRAPH_DICT(), "DICT")
                 # self.is_VALID_DF(self.get_ELECT_DF,"DF")
             )
         return result

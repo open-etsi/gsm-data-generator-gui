@@ -8,8 +8,10 @@ from PyQt6.QtWidgets import (
 from gui.controller.ulits import parameter_len
 from core.executor.utils import list_2_dict
 
+
 class GuiElect:
     tableWidgetHeader = ["Variables", "Clip", "length"]
+
     def __init__(self, ui):
         self.default_elect = None
         self.ui = ui
@@ -119,13 +121,13 @@ class GuiElect:
 
 class GuiGraph:
     tableWidgetHeader = ["Variables", "Clip", "length"]
+
     def __init__(self, ui):
         self.default_graph = None
         self.combo_box = None
         self.ui = ui
         self.parameters = Parameters.get_instance()
         self.ui.tableWidget.setHorizontalHeaderLabels(GuiGraph.tableWidgetHeader)
-
 
     def g_setDefault(self):
         d = self.parameters.get_GRAPH_DICT()
@@ -232,7 +234,6 @@ class GuiGraph:
                 cell_value = str(cell_text)
             dict_ret[str(i)] = [str(var.lstrip()), str(clip), cell_value]
         return dict_ret
-
 
     # ===================================================================================#
     # ===================================================================================#

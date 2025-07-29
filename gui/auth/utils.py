@@ -1,6 +1,7 @@
-
 import re
-def emailvalidator(email:str)->bool:
+
+
+def emailvalidator(email: str) -> bool:
     import re
 
     regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b"

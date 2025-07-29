@@ -1,4 +1,4 @@
-#from gui.forms import Ui_Dialog as input_ui
+# from gui.forms import Ui_Dialog as input_ui
 from gui.forms.df_ui import Ui_Dialog as input_ui
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication
@@ -23,7 +23,6 @@ class PreviewInput(QDialog):  # testing purpose only
         self.populate_table_widget(self.ui.inputWidget, dataframe)
         header_labels = list(dataframe.columns)
         self.ui.inputWidget.setHorizontalHeaderLabels(header_labels)
-
 
     @staticmethod
     def populate_table_widget(table_widget, data_frame):

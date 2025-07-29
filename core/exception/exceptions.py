@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-""" pySim: Exceptions
-"""
+"""pySim: Exceptions"""
 
 #
 # Copyright (C) 2009-2010  Sylvain Munaut <tnt@246tNt.com>

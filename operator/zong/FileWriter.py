@@ -1,11 +1,11 @@
 """
-    File Name : FileGenerator.py
-    Written : 13-09-2023
-    Description : File include fucntionality for reading zong input file format and store data in json file
-    
-    Original file is located at
-    https://colab.research.google.com/drive/1Nz_MGqPs5z1rz_G6NBl8xH-dQJxeK1Z3 : Private
-    Author : Hamza Qureshi
+File Name : FileGenerator.py
+Written : 13-09-2023
+Description : File include fucntionality for reading zong input file format and store data in json file
+
+Original file is located at
+https://colab.research.google.com/drive/1Nz_MGqPs5z1rz_G6NBl8xH-dQJxeK1Z3 : Private
+Author : Hamza Qureshi
 """
 
 """

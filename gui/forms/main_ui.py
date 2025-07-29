@@ -15,10 +15,15 @@ class Ui_MainWindow(object):
         MainWindow.resize(1375, 843)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("//stcards-dc/STCards_Software_Team/resources/stc_png.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(
+            QtGui.QPixmap("//stcards-dc/STCards_Software_Team/resources/stc_png.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         MainWindow.setWindowIcon(icon)
-        MainWindow.setStyleSheet("background-color:rgba(32,33,36,255);\n"
-"color:white;")
+        MainWindow.setStyleSheet(
+            "background-color:rgba(32,33,36,255);\n" "color:white;"
+        )
         MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -34,23 +39,25 @@ class Ui_MainWindow(object):
         self.tabWidget = QtWidgets.QTabWidget(parent=self.frame)
         self.tabWidget.setEnabled(True)
         self.tabWidget.setToolTip("")
-        self.tabWidget.setStyleSheet("QTabBar::tab {\n"
-"  background: rgb(230, 230, 230); \n"
-"  border: 1px solid black; \n"
-"color:black;\n"
-"padding:5px;\n"
-"} \n"
-"QTabBar::tab:hover {\n"
-"background-color: rgba(63,64,66,255);\n"
-"    color: rgb(255, 255, 255);\n"
-"} \n"
-"QTabBar::tab:!selected{\n"
-"color: rgba(75, 75, 75, 100);\n"
-"}\n"
-"QTabBar::tab:!selected:hover{\n"
-"color: white;\n"
-"}\n"
-"")
+        self.tabWidget.setStyleSheet(
+            "QTabBar::tab {\n"
+            "  background: rgb(230, 230, 230); \n"
+            "  border: 1px solid black; \n"
+            "color:black;\n"
+            "padding:5px;\n"
+            "} \n"
+            "QTabBar::tab:hover {\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "    color: rgb(255, 255, 255);\n"
+            "} \n"
+            "QTabBar::tab:!selected{\n"
+            "color: rgba(75, 75, 75, 100);\n"
+            "}\n"
+            "QTabBar::tab:!selected:hover{\n"
+            "color: white;\n"
+            "}\n"
+            ""
+        )
         self.tabWidget.setMovable(False)
         self.tabWidget.setObjectName("tabWidget")
         self.dataGenTab = QtWidgets.QWidget()
@@ -124,21 +131,23 @@ class Ui_MainWindow(object):
         self.gridLayout_36.setObjectName("gridLayout_36")
         self.puk2_text = QtWidgets.QLineEdit(parent=self.frame_41)
         self.puk2_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.puk2_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;width:50px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.puk2_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;width:50px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.puk2_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.puk2_text.setMaxLength(8)
         self.puk2_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -147,42 +156,48 @@ class Ui_MainWindow(object):
         self.gridLayout_36.addWidget(self.puk2_text, 0, 1, 1, 1)
         self.puk2_rand_check = QtWidgets.QCheckBox(parent=self.frame_41)
         self.puk2_rand_check.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
-        self.puk2_rand_check.setStyleSheet("#puk2_rand_check{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"}\n"
-"#puk2_rand_check::indicator\n"
-"                                          {\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"\n"
-"#puk2_rand_check::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#puk2_rand_check::indicator:checked{\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}")
+        self.puk2_rand_check.setStyleSheet(
+            "#puk2_rand_check{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "}\n"
+            "#puk2_rand_check::indicator\n"
+            "                                          {\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "\n"
+            "#puk2_rand_check::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#puk2_rand_check::indicator:checked{\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}"
+        )
         self.puk2_rand_check.setObjectName("puk2_rand_check")
         self.gridLayout_36.addWidget(self.puk2_rand_check, 0, 3, 1, 1)
         self.puk2_label = QtWidgets.QLabel(parent=self.frame_41)
         self.puk2_label.setObjectName("puk2_label")
         self.gridLayout_36.addWidget(self.puk2_label, 0, 0, 1, 1)
         self.puk2_auto = QtWidgets.QPushButton(parent=self.frame_41)
-        self.puk2_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.puk2_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.puk2_auto.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.puk2_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:50px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.puk2_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:50px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.puk2_auto.setObjectName("puk2_auto")
         self.gridLayout_36.addWidget(self.puk2_auto, 0, 2, 1, 1)
         self.gridLayout_20.addWidget(self.frame_41, 0, 1, 1, 1)
@@ -198,44 +213,48 @@ class Ui_MainWindow(object):
         self.gridLayout_31.setObjectName("gridLayout_31")
         self.pin2_rand_check = QtWidgets.QCheckBox(parent=self.frame_36)
         self.pin2_rand_check.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
-        self.pin2_rand_check.setStyleSheet("#pin2_rand_check{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"}\n"
-"#pin2_rand_check::indicator\n"
-"                               {\n"
-"margin-left:-2px;\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"                          \n"
-"#pin2_rand_check::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#pin2_rand_check::indicator:checked{\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}")
+        self.pin2_rand_check.setStyleSheet(
+            "#pin2_rand_check{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "}\n"
+            "#pin2_rand_check::indicator\n"
+            "                               {\n"
+            "margin-left:-2px;\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "                          \n"
+            "#pin2_rand_check::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#pin2_rand_check::indicator:checked{\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}"
+        )
         self.pin2_rand_check.setObjectName("pin2_rand_check")
         self.gridLayout_31.addWidget(self.pin2_rand_check, 0, 3, 1, 1)
         self.pin2_text = QtWidgets.QLineEdit(parent=self.frame_36)
         self.pin2_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.pin2_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"width:50px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.pin2_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "width:50px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.pin2_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.pin2_text.setMaxLength(4)
         self.pin2_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -246,19 +265,23 @@ class Ui_MainWindow(object):
         self.pin2_label.setObjectName("pin2_label")
         self.gridLayout_31.addWidget(self.pin2_label, 0, 0, 1, 1)
         self.pin2_auto = QtWidgets.QPushButton(parent=self.frame_36)
-        self.pin2_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.pin2_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.pin2_auto.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.pin2_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:50px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.pin2_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:50px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.pin2_auto.setObjectName("pin2_auto")
         self.gridLayout_31.addWidget(self.pin2_auto, 0, 2, 1, 1)
         self.gridLayout_20.addWidget(self.frame_36, 0, 0, 1, 1)
@@ -281,43 +304,53 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.k4_key_auto.setFont(font)
-        self.k4_key_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.k4_key_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.k4_key_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.k4_key_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.k4_key_auto.setIconSize(QtCore.QSize(7, 16))
         self.k4_key_auto.setObjectName("k4_key_auto")
         self.gridLayout_32.addWidget(self.k4_key_auto, 0, 3, 1, 1)
         self.k4_key = QtWidgets.QLabel(parent=self.frame_37)
-        self.k4_key.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.k4_key.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignRight
+            | QtCore.Qt.AlignmentFlag.AlignTrailing
+            | QtCore.Qt.AlignmentFlag.AlignVCenter
+        )
         self.k4_key.setObjectName("k4_key")
         self.gridLayout_32.addWidget(self.k4_key, 0, 0, 1, 1)
         self.k4_key_text = QtWidgets.QLineEdit(parent=self.frame_37)
         self.k4_key_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.k4_key_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"padding-left:5px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}\n"
-"")
+        self.k4_key_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "padding-left:5px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}\n"
+            ""
+        )
         self.k4_key_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhSensitiveData)
         self.k4_key_text.setMaxLength(64)
         self.k4_key_text.setFrame(False)
@@ -327,17 +360,21 @@ class Ui_MainWindow(object):
         self.k4_key_text.setObjectName("k4_key_text")
         self.gridLayout_32.addWidget(self.k4_key_text, 0, 1, 1, 1)
         self.k4_key_fetch = QtWidgets.QPushButton(parent=self.frame_37)
-        self.k4_key_fetch.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.k4_key_fetch.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.k4_key_fetch.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.k4_key_fetch.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.k4_key_fetch.setObjectName("k4_key_fetch")
         self.gridLayout_32.addWidget(self.k4_key_fetch, 0, 2, 1, 1)
         self.gridLayout_27.addWidget(self.frame_37, 0, 0, 1, 1)
@@ -379,24 +416,26 @@ class Ui_MainWindow(object):
         self.pin1_text.setToolTip("")
         self.pin1_text.setToolTipDuration(3)
         self.pin1_text.setStatusTip("")
-        self.pin1_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"padding-left:5px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}\n"
-"\n"
-"\n"
-"")
+        self.pin1_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "padding-left:5px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "\n"
+            "\n"
+            ""
+        )
         self.pin1_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.pin1_text.setMaxLength(4)
         self.pin1_text.setCursorPosition(0)
@@ -410,40 +449,46 @@ class Ui_MainWindow(object):
         self.gridLayout_29.addWidget(self.pin1_label, 0, 0, 1, 1)
         self.pin1_rand_check = QtWidgets.QCheckBox(parent=self.frame_34)
         self.pin1_rand_check.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
-        self.pin1_rand_check.setStyleSheet("#pin1_rand_check{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"}\n"
-"#pin1_rand_check::indicator\n"
-"                               {\n"
-"    margin-left:-3px;\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"                          \n"
-"#pin1_rand_check::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#pin1_rand_check::indicator:checked{\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}")
+        self.pin1_rand_check.setStyleSheet(
+            "#pin1_rand_check{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "}\n"
+            "#pin1_rand_check::indicator\n"
+            "                               {\n"
+            "    margin-left:-3px;\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "                          \n"
+            "#pin1_rand_check::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#pin1_rand_check::indicator:checked{\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}"
+        )
         self.pin1_rand_check.setObjectName("pin1_rand_check")
         self.gridLayout_29.addWidget(self.pin1_rand_check, 0, 3, 1, 1)
         self.pin1_auto = QtWidgets.QPushButton(parent=self.frame_34)
-        self.pin1_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.pin1_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.pin1_auto.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.pin1_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:50px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.pin1_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:50px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.pin1_auto.setObjectName("pin1_auto")
         self.gridLayout_29.addWidget(self.pin1_auto, 0, 2, 1, 1)
         self.gridLayout_28.addWidget(self.frame_34, 0, 0, 1, 1)
@@ -459,24 +504,28 @@ class Ui_MainWindow(object):
         self.gridLayout_30.setVerticalSpacing(0)
         self.gridLayout_30.setObjectName("gridLayout_30")
         self.puk1_text = QtWidgets.QLineEdit(parent=self.frame_35)
-        self.puk1_text.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.puk1_text.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.puk1_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.puk1_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"width:50px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.puk1_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "width:50px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.puk1_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.puk1_text.setMaxLength(8)
         self.puk1_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -488,38 +537,44 @@ class Ui_MainWindow(object):
         self.gridLayout_30.addWidget(self.puk1_label, 0, 0, 1, 1)
         self.puk1_rand_check = QtWidgets.QCheckBox(parent=self.frame_35)
         self.puk1_rand_check.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
-        self.puk1_rand_check.setStyleSheet("#puk1_rand_check{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"}\n"
-"#puk1_rand_check::indicator\n"
-"                                                 {\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"#puk1_rand_check::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#puk1_rand_check::indicator:checked{\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}")
+        self.puk1_rand_check.setStyleSheet(
+            "#puk1_rand_check{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "}\n"
+            "#puk1_rand_check::indicator\n"
+            "                                                 {\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "#puk1_rand_check::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#puk1_rand_check::indicator:checked{\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}"
+        )
         self.puk1_rand_check.setObjectName("puk1_rand_check")
         self.gridLayout_30.addWidget(self.puk1_rand_check, 0, 3, 1, 1)
         self.puk1_auto = QtWidgets.QPushButton(parent=self.frame_35)
-        self.puk1_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.puk1_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.puk1_auto.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.puk1_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:50px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.puk1_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:50px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.puk1_auto.setObjectName("puk1_auto")
         self.gridLayout_30.addWidget(self.puk1_auto, 0, 2, 1, 1)
         self.gridLayout_28.addWidget(self.frame_35, 0, 1, 1, 1)
@@ -536,7 +591,11 @@ class Ui_MainWindow(object):
         self.gridLayout_26.setVerticalSpacing(0)
         self.gridLayout_26.setObjectName("gridLayout_26")
         self.op_key = QtWidgets.QLabel(parent=self.frame_31)
-        self.op_key.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.op_key.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignRight
+            | QtCore.Qt.AlignmentFlag.AlignTrailing
+            | QtCore.Qt.AlignmentFlag.AlignVCenter
+        )
         self.op_key.setObjectName("op_key")
         self.gridLayout_26.addWidget(self.op_key, 0, 0, 1, 1)
         self.op_key_auto = QtWidgets.QPushButton(parent=self.frame_31)
@@ -546,37 +605,43 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.op_key_auto.setFont(font)
-        self.op_key_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.op_key_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.op_key_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.op_key_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.op_key_auto.setObjectName("op_key_auto")
         self.gridLayout_26.addWidget(self.op_key_auto, 0, 3, 1, 1)
         self.op_key_text = QtWidgets.QLineEdit(parent=self.frame_31)
         self.op_key_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.op_key_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"padding-left:5px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.op_key_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "padding-left:5px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.op_key_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhSensitiveData)
         self.op_key_text.setMaxLength(32)
         self.op_key_text.setFrame(True)
@@ -586,17 +651,21 @@ class Ui_MainWindow(object):
         self.op_key_text.setObjectName("op_key_text")
         self.gridLayout_26.addWidget(self.op_key_text, 0, 1, 1, 1)
         self.op_key_fetch = QtWidgets.QPushButton(parent=self.frame_31)
-        self.op_key_fetch.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.op_key_fetch.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.op_key_fetch.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.op_key_fetch.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.op_key_fetch.setObjectName("op_key_fetch")
         self.gridLayout_26.addWidget(self.op_key_fetch, 0, 2, 1, 1)
         self.gridLayout_27.addWidget(self.frame_31, 1, 0, 1, 1)
@@ -610,7 +679,11 @@ class Ui_MainWindow(object):
         self.gridLayout_35.setVerticalSpacing(0)
         self.gridLayout_35.setObjectName("gridLayout_35")
         self.iccid_label = QtWidgets.QLabel(parent=self.frame_40)
-        self.iccid_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.iccid_label.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignRight
+            | QtCore.Qt.AlignmentFlag.AlignTrailing
+            | QtCore.Qt.AlignmentFlag.AlignVCenter
+        )
         self.iccid_label.setObjectName("iccid_label")
         self.gridLayout_35.addWidget(self.iccid_label, 0, 0, 1, 1)
         self.iccid_auto = QtWidgets.QPushButton(parent=self.frame_40)
@@ -620,37 +693,43 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.iccid_auto.setFont(font)
-        self.iccid_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.iccid_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.iccid_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.iccid_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.iccid_auto.setObjectName("iccid_auto")
         self.gridLayout_35.addWidget(self.iccid_auto, 0, 2, 1, 1)
         self.iccid_text = QtWidgets.QLineEdit(parent=self.frame_40)
         self.iccid_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
         self.iccid_text.setToolTip("")
-        self.iccid_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"padding-left:5px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.iccid_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "padding-left:5px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.iccid_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.iccid_text.setMaxLength(20)
         self.iccid_text.setFrame(True)
@@ -669,27 +748,33 @@ class Ui_MainWindow(object):
         self.gridLayout_34.setVerticalSpacing(0)
         self.gridLayout_34.setObjectName("gridLayout_34")
         self.imsi_label = QtWidgets.QLabel(parent=self.frame_39)
-        self.imsi_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.imsi_label.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignRight
+            | QtCore.Qt.AlignmentFlag.AlignTrailing
+            | QtCore.Qt.AlignmentFlag.AlignVCenter
+        )
         self.imsi_label.setObjectName("imsi_label")
         self.gridLayout_34.addWidget(self.imsi_label, 0, 0, 1, 1)
         self.imsi_text = QtWidgets.QLineEdit(parent=self.frame_39)
         self.imsi_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.imsi_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"padding-left:5px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.imsi_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "padding-left:5px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.imsi_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.imsi_text.setMaxLength(15)
         self.imsi_text.setFrame(True)
@@ -704,17 +789,21 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.imsi_auto.setFont(font)
-        self.imsi_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.imsi_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.imsi_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.imsi_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.imsi_auto.setObjectName("imsi_auto")
         self.gridLayout_34.addWidget(self.imsi_auto, 0, 2, 1, 1)
         self.gridLayout_27.addWidget(self.frame_39, 3, 0, 1, 1)
@@ -728,7 +817,11 @@ class Ui_MainWindow(object):
         self.gridLayout_33.setVerticalSpacing(0)
         self.gridLayout_33.setObjectName("gridLayout_33")
         self.label_6 = QtWidgets.QLabel(parent=self.frame_38)
-        self.label_6.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.label_6.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignRight
+            | QtCore.Qt.AlignmentFlag.AlignTrailing
+            | QtCore.Qt.AlignmentFlag.AlignVCenter
+        )
         self.label_6.setObjectName("label_6")
         self.gridLayout_33.addWidget(self.label_6, 0, 0, 1, 1)
         self.data_size_auto = QtWidgets.QPushButton(parent=self.frame_38)
@@ -738,37 +831,45 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.data_size_auto.setFont(font)
-        self.data_size_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.data_size_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.data_size_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.data_size_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.data_size_auto.setObjectName("data_size_auto")
         self.gridLayout_33.addWidget(self.data_size_auto, 0, 2, 1, 1)
         self.data_size_text = QtWidgets.QLineEdit(parent=self.frame_38)
-        self.data_size_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.data_size_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"padding-left:5px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.data_size_text.setContextMenuPolicy(
+            QtCore.Qt.ContextMenuPolicy.NoContextMenu
+        )
+        self.data_size_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "padding-left:5px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.data_size_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.data_size_text.setInputMask("")
         self.data_size_text.setText("")
@@ -813,24 +914,26 @@ class Ui_MainWindow(object):
         self.gridLayout_37.setObjectName("gridLayout_37")
         self.adm1_rand_check = QtWidgets.QCheckBox(parent=self.frame_42)
         self.adm1_rand_check.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
-        self.adm1_rand_check.setStyleSheet("#adm1_rand_check{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"}\n"
-"#adm1_rand_check::indicator\n"
-"                                                    {\n"
-"margin-left:-2px;\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"\n"
-"#adm1_rand_check::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#adm1_rand_check::indicator:checked{\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}")
+        self.adm1_rand_check.setStyleSheet(
+            "#adm1_rand_check{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "}\n"
+            "#adm1_rand_check::indicator\n"
+            "                                                    {\n"
+            "margin-left:-2px;\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "\n"
+            "#adm1_rand_check::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#adm1_rand_check::indicator:checked{\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}"
+        )
         self.adm1_rand_check.setObjectName("adm1_rand_check")
         self.gridLayout_37.addWidget(self.adm1_rand_check, 0, 3, 1, 1)
         self.adm1_label = QtWidgets.QLabel(parent=self.frame_42)
@@ -838,23 +941,25 @@ class Ui_MainWindow(object):
         self.gridLayout_37.addWidget(self.adm1_label, 0, 0, 1, 1)
         self.adm1_text = QtWidgets.QLineEdit(parent=self.frame_42)
         self.adm1_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.adm1_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"width:50px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}\n"
-"")
+        self.adm1_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "width:50px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}\n"
+            ""
+        )
         self.adm1_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.adm1_text.setMaxLength(8)
         self.adm1_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -862,19 +967,23 @@ class Ui_MainWindow(object):
         self.adm1_text.setObjectName("adm1_text")
         self.gridLayout_37.addWidget(self.adm1_text, 0, 1, 1, 1)
         self.adm1_auto = QtWidgets.QPushButton(parent=self.frame_42)
-        self.adm1_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.adm1_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.adm1_auto.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.adm1_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:50px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.adm1_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:50px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.adm1_auto.setObjectName("adm1_auto")
         self.gridLayout_37.addWidget(self.adm1_auto, 0, 2, 1, 1)
         self.gridLayout_21.addWidget(self.frame_42, 0, 0, 1, 1)
@@ -889,22 +998,24 @@ class Ui_MainWindow(object):
         self.gridLayout_38.setObjectName("gridLayout_38")
         self.adm6_text = QtWidgets.QLineEdit(parent=self.frame_43)
         self.adm6_text.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.adm6_text.setStyleSheet("QLineEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"height:25px;\n"
-"border-radius:5px;\n"
-"color:white;\n"
-"width:50px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-" background-color: rgba(63,64,66,255);\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"border:2px solid black;\n"
-"}")
+        self.adm6_text.setStyleSheet(
+            "QLineEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "height:25px;\n"
+            "border-radius:5px;\n"
+            "color:white;\n"
+            "width:50px;\n"
+            "}\n"
+            "QLineEdit:focus {\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QLineEdit:hover{\n"
+            "border:2px solid black;\n"
+            "}"
+        )
         self.adm6_text.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhDigitsOnly)
         self.adm6_text.setMaxLength(8)
         self.adm6_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -916,38 +1027,44 @@ class Ui_MainWindow(object):
         self.gridLayout_38.addWidget(self.adm6_label, 0, 0, 1, 1)
         self.adm6_rand_check = QtWidgets.QCheckBox(parent=self.frame_43)
         self.adm6_rand_check.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
-        self.adm6_rand_check.setStyleSheet("#adm6_rand_check{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"}\n"
-"#adm6_rand_check::indicator\n"
-"                                          {\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"#adm6_rand_check::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#adm6_rand_check::indicator:checked{\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}")
+        self.adm6_rand_check.setStyleSheet(
+            "#adm6_rand_check{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "}\n"
+            "#adm6_rand_check::indicator\n"
+            "                                          {\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "#adm6_rand_check::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#adm6_rand_check::indicator:checked{\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}"
+        )
         self.adm6_rand_check.setObjectName("adm6_rand_check")
         self.gridLayout_38.addWidget(self.adm6_rand_check, 0, 3, 1, 1)
         self.adm6_auto = QtWidgets.QPushButton(parent=self.frame_43)
-        self.adm6_auto.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.adm6_auto.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.adm6_auto.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.adm6_auto.setStyleSheet("QPushButton{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:50px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.adm6_auto.setStyleSheet(
+            "QPushButton{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:50px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QPushButton:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.adm6_auto.setObjectName("adm6_auto")
         self.gridLayout_38.addWidget(self.adm6_auto, 0, 2, 1, 1)
         self.gridLayout_21.addWidget(self.frame_43, 0, 1, 1, 1)
@@ -956,7 +1073,9 @@ class Ui_MainWindow(object):
         self.gridLayout_5.addWidget(self.frame_32, 0, 0, 1, 1)
         self.gridLayout_16.addWidget(self.groupBox, 2, 0, 1, 1)
         self.groupBox_2 = QtWidgets.QGroupBox(parent=self.frame_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
@@ -967,89 +1086,101 @@ class Ui_MainWindow(object):
         self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.graph_data = QtWidgets.QCheckBox(parent=self.groupBox_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.graph_data.sizePolicy().hasHeightForWidth())
         self.graph_data.setSizePolicy(sizePolicy)
-        self.graph_data.setStyleSheet("#graph_data{\n"
-"                               font: 10pt \"Segoe UI\";\n"
-"}\n"
-"#graph_data::indicator\n"
-"                               {\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"                              \n"
-"#graph_data::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#graph_data::indicator:checked{\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}")
+        self.graph_data.setStyleSheet(
+            "#graph_data{\n"
+            '                               font: 10pt "Segoe UI";\n'
+            "}\n"
+            "#graph_data::indicator\n"
+            "                               {\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "                              \n"
+            "#graph_data::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#graph_data::indicator:checked{\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}"
+        )
         self.graph_data.setChecked(True)
         self.graph_data.setTristate(False)
         self.graph_data.setObjectName("graph_data")
         self.gridLayout_6.addWidget(self.graph_data, 1, 1, 1, 1)
         self.elect_data = QtWidgets.QCheckBox(parent=self.groupBox_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.elect_data.sizePolicy().hasHeightForWidth())
         self.elect_data.setSizePolicy(sizePolicy)
-        self.elect_data.setStyleSheet("#elect_data{\n"
-"                               font: 10pt \"Segoe UI\";\n"
-"}\n"
-"#elect_data::indicator\n"
-"                               {\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"\n"
-"#elect_data::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#elect_data::indicator:checked{\n"
-"    \n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}\n"
-"")
+        self.elect_data.setStyleSheet(
+            "#elect_data{\n"
+            '                               font: 10pt "Segoe UI";\n'
+            "}\n"
+            "#elect_data::indicator\n"
+            "                               {\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "\n"
+            "#elect_data::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#elect_data::indicator:checked{\n"
+            "    \n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}\n"
+            ""
+        )
         self.elect_data.setChecked(True)
         self.elect_data.setAutoRepeatDelay(300)
         self.elect_data.setObjectName("elect_data")
         self.gridLayout_6.addWidget(self.elect_data, 1, 2, 1, 1)
         self.production_data = QtWidgets.QCheckBox(parent=self.groupBox_2)
-        self.production_data.setStyleSheet("#production_data{\n"
-"\n"
-"                               font: 10pt \"Segoe UI\";\n"
-"}\n"
-"#production_data::indicator\n"
-"                               {\n"
-"color:white;\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"\n"
-"#production_data::indicator:unchecked{\n"
-"    \n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#production_data::indicator:checked{\n"
-"\n"
-"\n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}\n"
-"")
+        self.production_data.setStyleSheet(
+            "#production_data{\n"
+            "\n"
+            '                               font: 10pt "Segoe UI";\n'
+            "}\n"
+            "#production_data::indicator\n"
+            "                               {\n"
+            "color:white;\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "\n"
+            "#production_data::indicator:unchecked{\n"
+            "    \n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#production_data::indicator:checked{\n"
+            "\n"
+            "\n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}\n"
+            ""
+        )
         self.production_data.setCheckable(True)
         self.production_data.setChecked(True)
         self.production_data.setTristate(False)
         self.production_data.setObjectName("production_data")
         self.gridLayout_6.addWidget(self.production_data, 1, 0, 1, 1)
         self.lbl_vendor = QtWidgets.QLabel(parent=self.groupBox_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Preferred
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lbl_vendor.sizePolicy().hasHeightForWidth())
@@ -1057,76 +1188,83 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.lbl_vendor.setFont(font)
-        self.lbl_vendor.setStyleSheet("#lbl_vendor{\n"
-"\n"
-"\n"
-"}")
+        self.lbl_vendor.setStyleSheet("#lbl_vendor{\n" "\n" "\n" "}")
         self.lbl_vendor.setTextFormat(QtCore.Qt.TextFormat.AutoText)
-        self.lbl_vendor.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.lbl_vendor.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignLeading
+            | QtCore.Qt.AlignmentFlag.AlignLeft
+            | QtCore.Qt.AlignmentFlag.AlignVCenter
+        )
         self.lbl_vendor.setObjectName("lbl_vendor")
         self.gridLayout_6.addWidget(self.lbl_vendor, 0, 0, 1, 1)
         self.server_data = QtWidgets.QCheckBox(parent=self.groupBox_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.server_data.sizePolicy().hasHeightForWidth())
         self.server_data.setSizePolicy(sizePolicy)
-        self.server_data.setStyleSheet("#server_data{\n"
-"                               font: 10pt \"Segoe UI\";\n"
-"}\n"
-"#server_data::indicator\n"
-"                               {\n"
-"                               width : 20px;\n"
-"                               height : 20px;\n"
-"                               }\n"
-"\n"
-"#server_data::indicator:unchecked{\n"
-"\n"
-"    image: url(resources/style/icons/unchk3.ico);\n"
-"}\n"
-"#server_data::indicator:checked{\n"
-"    \n"
-"    image: url(resources/style/icons/chk3.ico);\n"
-"}\n"
-"")
+        self.server_data.setStyleSheet(
+            "#server_data{\n"
+            '                               font: 10pt "Segoe UI";\n'
+            "}\n"
+            "#server_data::indicator\n"
+            "                               {\n"
+            "                               width : 20px;\n"
+            "                               height : 20px;\n"
+            "                               }\n"
+            "\n"
+            "#server_data::indicator:unchecked{\n"
+            "\n"
+            "    image: url(resources/style/icons/unchk3.ico);\n"
+            "}\n"
+            "#server_data::indicator:checked{\n"
+            "    \n"
+            "    image: url(resources/style/icons/chk3.ico);\n"
+            "}\n"
+            ""
+        )
         self.server_data.setChecked(True)
         self.server_data.setObjectName("server_data")
         self.gridLayout_6.addWidget(self.server_data, 1, 3, 1, 1)
         self.comboVendor = QtWidgets.QComboBox(parent=self.groupBox_2)
         self.comboVendor.setEnabled(False)
-        self.comboVendor.setStyleSheet("QComboBox#comboVendor{\n"
-"    border:                 none;\n"
-" background-color: rgba(63,64,66,255);\n"
-"color:                      white;\n"
-"    font-weight:            bold;\n"
-"    padding:                    5px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"QComboBox#comboVendor:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}\n"
-"QListView{\n"
-"    border:                 none;\n"
-"    color:                     white;\n"
-"    background-color: rgba(63,64,66,255);\n"
-"    font-weight:            bold;\n"
-"    selection-background-color: rgb(0, 144, 196);\n"
-"    show-decoration-selected: 1;\n"
-"    margin-left:                -10px;\n"
-"    padding-left    :           15px;\n"
-"}\n"
-"QListView::item:hover{\n"
-"\n"
-"    background-color:   rgb(0, 144, 196);\n"
-"    border:                 none;\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"")
+        self.comboVendor.setStyleSheet(
+            "QComboBox#comboVendor{\n"
+            "    border:                 none;\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "color:                      white;\n"
+            "    font-weight:            bold;\n"
+            "    padding:                    5px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QComboBox#comboVendor:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}\n"
+            "QListView{\n"
+            "    border:                 none;\n"
+            "    color:                     white;\n"
+            "    background-color: rgba(63,64,66,255);\n"
+            "    font-weight:            bold;\n"
+            "    selection-background-color: rgb(0, 144, 196);\n"
+            "    show-decoration-selected: 1;\n"
+            "    margin-left:                -10px;\n"
+            "    padding-left    :           15px;\n"
+            "}\n"
+            "QListView::item:hover{\n"
+            "\n"
+            "    background-color:   rgb(0, 144, 196);\n"
+            "    border:                 none;\n"
+            "}\n"
+            "\n"
+            "\n"
+            "\n"
+            ""
+        )
         self.comboVendor.setEditable(False)
         self.comboVendor.setObjectName("comboVendor")
         self.comboVendor.addItem("")
@@ -1134,7 +1272,9 @@ class Ui_MainWindow(object):
         self.gridLayout_6.addWidget(self.comboVendor, 0, 1, 1, 3)
         self.gridLayout_16.addWidget(self.groupBox_2, 1, 0, 1, 1)
         self.groupBox_3 = QtWidgets.QGroupBox(parent=self.frame_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_3.sizePolicy().hasHeightForWidth())
@@ -1143,7 +1283,9 @@ class Ui_MainWindow(object):
         self.gridLayout_10 = QtWidgets.QGridLayout(self.groupBox_3)
         self.gridLayout_10.setObjectName("gridLayout_10")
         self.filename = QtWidgets.QLineEdit(parent=self.groupBox_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.filename.sizePolicy().hasHeightForWidth())
@@ -1153,17 +1295,19 @@ class Ui_MainWindow(object):
         self.filename.setFont(font)
         self.filename.setMouseTracking(True)
         self.filename.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.filename.setStyleSheet("#filename{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border-radius:5px;\n"
-"height:26px;\n"
-"border:2px solid black;\n"
-"padding-left:5px;\n"
-"}\n"
-"#filename:hover{\n"
-"border:2px solid black;\n"
-"}\n"
-"")
+        self.filename.setStyleSheet(
+            "#filename{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border-radius:5px;\n"
+            "height:26px;\n"
+            "border:2px solid black;\n"
+            "padding-left:5px;\n"
+            "}\n"
+            "#filename:hover{\n"
+            "border:2px solid black;\n"
+            "}\n"
+            ""
+        )
         self.filename.setMaxLength(1000)
         self.filename.setFrame(True)
         self.filename.setReadOnly(True)
@@ -1171,10 +1315,14 @@ class Ui_MainWindow(object):
         self.filename.setObjectName("filename")
         self.gridLayout_10.addWidget(self.filename, 0, 0, 1, 1)
         self.browse_button = QtWidgets.QPushButton(parent=self.groupBox_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.browse_button.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.browse_button.sizePolicy().hasHeightForWidth()
+        )
         self.browse_button.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
@@ -1182,25 +1330,33 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.browse_button.setFont(font)
-        self.browse_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.browse_button.setStyleSheet("#browse_button{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#browse_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.browse_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.browse_button.setStyleSheet(
+            "#browse_button{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#browse_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.browse_button.setObjectName("browse_button")
         self.gridLayout_10.addWidget(self.browse_button, 0, 1, 1, 1)
         self.preview_in_file = QtWidgets.QPushButton(parent=self.groupBox_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.preview_in_file.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.preview_in_file.sizePolicy().hasHeightForWidth()
+        )
         self.preview_in_file.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
@@ -1208,18 +1364,22 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.preview_in_file.setFont(font)
-        self.preview_in_file.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.preview_in_file.setStyleSheet("#preview_in_file{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#preview_in_file:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.preview_in_file.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.preview_in_file.setStyleSheet(
+            "#preview_in_file{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#preview_in_file:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.preview_in_file.setObjectName("preview_in_file")
         self.gridLayout_10.addWidget(self.preview_in_file, 0, 2, 1, 1)
         self.gridLayout_16.addWidget(self.groupBox_3, 0, 0, 1, 1)
@@ -1242,7 +1402,9 @@ class Ui_MainWindow(object):
         self.frame_13.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_13.setObjectName("frame_13")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_13)
-        self.verticalLayout_4.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinAndMaxSize)
+        self.verticalLayout_4.setSizeConstraint(
+            QtWidgets.QLayout.SizeConstraint.SetMinAndMaxSize
+        )
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -1257,15 +1419,22 @@ class Ui_MainWindow(object):
         self.gridLayout_7.setSpacing(0)
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.label_4 = QtWidgets.QLabel(parent=self.frame_14)
-        self.label_4.setStyleSheet("color: rgb(255, 255, 255);\n"
-"border:1px solid white;\n"
-"font: 600 12pt \"Segoe UI\";\n"
-"padding:4px 0px 4px 0px;\n"
-"")
+        self.label_4.setStyleSheet(
+            "color: rgb(255, 255, 255);\n"
+            "border:1px solid white;\n"
+            'font: 600 12pt "Segoe UI";\n'
+            "padding:4px 0px 4px 0px;\n"
+            ""
+        )
         self.label_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.gridLayout_7.addWidget(self.label_4, 0, 0, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            35,
+            20,
+            QtWidgets.QSizePolicy.Policy.Maximum,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
         self.gridLayout_7.addItem(spacerItem, 0, 1, 1, 1)
         self.verticalLayout_4.addWidget(self.frame_14)
         self.frame_15 = QtWidgets.QFrame(parent=self.frame_13)
@@ -1278,52 +1447,68 @@ class Ui_MainWindow(object):
         self.gridLayout_12.setSpacing(5)
         self.gridLayout_12.setObjectName("gridLayout_12")
         self.tableWidget = QtWidgets.QTableWidget(parent=self.frame_15)
-        self.tableWidget.setStyleSheet("\n"
-" QTableWidget{\n"
-" background-color: rgba(63,64,66,255);\n"
-"border:none;\n"
-"border-bottom:1px solid black;\n"
-"selection-background-color:none;\n"
-"}\n"
-"QTableWidget::item\n"
-" {\n"
-"\n"
-"border-left:1px  solid black;\n"
-"border-bottom:1px  solid black;\n"
-"color:white;\n"
-"\n"
-"}\n"
-"\n"
-"QTableView::item:selected{\n"
-"    background-color:  rgba(63,64,66,255);\n"
-"}\n"
-" QTableView::item:focus\n"
-"{\n"
-"   selection-background-color: rgba(63,64,66,255);\n"
-"}\n"
-"QHeaderView{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"color:black;\n"
-"}\n"
-"QHeaderView::section{\n"
-"border-bottom:2px solid black;\n"
-"}\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"    border: 1px solid black;\n"
-"}")
+        self.tableWidget.setStyleSheet(
+            "\n"
+            " QTableWidget{\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "border:none;\n"
+            "border-bottom:1px solid black;\n"
+            "selection-background-color:none;\n"
+            "}\n"
+            "QTableWidget::item\n"
+            " {\n"
+            "\n"
+            "border-left:1px  solid black;\n"
+            "border-bottom:1px  solid black;\n"
+            "color:white;\n"
+            "\n"
+            "}\n"
+            "\n"
+            "QTableView::item:selected{\n"
+            "    background-color:  rgba(63,64,66,255);\n"
+            "}\n"
+            " QTableView::item:focus\n"
+            "{\n"
+            "   selection-background-color: rgba(63,64,66,255);\n"
+            "}\n"
+            "QHeaderView{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "color:black;\n"
+            "}\n"
+            "QHeaderView::section{\n"
+            "border-bottom:2px solid black;\n"
+            "}\n"
+            "QHeaderView::section:horizontal\n"
+            "{\n"
+            "    border: 1px solid black;\n"
+            "}"
+        )
         self.tableWidget.setFrameShape(QtWidgets.QFrame.Shape.Box)
         self.tableWidget.setMidLineWidth(0)
-        self.tableWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-        self.tableWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContentsOnFirstShow)
-        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked)
+        self.tableWidget.setVerticalScrollBarPolicy(
+            QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn
+        )
+        self.tableWidget.setHorizontalScrollBarPolicy(
+            QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+        self.tableWidget.setSizeAdjustPolicy(
+            QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContentsOnFirstShow
+        )
+        self.tableWidget.setEditTriggers(
+            QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked
+        )
         self.tableWidget.setDragDropOverwriteMode(False)
-        self.tableWidget.setDragDropMode(QtWidgets.QAbstractItemView.DragDropMode.NoDragDrop)
+        self.tableWidget.setDragDropMode(
+            QtWidgets.QAbstractItemView.DragDropMode.NoDragDrop
+        )
         self.tableWidget.setDefaultDropAction(QtCore.Qt.DropAction.IgnoreAction)
         self.tableWidget.setAlternatingRowColors(False)
-        self.tableWidget.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
-        self.tableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
+        self.tableWidget.setSelectionMode(
+            QtWidgets.QAbstractItemView.SelectionMode.SingleSelection
+        )
+        self.tableWidget.setSelectionBehavior(
+            QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows
+        )
         self.tableWidget.setShowGrid(False)
         self.tableWidget.setWordWrap(False)
         self.tableWidget.setCornerButtonEnabled(False)
@@ -1344,39 +1529,49 @@ class Ui_MainWindow(object):
         self.gridLayout_12.addWidget(self.tableWidget, 1, 0, 4, 7)
         self.dn_button = QtWidgets.QPushButton(parent=self.frame_15)
         self.dn_button.setMaximumSize(QtCore.QSize(30, 30))
-        self.dn_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.dn_button.setStyleSheet("#dn_button{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/downw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#dn_button:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.dn_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.dn_button.setStyleSheet(
+            "#dn_button{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/downw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#dn_button:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.dn_button.setText("")
         self.dn_button.setIconSize(QtCore.QSize(22, 22))
         self.dn_button.setObjectName("dn_button")
         self.gridLayout_12.addWidget(self.dn_button, 3, 7, 1, 1)
         self.up_button = QtWidgets.QPushButton(parent=self.frame_15)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.up_button.sizePolicy().hasHeightForWidth())
         self.up_button.setSizePolicy(sizePolicy)
         self.up_button.setMinimumSize(QtCore.QSize(0, 0))
         self.up_button.setMaximumSize(QtCore.QSize(30, 30))
-        self.up_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.up_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.up_button.setToolTipDuration(-1)
-        self.up_button.setStyleSheet("#up_button{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/upw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#up_button:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.up_button.setStyleSheet(
+            "#up_button{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/upw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#up_button:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.up_button.setText("")
         self.up_button.setIconSize(QtCore.QSize(22, 22))
         self.up_button.setObjectName("up_button")
@@ -1384,31 +1579,37 @@ class Ui_MainWindow(object):
         self.g_save = QtWidgets.QPushButton(parent=self.frame_15)
         self.g_save.setMaximumSize(QtCore.QSize(30, 30))
         self.g_save.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.g_save.setStyleSheet("#g_save{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/savew.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#g_save:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.g_save.setStyleSheet(
+            "#g_save{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/savew.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#g_save:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.g_save.setText("")
         self.g_save.setIconSize(QtCore.QSize(20, 20))
         self.g_save.setObjectName("g_save")
         self.gridLayout_12.addWidget(self.g_save, 0, 6, 1, 1)
         self.g_default = QtWidgets.QPushButton(parent=self.frame_15)
         self.g_default.setMaximumSize(QtCore.QSize(30, 30))
-        self.g_default.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.g_default.setStyleSheet("#g_default{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/loadw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#g_default:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.g_default.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.g_default.setStyleSheet(
+            "#g_default{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/loadw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#g_default:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.g_default.setText("")
         self.g_default.setIconSize(QtCore.QSize(20, 20))
         self.g_default.setObjectName("g_default")
@@ -1416,15 +1617,17 @@ class Ui_MainWindow(object):
         self.del_text = QtWidgets.QPushButton(parent=self.frame_15)
         self.del_text.setMaximumSize(QtCore.QSize(30, 30))
         self.del_text.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.del_text.setStyleSheet("#del_text{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/minusw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#del_text:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.del_text.setStyleSheet(
+            "#del_text{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/minusw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#del_text:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.del_text.setText("")
         self.del_text.setIconSize(QtCore.QSize(20, 20))
         self.del_text.setObjectName("del_text")
@@ -1432,15 +1635,17 @@ class Ui_MainWindow(object):
         self.add_text = QtWidgets.QPushButton(parent=self.frame_15)
         self.add_text.setMaximumSize(QtCore.QSize(30, 30))
         self.add_text.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.add_text.setStyleSheet("#add_text{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/addw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#add_text:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.add_text.setStyleSheet(
+            "#add_text{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/addw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#add_text:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.add_text.setText("")
         self.add_text.setIconSize(QtCore.QSize(20, 20))
         self.add_text.setObjectName("add_text")
@@ -1452,43 +1657,49 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.comboBox.setFont(font)
         self.comboBox.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
-        self.comboBox.setStyleSheet("QComboBox#comboBox{\n"
-"    border:                 none;\n"
-" background-color: rgba(63,64,66,255);\n"
-"color:                      white;\n"
-"    font-weight:            bold;\n"
-"    padding:                    5px;\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QComboBox#comboBox:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}\n"
-"QListView{\n"
-"    border:                 none;\n"
-"    color:                     white;\n"
-"    background-color: rgba(63,64,66,255);\n"
-"    font-weight:            bold;\n"
-"    selection-background-color: rgb(0, 144, 196);\n"
-"    show-decoration-selected: 1;\n"
-"    margin-left:                -10px;\n"
-"    padding-left    :           15px;\n"
-"}\n"
-"QListView::item:hover{\n"
-"\n"
-"    background-color:   rgb(0, 144, 196);\n"
-"    border:                 none;\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"")
+        self.comboBox.setStyleSheet(
+            "QComboBox#comboBox{\n"
+            "    border:                 none;\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "color:                      white;\n"
+            "    font-weight:            bold;\n"
+            "    padding:                    5px;\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QComboBox#comboBox:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}\n"
+            "QListView{\n"
+            "    border:                 none;\n"
+            "    color:                     white;\n"
+            "    background-color: rgba(63,64,66,255);\n"
+            "    font-weight:            bold;\n"
+            "    selection-background-color: rgb(0, 144, 196);\n"
+            "    show-decoration-selected: 1;\n"
+            "    margin-left:                -10px;\n"
+            "    padding-left    :           15px;\n"
+            "}\n"
+            "QListView::item:hover{\n"
+            "\n"
+            "    background-color:   rgb(0, 144, 196);\n"
+            "    border:                 none;\n"
+            "}\n"
+            "\n"
+            "\n"
+            "\n"
+            ""
+        )
         self.comboBox.setMaxVisibleItems(8)
         self.comboBox.setMaxCount(20)
-        self.comboBox.setInsertPolicy(QtWidgets.QComboBox.InsertPolicy.InsertAfterCurrent)
-        self.comboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContentsOnFirstShow)
+        self.comboBox.setInsertPolicy(
+            QtWidgets.QComboBox.InsertPolicy.InsertAfterCurrent
+        )
+        self.comboBox.setSizeAdjustPolicy(
+            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContentsOnFirstShow
+        )
         self.comboBox.setMinimumContentsLength(1)
         self.comboBox.setFrame(True)
         self.comboBox.setObjectName("comboBox")
@@ -1528,15 +1739,22 @@ class Ui_MainWindow(object):
         self.gridLayout_11.setSpacing(0)
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.label_5 = QtWidgets.QLabel(parent=self.frame_16)
-        self.label_5.setStyleSheet("color: rgb(255, 255, 255);\n"
-"border:1px solid white;\n"
-"font: 600 12pt \"Segoe UI\";\n"
-"padding:4px 0px 4px 0px;\n"
-"")
+        self.label_5.setStyleSheet(
+            "color: rgb(255, 255, 255);\n"
+            "border:1px solid white;\n"
+            'font: 600 12pt "Segoe UI";\n'
+            "padding:4px 0px 4px 0px;\n"
+            ""
+        )
         self.label_5.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.gridLayout_11.addWidget(self.label_5, 0, 0, 1, 2)
-        spacerItem1 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            35,
+            20,
+            QtWidgets.QSizePolicy.Policy.Maximum,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
         self.gridLayout_11.addItem(spacerItem1, 0, 2, 1, 1)
         self.verticalLayout_5.addWidget(self.frame_16)
         self.frame_17 = QtWidgets.QFrame(parent=self.frame_12)
@@ -1549,55 +1767,71 @@ class Ui_MainWindow(object):
         self.gridLayout_13.setSpacing(5)
         self.gridLayout_13.setObjectName("gridLayout_13")
         self.e_tableWidget = QtWidgets.QTableWidget(parent=self.frame_17)
-        self.e_tableWidget.setStyleSheet("\n"
-" QTableWidget{\n"
-" background-color: rgba(63,64,66,255);\n"
-"border:none;\n"
-"border-bottom:1px solid black;\n"
-"selection-background-color:none;\n"
-"}\n"
-"QTableWidget::item\n"
-" {\n"
-"\n"
-"border-left:1px  solid black;\n"
-"border-bottom:1px  solid black;\n"
-"color:white;\n"
-"\n"
-"}\n"
-"\n"
-"QTableView::item:selected{\n"
-"    background-color:  rgba(63,64,66,255);\n"
-"}\n"
-" QTableView::item:focus\n"
-"{\n"
-"   selection-background-color: rgba(63,64,66,255);\n"
-"}\n"
-"QHeaderView{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"color:black;\n"
-"}\n"
-"QHeaderView::section{\n"
-"border-bottom:1px solid black;\n"
-"\n"
-"}\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"\n"
-"    border: 1px solid black;\n"
-"}")
+        self.e_tableWidget.setStyleSheet(
+            "\n"
+            " QTableWidget{\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "border:none;\n"
+            "border-bottom:1px solid black;\n"
+            "selection-background-color:none;\n"
+            "}\n"
+            "QTableWidget::item\n"
+            " {\n"
+            "\n"
+            "border-left:1px  solid black;\n"
+            "border-bottom:1px  solid black;\n"
+            "color:white;\n"
+            "\n"
+            "}\n"
+            "\n"
+            "QTableView::item:selected{\n"
+            "    background-color:  rgba(63,64,66,255);\n"
+            "}\n"
+            " QTableView::item:focus\n"
+            "{\n"
+            "   selection-background-color: rgba(63,64,66,255);\n"
+            "}\n"
+            "QHeaderView{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "color:black;\n"
+            "}\n"
+            "QHeaderView::section{\n"
+            "border-bottom:1px solid black;\n"
+            "\n"
+            "}\n"
+            "QHeaderView::section:horizontal\n"
+            "{\n"
+            "\n"
+            "    border: 1px solid black;\n"
+            "}"
+        )
         self.e_tableWidget.setFrameShape(QtWidgets.QFrame.Shape.Box)
-        self.e_tableWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-        self.e_tableWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.e_tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContentsOnFirstShow)
-        self.e_tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked)
+        self.e_tableWidget.setVerticalScrollBarPolicy(
+            QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn
+        )
+        self.e_tableWidget.setHorizontalScrollBarPolicy(
+            QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+        self.e_tableWidget.setSizeAdjustPolicy(
+            QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContentsOnFirstShow
+        )
+        self.e_tableWidget.setEditTriggers(
+            QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked
+        )
         self.e_tableWidget.setTabKeyNavigation(False)
         self.e_tableWidget.setProperty("showDropIndicator", False)
         self.e_tableWidget.setDragDropOverwriteMode(False)
-        self.e_tableWidget.setDragDropMode(QtWidgets.QAbstractItemView.DragDropMode.NoDragDrop)
+        self.e_tableWidget.setDragDropMode(
+            QtWidgets.QAbstractItemView.DragDropMode.NoDragDrop
+        )
         self.e_tableWidget.setDefaultDropAction(QtCore.Qt.DropAction.IgnoreAction)
         self.e_tableWidget.setAlternatingRowColors(False)
-        self.e_tableWidget.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
-        self.e_tableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
+        self.e_tableWidget.setSelectionMode(
+            QtWidgets.QAbstractItemView.SelectionMode.SingleSelection
+        )
+        self.e_tableWidget.setSelectionBehavior(
+            QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows
+        )
         self.e_tableWidget.setTextElideMode(QtCore.Qt.TextElideMode.ElideMiddle)
         self.e_tableWidget.setShowGrid(True)
         self.e_tableWidget.setGridStyle(QtCore.Qt.PenStyle.SolidLine)
@@ -1615,39 +1849,49 @@ class Ui_MainWindow(object):
         self.e_tableWidget.verticalHeader().setMinimumSectionSize(20)
         self.gridLayout_13.addWidget(self.e_tableWidget, 1, 0, 4, 9)
         self.e_up_button = QtWidgets.QPushButton(parent=self.frame_17)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Ignored)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Ignored
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.e_up_button.sizePolicy().hasHeightForWidth())
         self.e_up_button.setSizePolicy(sizePolicy)
         self.e_up_button.setMaximumSize(QtCore.QSize(30, 30))
-        self.e_up_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.e_up_button.setStyleSheet("#e_up_button{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/upw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#e_up_button:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}\n"
-"")
+        self.e_up_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.e_up_button.setStyleSheet(
+            "#e_up_button{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/upw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#e_up_button:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}\n"
+            ""
+        )
         self.e_up_button.setText("")
         self.e_up_button.setIconSize(QtCore.QSize(22, 22))
         self.e_up_button.setObjectName("e_up_button")
         self.gridLayout_13.addWidget(self.e_up_button, 2, 9, 1, 1)
         self.e_dn_button = QtWidgets.QPushButton(parent=self.frame_17)
         self.e_dn_button.setMaximumSize(QtCore.QSize(30, 30))
-        self.e_dn_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.e_dn_button.setStyleSheet("#e_dn_button{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/downw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#e_dn_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.e_dn_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.e_dn_button.setStyleSheet(
+            "#e_dn_button{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/downw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#e_dn_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.e_dn_button.setText("")
         self.e_dn_button.setIconSize(QtCore.QSize(22, 22))
         self.e_dn_button.setObjectName("e_dn_button")
@@ -1655,102 +1899,120 @@ class Ui_MainWindow(object):
         self.e_save = QtWidgets.QPushButton(parent=self.frame_17)
         self.e_save.setMaximumSize(QtCore.QSize(30, 30))
         self.e_save.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.e_save.setStyleSheet("#e_save{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/savew.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#e_save:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.e_save.setStyleSheet(
+            "#e_save{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/savew.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#e_save:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.e_save.setText("")
         self.e_save.setIconSize(QtCore.QSize(20, 20))
         self.e_save.setObjectName("e_save")
         self.gridLayout_13.addWidget(self.e_save, 0, 8, 1, 1)
         self.e_default = QtWidgets.QPushButton(parent=self.frame_17)
         self.e_default.setMaximumSize(QtCore.QSize(30, 30))
-        self.e_default.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.e_default.setStyleSheet("#e_default{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"        image: url(resources/style/icons/loadw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#e_default:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.e_default.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.e_default.setStyleSheet(
+            "#e_default{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "        image: url(resources/style/icons/loadw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#e_default:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.e_default.setText("")
         self.e_default.setIconSize(QtCore.QSize(20, 20))
         self.e_default.setObjectName("e_default")
         self.gridLayout_13.addWidget(self.e_default, 0, 7, 1, 1)
         self.e_del_text = QtWidgets.QPushButton(parent=self.frame_17)
         self.e_del_text.setMaximumSize(QtCore.QSize(30, 30))
-        self.e_del_text.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.e_del_text.setStyleSheet("#e_del_text{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/minusw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#e_del_text:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}")
+        self.e_del_text.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.e_del_text.setStyleSheet(
+            "#e_del_text{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/minusw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#e_del_text:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}"
+        )
         self.e_del_text.setText("")
         self.e_del_text.setIconSize(QtCore.QSize(20, 20))
         self.e_del_text.setObjectName("e_del_text")
         self.gridLayout_13.addWidget(self.e_del_text, 0, 6, 1, 1)
         self.e_add_text = QtWidgets.QPushButton(parent=self.frame_17)
         self.e_add_text.setMaximumSize(QtCore.QSize(30, 30))
-        self.e_add_text.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.e_add_text.setStyleSheet("#e_add_text{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/addw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#e_add_text:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.e_add_text.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.e_add_text.setStyleSheet(
+            "#e_add_text{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/addw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#e_add_text:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.e_add_text.setText("")
         self.e_add_text.setIconSize(QtCore.QSize(20, 20))
         self.e_add_text.setObjectName("e_add_text")
         self.gridLayout_13.addWidget(self.e_add_text, 0, 5, 1, 1)
         self.e_comboBox = QtWidgets.QComboBox(parent=self.frame_17)
-        self.e_comboBox.setStyleSheet("QComboBox#e_comboBox{\n"
-"    border:                 none;\n"
-" background-color: rgba(63,64,66,255);\n"
-"color:                      white;\n"
-"    font-weight:            bold;\n"
-"    padding:                    5px;\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QComboBox#e_comboBox:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}\n"
-"QListView{\n"
-"    border:                 none;\n"
-"    color:                     white;\n"
-"    background-color: rgba(63,64,66,255);\n"
-"    font-weight:            bold;\n"
-"    selection-background-color: rgb(0, 144, 196);\n"
-"    show-decoration-selected: 1;\n"
-"    margin-left:                -10px;\n"
-"    padding-left    :           15px;\n"
-"}\n"
-"QListView::item:hover{\n"
-"\n"
-"    background-color:   rgb(0, 144, 196);\n"
-"    border:                 none;\n"
-"}\n"
-"")
+        self.e_comboBox.setStyleSheet(
+            "QComboBox#e_comboBox{\n"
+            "    border:                 none;\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "color:                      white;\n"
+            "    font-weight:            bold;\n"
+            "    padding:                    5px;\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QComboBox#e_comboBox:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}\n"
+            "QListView{\n"
+            "    border:                 none;\n"
+            "    color:                     white;\n"
+            "    background-color: rgba(63,64,66,255);\n"
+            "    font-weight:            bold;\n"
+            "    selection-background-color: rgb(0, 144, 196);\n"
+            "    show-decoration-selected: 1;\n"
+            "    margin-left:                -10px;\n"
+            "    padding-left    :           15px;\n"
+            "}\n"
+            "QListView::item:hover{\n"
+            "\n"
+            "    background-color:   rgb(0, 144, 196);\n"
+            "    border:                 none;\n"
+            "}\n"
+            ""
+        )
         self.e_comboBox.setMaxVisibleItems(8)
         self.e_comboBox.setMaxCount(20)
-        self.e_comboBox.setInsertPolicy(QtWidgets.QComboBox.InsertPolicy.InsertAfterCurrent)
+        self.e_comboBox.setInsertPolicy(
+            QtWidgets.QComboBox.InsertPolicy.InsertAfterCurrent
+        )
         self.e_comboBox.setMinimumContentsLength(1)
         self.e_comboBox.setFrame(True)
         self.e_comboBox.setObjectName("e_comboBox")
@@ -1790,14 +2052,16 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         self.textEdit.setFont(font)
         self.textEdit.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)
-        self.textEdit.setStyleSheet("QTextEdit{\n"
-"background-color: rgba(63,64,66,255);\n"
-"font: 550 9pt \"Segoe UI\";\n"
-"color:White;\n"
-"border-radius:10px;\n"
-"border:2px solid black;\n"
-"}\n"
-"")
+        self.textEdit.setStyleSheet(
+            "QTextEdit{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            'font: 550 9pt "Segoe UI";\n'
+            "color:White;\n"
+            "border-radius:10px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            ""
+        )
         self.textEdit.setObjectName("textEdit")
         self.gridLayout_8.addWidget(self.textEdit, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.frame_5)
@@ -1821,28 +2085,32 @@ class Ui_MainWindow(object):
         self.frame_20.setLineWidth(1)
         self.frame_20.setObjectName("frame_20")
         self.gridLayout = QtWidgets.QGridLayout(self.frame_20)
-        self.gridLayout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
+        self.gridLayout.setSizeConstraint(
+            QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint
+        )
         self.gridLayout.setContentsMargins(1, 0, 0, 5)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
         self.progressBar = QtWidgets.QProgressBar(parent=self.frame_20)
         self.progressBar.setMinimumSize(QtCore.QSize(890, 0))
         self.progressBar.setMaximumSize(QtCore.QSize(1375, 16777215))
-        self.progressBar.setStyleSheet("#progressBar{\n"
-"height:26px;\n"
-"        border-radius: 5px;\n"
-"        text-align: center;\n"
-"       background-color: rgba(63,64,66,255);\n"
-"        color: white;\n"
-"border: 2px solid black ;\n"
-"margin-right:35%;\n"
-"}\n"
-"\n"
-"#progressBar::chunk {\n"
-"    background-color: rgba(34, 139, 230,255);\n"
-"\n"
-" border-radius: 3px;\n"
-"}")
+        self.progressBar.setStyleSheet(
+            "#progressBar{\n"
+            "height:26px;\n"
+            "        border-radius: 5px;\n"
+            "        text-align: center;\n"
+            "       background-color: rgba(63,64,66,255);\n"
+            "        color: white;\n"
+            "border: 2px solid black ;\n"
+            "margin-right:35%;\n"
+            "}\n"
+            "\n"
+            "#progressBar::chunk {\n"
+            "    background-color: rgba(34, 139, 230,255);\n"
+            "\n"
+            " border-radius: 3px;\n"
+            "}"
+        )
         self.progressBar.setProperty("value", 0)
         self.progressBar.setFormat("")
         self.progressBar.setObjectName("progressBar")
@@ -1861,83 +2129,107 @@ class Ui_MainWindow(object):
         self.gridLayout_9.setVerticalSpacing(0)
         self.gridLayout_9.setObjectName("gridLayout_9")
         self.save_seting_button = QtWidgets.QPushButton(parent=self.frame_21)
-        self.save_seting_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.save_seting_button.setStyleSheet("\n"
-"\n"
-"#save_seting_button{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#save_seting_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.save_seting_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.save_seting_button.setStyleSheet(
+            "\n"
+            "\n"
+            "#save_seting_button{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#save_seting_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.save_seting_button.setObjectName("save_seting_button")
         self.gridLayout_9.addWidget(self.save_seting_button, 0, 0, 1, 1)
         self.main_generate = QtWidgets.QPushButton(parent=self.frame_21)
-        self.main_generate.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.main_generate.setStyleSheet("\n"
-"#main_generate{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#main_generate:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.main_generate.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.main_generate.setStyleSheet(
+            "\n"
+            "#main_generate{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#main_generate:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.main_generate.setObjectName("main_generate")
         self.gridLayout_9.addWidget(self.main_generate, 0, 2, 1, 1)
         self.main_save = QtWidgets.QPushButton(parent=self.frame_21)
-        self.main_save.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.main_save.setStyleSheet("\n"
-"#main_save{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#main_save:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.main_save.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.main_save.setStyleSheet(
+            "\n"
+            "#main_save{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#main_save:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.main_save.setObjectName("main_save")
         self.gridLayout_9.addWidget(self.main_save, 0, 3, 1, 1)
         self.load_seting_button = QtWidgets.QPushButton(parent=self.frame_21)
-        self.load_seting_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.load_seting_button.setStyleSheet("\n"
-"#load_seting_button{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#load_seting_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.load_seting_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.load_seting_button.setStyleSheet(
+            "\n"
+            "#load_seting_button{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#load_seting_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.load_seting_button.setObjectName("load_seting_button")
         self.gridLayout_9.addWidget(self.load_seting_button, 0, 1, 1, 1)
         self.horizontalLayout_3.addWidget(self.frame_21)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem2 = QtWidgets.QSpacerItem(
+            20,
+            20,
+            QtWidgets.QSizePolicy.Policy.Maximum,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
         self.horizontalLayout_3.addItem(spacerItem2)
         self.gridLayout_4.addWidget(self.frame_6, 3, 0, 1, 1)
         self.frame_28 = QtWidgets.QFrame(parent=self.dataGenTab)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Preferred,
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame_28.sizePolicy().hasHeightForWidth())
         self.frame_28.setSizePolicy(sizePolicy)
-        self.frame_28.setStyleSheet("#abc\n"
-"{background-color: rgb(170, 85, 127);\n"
-"}")
+        self.frame_28.setStyleSheet(
+            "#abc\n" "{background-color: rgb(170, 85, 127);\n" "}"
+        )
         self.frame_28.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_28.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_28.setObjectName("frame_28")
@@ -1950,7 +2242,12 @@ class Ui_MainWindow(object):
         self.lbl_userrole.setScaledContents(True)
         self.lbl_userrole.setObjectName("lbl_userrole")
         self.gridLayout_24.addWidget(self.lbl_userrole, 0, 1, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem3 = QtWidgets.QSpacerItem(
+            20,
+            20,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
         self.gridLayout_24.addItem(spacerItem3, 0, 5, 1, 1)
         self.lbl_username = QtWidgets.QLabel(parent=self.frame_28)
         self.lbl_username.setMaximumSize(QtCore.QSize(63, 16777215))
@@ -1965,21 +2262,27 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.btn_logout.setFont(font)
-        self.btn_logout.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_logout.setStyleSheet("#btn_logout{background-color: transparent;\n"
-"border:none;\n"
-"\n"
-"}\n"
-"#btn_logout:hover{\n"
-"\n"
-"border-bottom:1px solid  white;\n"
-"}")
+        self.btn_logout.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.btn_logout.setStyleSheet(
+            "#btn_logout{background-color: transparent;\n"
+            "border:none;\n"
+            "\n"
+            "}\n"
+            "#btn_logout:hover{\n"
+            "\n"
+            "border-bottom:1px solid  white;\n"
+            "}"
+        )
         self.btn_logout.setObjectName("btn_logout")
         self.gridLayout_24.addWidget(self.btn_logout, 0, 4, 1, 1)
         self.label = QtWidgets.QLabel(parent=self.frame_28)
         self.label.setObjectName("label")
         self.gridLayout_24.addWidget(self.label, 0, 2, 1, 1)
-        self.gridLayout_4.addWidget(self.frame_28, 1, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
+        self.gridLayout_4.addWidget(
+            self.frame_28, 1, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight
+        )
         self.tabWidget.addTab(self.dataGenTab, "")
         self.Data_extractorTab = QtWidgets.QWidget()
         self.Data_extractorTab.setObjectName("Data_extractorTab")
@@ -2033,30 +2336,38 @@ class Ui_MainWindow(object):
         self.gridLayout_140.setVerticalSpacing(0)
         self.gridLayout_140.setObjectName("gridLayout_140")
         self.de_filename = QtWidgets.QLineEdit(parent=self.frame_159)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.de_filename.sizePolicy().hasHeightForWidth())
         self.de_filename.setSizePolicy(sizePolicy)
-        self.de_filename.setStyleSheet("#de_filename{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border-radius:5px;\n"
-"height:26px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#de_filename:hover{\n"
-"\n"
-"}\n"
-"")
+        self.de_filename.setStyleSheet(
+            "#de_filename{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border-radius:5px;\n"
+            "height:26px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#de_filename:hover{\n"
+            "\n"
+            "}\n"
+            ""
+        )
         self.de_filename.setFrame(True)
         self.de_filename.setReadOnly(True)
         self.de_filename.setObjectName("de_filename")
         self.gridLayout_140.addWidget(self.de_filename, 0, 0, 1, 1)
         self.de_browse_button = QtWidgets.QPushButton(parent=self.frame_159)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.de_browse_button.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.de_browse_button.sizePolicy().hasHeightForWidth()
+        )
         self.de_browse_button.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
@@ -2064,25 +2375,33 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.de_browse_button.setFont(font)
-        self.de_browse_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.de_browse_button.setStyleSheet("#de_browse_button{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#de_browse_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_browse_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.de_browse_button.setStyleSheet(
+            "#de_browse_button{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#de_browse_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_browse_button.setObjectName("de_browse_button")
         self.gridLayout_140.addWidget(self.de_browse_button, 0, 1, 1, 1)
         self.de_preview_in_file = QtWidgets.QPushButton(parent=self.frame_159)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.de_preview_in_file.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.de_preview_in_file.sizePolicy().hasHeightForWidth()
+        )
         self.de_preview_in_file.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
@@ -2090,18 +2409,22 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.de_preview_in_file.setFont(font)
-        self.de_preview_in_file.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.de_preview_in_file.setStyleSheet("#de_preview_in_file{background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"border:2px solid black;\n"
-"}\n"
-"#de_preview_in_file:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_preview_in_file.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.de_preview_in_file.setStyleSheet(
+            "#de_preview_in_file{background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "#de_preview_in_file:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_preview_in_file.setObjectName("de_preview_in_file")
         self.gridLayout_140.addWidget(self.de_preview_in_file, 0, 2, 1, 1)
         self.gridLayout_139.addWidget(self.frame_159, 0, 0, 1, 1)
@@ -2134,7 +2457,9 @@ class Ui_MainWindow(object):
         self.frame_180.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_180.setObjectName("frame_180")
         self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.frame_180)
-        self.verticalLayout_14.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinAndMaxSize)
+        self.verticalLayout_14.setSizeConstraint(
+            QtWidgets.QLayout.SizeConstraint.SetMinAndMaxSize
+        )
         self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_14.setSpacing(0)
         self.verticalLayout_14.setObjectName("verticalLayout_14")
@@ -2149,15 +2474,22 @@ class Ui_MainWindow(object):
         self.gridLayout_161.setSpacing(0)
         self.gridLayout_161.setObjectName("gridLayout_161")
         self.de_graph_label = QtWidgets.QLabel(parent=self.frame_181)
-        self.de_graph_label.setStyleSheet("color: rgb(255, 255, 255);\n"
-"border:1px solid white;\n"
-"font: 600 12pt \"Segoe UI\";\n"
-"padding:4px 0px 4px 0px;\n"
-"")
+        self.de_graph_label.setStyleSheet(
+            "color: rgb(255, 255, 255);\n"
+            "border:1px solid white;\n"
+            'font: 600 12pt "Segoe UI";\n'
+            "padding:4px 0px 4px 0px;\n"
+            ""
+        )
         self.de_graph_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.de_graph_label.setObjectName("de_graph_label")
         self.gridLayout_161.addWidget(self.de_graph_label, 0, 0, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem4 = QtWidgets.QSpacerItem(
+            35,
+            20,
+            QtWidgets.QSizePolicy.Policy.Maximum,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
         self.gridLayout_161.addItem(spacerItem4, 0, 1, 1, 1)
         self.verticalLayout_14.addWidget(self.frame_181)
         self.frame_182 = QtWidgets.QFrame(parent=self.frame_180)
@@ -2170,52 +2502,68 @@ class Ui_MainWindow(object):
         self.gridLayout_162.setSpacing(5)
         self.gridLayout_162.setObjectName("gridLayout_162")
         self.de_tableWidget = QtWidgets.QTableWidget(parent=self.frame_182)
-        self.de_tableWidget.setStyleSheet("\n"
-" QTableWidget{\n"
-" background-color: rgba(63,64,66,255);\n"
-"border:none;\n"
-"border-bottom:1px solid black;\n"
-"selection-background-color:none;\n"
-"}\n"
-"QTableWidget::item\n"
-" {\n"
-"\n"
-"border-left:1px  solid black;\n"
-"border-bottom:1px  solid black;\n"
-"color:white;\n"
-"\n"
-"}\n"
-"\n"
-"QTableView::item:selected{\n"
-"    background-color:  rgba(63,64,66,255);\n"
-"}\n"
-" QTableView::item:focus\n"
-"{\n"
-"   selection-background-color: rgba(63,64,66,255);\n"
-"}\n"
-"QHeaderView{\n"
-"    font: 700 9pt \"Segoe UI\";\n"
-"color:black;\n"
-"}\n"
-"QHeaderView::section{\n"
-"border-bottom:2px solid black;\n"
-"}\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"    border: 1px solid black;\n"
-"}")
+        self.de_tableWidget.setStyleSheet(
+            "\n"
+            " QTableWidget{\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "border:none;\n"
+            "border-bottom:1px solid black;\n"
+            "selection-background-color:none;\n"
+            "}\n"
+            "QTableWidget::item\n"
+            " {\n"
+            "\n"
+            "border-left:1px  solid black;\n"
+            "border-bottom:1px  solid black;\n"
+            "color:white;\n"
+            "\n"
+            "}\n"
+            "\n"
+            "QTableView::item:selected{\n"
+            "    background-color:  rgba(63,64,66,255);\n"
+            "}\n"
+            " QTableView::item:focus\n"
+            "{\n"
+            "   selection-background-color: rgba(63,64,66,255);\n"
+            "}\n"
+            "QHeaderView{\n"
+            '    font: 700 9pt "Segoe UI";\n'
+            "color:black;\n"
+            "}\n"
+            "QHeaderView::section{\n"
+            "border-bottom:2px solid black;\n"
+            "}\n"
+            "QHeaderView::section:horizontal\n"
+            "{\n"
+            "    border: 1px solid black;\n"
+            "}"
+        )
         self.de_tableWidget.setFrameShape(QtWidgets.QFrame.Shape.Box)
         self.de_tableWidget.setMidLineWidth(0)
-        self.de_tableWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-        self.de_tableWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.de_tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContentsOnFirstShow)
-        self.de_tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked)
+        self.de_tableWidget.setVerticalScrollBarPolicy(
+            QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn
+        )
+        self.de_tableWidget.setHorizontalScrollBarPolicy(
+            QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+        self.de_tableWidget.setSizeAdjustPolicy(
+            QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContentsOnFirstShow
+        )
+        self.de_tableWidget.setEditTriggers(
+            QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked
+        )
         self.de_tableWidget.setDragDropOverwriteMode(False)
-        self.de_tableWidget.setDragDropMode(QtWidgets.QAbstractItemView.DragDropMode.NoDragDrop)
+        self.de_tableWidget.setDragDropMode(
+            QtWidgets.QAbstractItemView.DragDropMode.NoDragDrop
+        )
         self.de_tableWidget.setDefaultDropAction(QtCore.Qt.DropAction.IgnoreAction)
         self.de_tableWidget.setAlternatingRowColors(False)
-        self.de_tableWidget.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
-        self.de_tableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
+        self.de_tableWidget.setSelectionMode(
+            QtWidgets.QAbstractItemView.SelectionMode.SingleSelection
+        )
+        self.de_tableWidget.setSelectionBehavior(
+            QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows
+        )
         self.de_tableWidget.setShowGrid(True)
         self.de_tableWidget.setWordWrap(False)
         self.de_tableWidget.setCornerButtonEnabled(False)
@@ -2237,23 +2585,27 @@ class Ui_MainWindow(object):
         self.gridLayout_162.addWidget(self.de_tableWidget, 1, 0, 4, 7)
         self.de_dn_button = QtWidgets.QPushButton(parent=self.frame_182)
         self.de_dn_button.setMaximumSize(QtCore.QSize(30, 30))
-        self.de_dn_button.setStyleSheet("#de_dn_button\n"
-"{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"image: url(resources/style/icons/downw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#de_dn_button:hover\n"
-"{    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_dn_button.setStyleSheet(
+            "#de_dn_button\n"
+            "{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "image: url(resources/style/icons/downw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#de_dn_button:hover\n"
+            "{    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_dn_button.setText("")
         self.de_dn_button.setIconSize(QtCore.QSize(22, 22))
         self.de_dn_button.setObjectName("de_dn_button")
         self.gridLayout_162.addWidget(self.de_dn_button, 3, 7, 1, 1)
         self.de_up_button = QtWidgets.QPushButton(parent=self.frame_182)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.de_up_button.sizePolicy().hasHeightForWidth())
@@ -2261,83 +2613,93 @@ class Ui_MainWindow(object):
         self.de_up_button.setMinimumSize(QtCore.QSize(0, 0))
         self.de_up_button.setMaximumSize(QtCore.QSize(30, 30))
         self.de_up_button.setToolTipDuration(-1)
-        self.de_up_button.setStyleSheet("#de_up_button\n"
-"{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"image: url(resources/style/icons/upw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#de_up_button:hover\n"
-"{    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_up_button.setStyleSheet(
+            "#de_up_button\n"
+            "{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "image: url(resources/style/icons/upw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#de_up_button:hover\n"
+            "{    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_up_button.setText("")
         self.de_up_button.setIconSize(QtCore.QSize(22, 22))
         self.de_up_button.setObjectName("de_up_button")
         self.gridLayout_162.addWidget(self.de_up_button, 2, 7, 1, 1)
         self.de_g_save = QtWidgets.QPushButton(parent=self.frame_182)
         self.de_g_save.setMaximumSize(QtCore.QSize(30, 30))
-        self.de_g_save.setStyleSheet("#de_g_save\n"
-"{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"image: url(resources/style/icons/savew.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#de_g_save:hover\n"
-"{    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_g_save.setStyleSheet(
+            "#de_g_save\n"
+            "{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "image: url(resources/style/icons/savew.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#de_g_save:hover\n"
+            "{    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_g_save.setText("")
         self.de_g_save.setIconSize(QtCore.QSize(20, 20))
         self.de_g_save.setObjectName("de_g_save")
         self.gridLayout_162.addWidget(self.de_g_save, 0, 6, 1, 1)
         self.de_default = QtWidgets.QPushButton(parent=self.frame_182)
         self.de_default.setMaximumSize(QtCore.QSize(30, 30))
-        self.de_default.setStyleSheet("#de_default\n"
-"{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"image: url(resources/style/icons/loadw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#de_default:hover\n"
-"{    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_default.setStyleSheet(
+            "#de_default\n"
+            "{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "image: url(resources/style/icons/loadw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#de_default:hover\n"
+            "{    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_default.setText("")
         self.de_default.setIconSize(QtCore.QSize(20, 20))
         self.de_default.setObjectName("de_default")
         self.gridLayout_162.addWidget(self.de_default, 0, 5, 1, 1)
         self.de_del_text = QtWidgets.QPushButton(parent=self.frame_182)
         self.de_del_text.setMaximumSize(QtCore.QSize(30, 30))
-        self.de_del_text.setStyleSheet("#de_del_text{background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"    image: url(resources/style/icons/minusw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#de_del_text:hover{\n"
-"    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_del_text.setStyleSheet(
+            "#de_del_text{background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "    image: url(resources/style/icons/minusw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#de_del_text:hover{\n"
+            "    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_del_text.setText("")
         self.de_del_text.setIconSize(QtCore.QSize(20, 20))
         self.de_del_text.setObjectName("de_del_text")
         self.gridLayout_162.addWidget(self.de_del_text, 0, 4, 1, 1)
         self.de_add_text = QtWidgets.QPushButton(parent=self.frame_182)
         self.de_add_text.setMaximumSize(QtCore.QSize(30, 30))
-        self.de_add_text.setStyleSheet("#de_add_text\n"
-"{\n"
-"background-color: rgba(63,64,66,255);\n"
-"border:2px solid black;\n"
-"image: url(resources/style/icons/addw.ico);\n"
-"padding:2px;\n"
-"color: rgb(0, 0, 0);}\n"
-"#de_add_text:hover\n"
-"{    \n"
-"background-color:rgba(32,33,36,255);\n"
-"}")
+        self.de_add_text.setStyleSheet(
+            "#de_add_text\n"
+            "{\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "border:2px solid black;\n"
+            "image: url(resources/style/icons/addw.ico);\n"
+            "padding:2px;\n"
+            "color: rgb(0, 0, 0);}\n"
+            "#de_add_text:hover\n"
+            "{    \n"
+            "background-color:rgba(32,33,36,255);\n"
+            "}"
+        )
         self.de_add_text.setText("")
         self.de_add_text.setIconSize(QtCore.QSize(20, 20))
         self.de_add_text.setObjectName("de_add_text")
@@ -2349,43 +2711,49 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.de_comboBox.setFont(font)
         self.de_comboBox.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
-        self.de_comboBox.setStyleSheet("QComboBox#de_comboBox{\n"
-"    border:                 none;\n"
-" background-color: rgba(63,64,66,255);\n"
-"color:                      white;\n"
-"    font-weight:            bold;\n"
-"    padding:                    5px;\n"
-"\n"
-"border:2px solid black;\n"
-"}\n"
-"QComboBox#de_comboBox:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}\n"
-"QListView{\n"
-"    border:                 none;\n"
-"    color:                     white;\n"
-"    background-color: rgba(63,64,66,255);\n"
-"    font-weight:            bold;\n"
-"    selection-background-color: rgb(0, 144, 196);\n"
-"    show-decoration-selected: 1;\n"
-"    margin-left:                -10px;\n"
-"    padding-left    :           15px;\n"
-"}\n"
-"QListView::item:hover{\n"
-"\n"
-"    background-color:   rgb(0, 144, 196);\n"
-"    border:                 none;\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"")
+        self.de_comboBox.setStyleSheet(
+            "QComboBox#de_comboBox{\n"
+            "    border:                 none;\n"
+            " background-color: rgba(63,64,66,255);\n"
+            "color:                      white;\n"
+            "    font-weight:            bold;\n"
+            "    padding:                    5px;\n"
+            "\n"
+            "border:2px solid black;\n"
+            "}\n"
+            "QComboBox#de_comboBox:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}\n"
+            "QListView{\n"
+            "    border:                 none;\n"
+            "    color:                     white;\n"
+            "    background-color: rgba(63,64,66,255);\n"
+            "    font-weight:            bold;\n"
+            "    selection-background-color: rgb(0, 144, 196);\n"
+            "    show-decoration-selected: 1;\n"
+            "    margin-left:                -10px;\n"
+            "    padding-left    :           15px;\n"
+            "}\n"
+            "QListView::item:hover{\n"
+            "\n"
+            "    background-color:   rgb(0, 144, 196);\n"
+            "    border:                 none;\n"
+            "}\n"
+            "\n"
+            "\n"
+            "\n"
+            ""
+        )
         self.de_comboBox.setMaxVisibleItems(8)
         self.de_comboBox.setMaxCount(20)
-        self.de_comboBox.setInsertPolicy(QtWidgets.QComboBox.InsertPolicy.InsertAfterCurrent)
-        self.de_comboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContentsOnFirstShow)
+        self.de_comboBox.setInsertPolicy(
+            QtWidgets.QComboBox.InsertPolicy.InsertAfterCurrent
+        )
+        self.de_comboBox.setSizeAdjustPolicy(
+            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContentsOnFirstShow
+        )
         self.de_comboBox.setMinimumContentsLength(1)
         self.de_comboBox.setFrame(True)
         self.de_comboBox.setObjectName("de_comboBox")
@@ -2426,18 +2794,20 @@ class Ui_MainWindow(object):
         self.gridLayout_165.setObjectName("gridLayout_165")
         self.de_textEdit = QtWidgets.QTextEdit(parent=self.frame_186)
         self.de_textEdit.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)
-        self.de_textEdit.setStyleSheet("QTextEdit{\n"
-"font: 550 9pt \"Segoe UI\";\n"
-"color: rgb(0, 0, 0);\n"
-"border-radius:10px;\n"
-"border:2px solid black;\n"
-"background-color: rgba(63,64,66,255);\n"
-"color:white;\n"
-"}\n"
-"QTextEdit:hover{\n"
-"\n"
-"\n"
-"}")
+        self.de_textEdit.setStyleSheet(
+            "QTextEdit{\n"
+            'font: 550 9pt "Segoe UI";\n'
+            "color: rgb(0, 0, 0);\n"
+            "border-radius:10px;\n"
+            "border:2px solid black;\n"
+            "background-color: rgba(63,64,66,255);\n"
+            "color:white;\n"
+            "}\n"
+            "QTextEdit:hover{\n"
+            "\n"
+            "\n"
+            "}"
+        )
         self.de_textEdit.setObjectName("de_textEdit")
         self.gridLayout_165.addWidget(self.de_textEdit, 0, 0, 1, 1)
         self.horizontalLayout_13.addWidget(self.frame_186)
@@ -2461,28 +2831,32 @@ class Ui_MainWindow(object):
         self.frame_188.setLineWidth(1)
         self.frame_188.setObjectName("frame_188")
         self.gridLayout_166 = QtWidgets.QGridLayout(self.frame_188)
-        self.gridLayout_166.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
+        self.gridLayout_166.setSizeConstraint(
+            QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint
+        )
         self.gridLayout_166.setContentsMargins(1, 9, 0, 9)
         self.gridLayout_166.setSpacing(0)
         self.gridLayout_166.setObjectName("gridLayout_166")
         self.de_progressBar = QtWidgets.QProgressBar(parent=self.frame_188)
         self.de_progressBar.setMinimumSize(QtCore.QSize(880, 0))
         self.de_progressBar.setMaximumSize(QtCore.QSize(1375, 16777215))
-        self.de_progressBar.setStyleSheet("#de_progressBar{\n"
-"height:26px;\n"
-"        border-radius: 3px;\n"
-"        text-align: center;\n"
-"       background-color: rgba(63,64,66,255);\n"
-"        color: white;\n"
-"border: 2px solid black ;\n"
-"margin-right:35%;\n"
-"}\n"
-"\n"
-"#de_progressBar::chunk {\n"
-"    background-color: rgba(34, 139, 230,255);\n"
-"\n"
-" border-radius: 3px;\n"
-"}")
+        self.de_progressBar.setStyleSheet(
+            "#de_progressBar{\n"
+            "height:26px;\n"
+            "        border-radius: 3px;\n"
+            "        text-align: center;\n"
+            "       background-color: rgba(63,64,66,255);\n"
+            "        color: white;\n"
+            "border: 2px solid black ;\n"
+            "margin-right:35%;\n"
+            "}\n"
+            "\n"
+            "#de_progressBar::chunk {\n"
+            "    background-color: rgba(34, 139, 230,255);\n"
+            "\n"
+            " border-radius: 3px;\n"
+            "}"
+        )
         self.de_progressBar.setProperty("value", 0)
         self.de_progressBar.setFormat("")
         self.de_progressBar.setObjectName("de_progressBar")
@@ -2501,81 +2875,102 @@ class Ui_MainWindow(object):
         self.gridLayout_167.setVerticalSpacing(0)
         self.gridLayout_167.setObjectName("gridLayout_167")
         self.de_save_seting_button = QtWidgets.QPushButton(parent=self.frame_189)
-        self.de_save_seting_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.de_save_seting_button.setStyleSheet("\n"
-"#de_save_seting_button{\n"
-"border:2px solid black;\n"
-"background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"}\n"
-"\n"
-"#de_save_seting_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}")
+        self.de_save_seting_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.de_save_seting_button.setStyleSheet(
+            "\n"
+            "#de_save_seting_button{\n"
+            "border:2px solid black;\n"
+            "background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "}\n"
+            "\n"
+            "#de_save_seting_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}"
+        )
         self.de_save_seting_button.setObjectName("de_save_seting_button")
         self.gridLayout_167.addWidget(self.de_save_seting_button, 0, 0, 1, 1)
         self.de_main_preview = QtWidgets.QPushButton(parent=self.frame_189)
-        self.de_main_preview.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.de_main_preview.setStyleSheet("#de_main_preview{\n"
-"border:2px solid black;\n"
-"background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"}\n"
-"\n"
-"#de_main_preview:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}")
+        self.de_main_preview.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.de_main_preview.setStyleSheet(
+            "#de_main_preview{\n"
+            "border:2px solid black;\n"
+            "background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "}\n"
+            "\n"
+            "#de_main_preview:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}"
+        )
         self.de_main_preview.setObjectName("de_main_preview")
         self.gridLayout_167.addWidget(self.de_main_preview, 0, 2, 1, 1)
         self.de_generate_button = QtWidgets.QPushButton(parent=self.frame_189)
-        self.de_generate_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.de_generate_button.setStyleSheet("#de_generate_button{\n"
-"border:2px solid black;\n"
-"background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"}\n"
-"\n"
-"#de_generate_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}")
+        self.de_generate_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.de_generate_button.setStyleSheet(
+            "#de_generate_button{\n"
+            "border:2px solid black;\n"
+            "background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "}\n"
+            "\n"
+            "#de_generate_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}"
+        )
         self.de_generate_button.setObjectName("de_generate_button")
         self.gridLayout_167.addWidget(self.de_generate_button, 0, 3, 1, 1)
         self.de_load_seting_button = QtWidgets.QPushButton(parent=self.frame_189)
-        self.de_load_seting_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.de_load_seting_button.setStyleSheet("\n"
-"#de_load_seting_button{\n"
-"border:2px solid black;\n"
-"background-color: rgba(63,64,66,255);\n"
-"font: 600 9pt \"Segoe UI\";\n"
-"height:26px;\n"
-"width:80px;\n"
-"border-radius:5px;\n"
-"}\n"
-"\n"
-"#de_load_seting_button:hover{\n"
-"\n"
-"background-color:rgba(32,33,36,255);\n"
-"\n"
-"}")
+        self.de_load_seting_button.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.de_load_seting_button.setStyleSheet(
+            "\n"
+            "#de_load_seting_button{\n"
+            "border:2px solid black;\n"
+            "background-color: rgba(63,64,66,255);\n"
+            'font: 600 9pt "Segoe UI";\n'
+            "height:26px;\n"
+            "width:80px;\n"
+            "border-radius:5px;\n"
+            "}\n"
+            "\n"
+            "#de_load_seting_button:hover{\n"
+            "\n"
+            "background-color:rgba(32,33,36,255);\n"
+            "\n"
+            "}"
+        )
         self.de_load_seting_button.setObjectName("de_load_seting_button")
         self.gridLayout_167.addWidget(self.de_load_seting_button, 0, 1, 1, 1)
         self.horizontalLayout_15.addWidget(self.frame_189)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem5 = QtWidgets.QSpacerItem(
+            20,
+            20,
+            QtWidgets.QSizePolicy.Policy.Maximum,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
         self.horizontalLayout_15.addItem(spacerItem5)
         self.gridLayout_168.addWidget(self.frame_187, 1, 0, 1, 1)
         self.tabWidget.addTab(self.Data_extractorTab, "")
@@ -2590,7 +2985,9 @@ class Ui_MainWindow(object):
         self.gridLayout_23.setHorizontalSpacing(6)
         self.gridLayout_23.setVerticalSpacing(0)
         self.gridLayout_23.setObjectName("gridLayout_23")
-        self.gridLayout_3.addWidget(self.widget, 1, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
+        self.gridLayout_3.addWidget(
+            self.widget, 1, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight
+        )
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -2668,7 +3065,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Secure Tech Cards (Pvt) Ltd "))
+        MainWindow.setWindowTitle(
+            _translate("MainWindow", "Secure Tech Cards (Pvt) Ltd ")
+        )
         self.groupBox.setTitle(_translate("MainWindow", "INPUT PARAMETERS"))
         self.puk2_rand_check.setText(_translate("MainWindow", "Fixed"))
         self.puk2_label.setText(_translate("MainWindow", "           PUK 2  : "))
@@ -2689,20 +3088,28 @@ class Ui_MainWindow(object):
         self.puk1_auto.setText(_translate("MainWindow", "Auto"))
         self.op_key.setText(_translate("MainWindow", "Operator Key : "))
         self.op_key_auto.setText(_translate("MainWindow", "AUTO"))
-        self.op_key_text.setToolTip(_translate("MainWindow", "Operator Variant Algorithm Configuration Field"))
+        self.op_key_text.setToolTip(
+            _translate("MainWindow", "Operator Variant Algorithm Configuration Field")
+        )
         self.op_key_text.setPlaceholderText(_translate("MainWindow", "  128 Bit key"))
         self.op_key_fetch.setText(_translate("MainWindow", "FETCH"))
         self.iccid_label.setText(_translate("MainWindow", "              ICCID :"))
         self.iccid_auto.setText(_translate("MainWindow", "AUTO"))
         self.iccid_text.setPlaceholderText(_translate("MainWindow", "  Initial ICCID"))
         self.imsi_label.setText(_translate("MainWindow", "                IMSI :"))
-        self.imsi_text.setToolTip(_translate("MainWindow", "Operator Variant Algorithm Configuration Field"))
+        self.imsi_text.setToolTip(
+            _translate("MainWindow", "Operator Variant Algorithm Configuration Field")
+        )
         self.imsi_text.setPlaceholderText(_translate("MainWindow", "  Initial IMSI"))
         self.imsi_auto.setText(_translate("MainWindow", "AUTO"))
         self.label_6.setText(_translate("MainWindow", "        Data Size :"))
         self.data_size_auto.setText(_translate("MainWindow", "AUTO"))
-        self.data_size_text.setToolTip(_translate("MainWindow", "Operator Variant Algorithm Configuration Field"))
-        self.data_size_text.setPlaceholderText(_translate("MainWindow", "  Size of Data "))
+        self.data_size_text.setToolTip(
+            _translate("MainWindow", "Operator Variant Algorithm Configuration Field")
+        )
+        self.data_size_text.setPlaceholderText(
+            _translate("MainWindow", "  Size of Data ")
+        )
         self.adm1_rand_check.setText(_translate("MainWindow", "Fixed"))
         self.adm1_label.setText(_translate("MainWindow", "            ADM 1 :"))
         self.adm1_auto.setText(_translate("MainWindow", "Auto"))
@@ -2757,9 +3164,16 @@ class Ui_MainWindow(object):
         self.lbl_username.setText(_translate("MainWindow", "Username"))
         self.btn_logout.setText(_translate("MainWindow", "Logout"))
         self.label.setText(_translate("MainWindow", "|"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.dataGenTab), _translate("MainWindow", "Data Generator"))
-        self.de_filename.setToolTip(_translate("MainWindow", "Input file from Operator"))
-        self.de_filename.setPlaceholderText(_translate("MainWindow", "  Input Data file"))
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.dataGenTab),
+            _translate("MainWindow", "Data Generator"),
+        )
+        self.de_filename.setToolTip(
+            _translate("MainWindow", "Input file from Operator")
+        )
+        self.de_filename.setPlaceholderText(
+            _translate("MainWindow", "  Input Data file")
+        )
         self.de_browse_button.setText(_translate("MainWindow", "BROWSE"))
         self.de_preview_in_file.setText(_translate("MainWindow", "OPEN"))
         self.de_graph_label.setText(_translate("MainWindow", "LASER DATA EXTRACT"))
@@ -2767,4 +3181,7 @@ class Ui_MainWindow(object):
         self.de_main_preview.setText(_translate("MainWindow", "PREVIEW"))
         self.de_generate_button.setText(_translate("MainWindow", "GENERATE"))
         self.de_load_seting_button.setText(_translate("MainWindow", "LOAD SETTING"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.Data_extractorTab), _translate("MainWindow", "Data Extractor"))
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.Data_extractorTab),
+            _translate("MainWindow", "Data Extractor"),
+        )
