@@ -12,12 +12,10 @@ from PyQt6.QtWidgets import (
     QDialog,
 )
 
-from globals.parameters import Parameters, DataFrames
-from globals.settings import SETTINGS
-
-from gui.forms.main_ui import Ui_MainWindow
-from gui.forms.login_ui import Ui_Form as login_form
-from gui.screens import PreviewOutput
+from globals import Parameters, DataFrames, SETTINGS
+from forms import Ui_MainWindow
+from forms import Ui_Form as login_form
+from screens import PreviewOutput
 from gui.messages import show_message_box
 from gui.table import GuiElect, GuiGraph, GuiExtractor
 from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
@@ -410,3 +408,6 @@ class LoginWindow(QDialog):
             self.accept()
         else:
             QMessageBox.warning(self, "Login Failed", result)
+
+
+__all__ = ["MainWindow", "LoginWindow"]

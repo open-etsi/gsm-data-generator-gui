@@ -86,3 +86,14 @@ class SwMatchError(Exception):
             self.sw_expected,
             self.sw_actual,
         )
+
+
+__all__ = [
+    "NoSettingsFilePresent",
+    "NoTemplateFilePresent",
+    "NoJsonFilePresent",
+    "NoCardError",
+    "ProtocolError",
+    "ReaderError",
+    "SwMatchError",
+]

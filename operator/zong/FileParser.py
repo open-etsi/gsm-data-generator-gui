@@ -321,3 +321,6 @@ input_file_patterns = {
 
 #     except NameError as e:
 #         print("NameError!", e)
+
+
+__all__ = ["ZongFileParser"]

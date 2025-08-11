@@ -150,3 +150,5 @@ class PreviewOutput(QDialog):  # testing purpose only
 # w = PreviewOutput(dataframe_laser,dataframe_elect,dataframe_server,True,False,True)
 # w.show()
 # app.exec()
+
+__all__ = ["PreviewInput", "PreviewOutput"]
