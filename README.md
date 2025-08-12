@@ -12,3 +12,4 @@ A modular GSM data generation toolkit built in Python. It supports operator-spec
 - Telecom software testing
 - Data pipeline prototyping
 - Machine learning dataset creation
+# gsm-data-genration
