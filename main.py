@@ -1,8 +1,10 @@
 import os
 import sys
 from PyQt6.QtWidgets import QApplication
-#from core.exception.exceptions import NoSettingsFilePresent, NoTemplateFilePresent
+
+# from core.exception.exceptions import NoSettingsFilePresent, NoTemplateFilePresent
 from gui import *
+
 # paths = ["settings.json", "operators/zong/template.json"]
 paths = ["settings.json"]
 
@@ -44,7 +46,7 @@ def run():
     #     print("No Template File Present")
 
 
-#from core.generator.utils import EncodingUtils
+# from core.generator.utils import EncodingUtils
 
 if __name__ == "__main__":
     run()

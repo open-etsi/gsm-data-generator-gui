@@ -1,11 +1,7 @@
 import json
-from ..table import GuiElect, GuiGraph, GuiExtractor
-# from gui.table import GuiElect, GuiGraph, GuiExtractor
-#from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
+from ..table import GuiElect, GuiGraph
 from .ulits import GuiButtons, GuiCheckBox, TextLengthValidator
-
 from globals import Parameters
-# from core.executor.utils import list_2_dict, dict_2_list
 
 
 class Controller:
@@ -19,7 +15,6 @@ class Controller:
         # self.extractor_gui = GuiExtractor(self.ui)
         self.checkbox_gui = GuiCheckBox(self.ui)
         # self.text_validator = TextLengthValidator(self.ui)
-        #
 
         self.ui.add_text.clicked.connect(self.graph_gui.add_text_to_table)
         self.ui.del_text.clicked.connect(self.graph_gui.delete_selected_row)

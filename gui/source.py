@@ -15,12 +15,14 @@ from PyQt6.QtWidgets import (
 from globals import Parameters, DataFrames, SETTINGS
 from .forms import Ui_MainWindow
 from .forms import Ui_Form as login_form
+
 # from .screens import PreviewOutput
 from .screens import PreviewOutput
 from .messages import show_message_box
 from .table import GuiElect, GuiGraph, GuiExtractor
 from .controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
 from .controller.controller import Controller
+
 # from core.executor.utils import read_json, list_2_dict
 # from core.parser.utils import json_loader, gui_loader, json_loader1
 # from core.executor.script import DataGenerationScript
@@ -68,11 +70,11 @@ class MainWindow(QMainWindow):
 
         self.sett = SETTINGS(self.ui)
 
-        #        self.elect_gui = GuiElect(self.ui)
-        #        self.graph_gui = GuiGraph(self.ui)
-        #        self.button_gui = GuiButtons(self.ui)
-        #        self.checkbox_gui = GuiCheckBox(self.ui)
-        #        self.extractor_gui = GuiExtractor(self.ui)
+        #self.elect_gui = GuiElect(self.ui)
+        #self.graph_gui = GuiGraph(self.ui)
+        #self.button_gui = GuiButtons(self.ui)
+        #self.checkbox_gui = GuiCheckBox(self.ui)
+        #self.extractor_gui = GuiExtractor(self.ui)
         self.text_validator = TextLengthValidator(self.ui)
 
         self.controller = Controller(self.ui)
@@ -230,75 +232,75 @@ class MainWindow(QMainWindow):
         #     show_message_box("Error", " Check Missing Input Parameters...")
 
     def create_output_folder(self):
-#        try:
-#            self.ui.textEdit.append("=====>", self.parameters.get_ELECT_SEP())
+        #        try:
+        #            self.ui.textEdit.append("=====>", self.parameters.get_ELECT_SEP())
 
-            parent_folder = self.parameters.get_OUTPUT_FILES_DIR()
-            sub_folder = self.parameters.get_file_name()
-            nested_folder = os.path.join(parent_folder, sub_folder)
-            os.makedirs(nested_folder, exist_ok=True)
+        parent_folder = self.parameters.get_OUTPUT_FILES_DIR()
+        sub_folder = self.parameters.get_file_name()
+        nested_folder = os.path.join(parent_folder, sub_folder)
+        os.makedirs(nested_folder, exist_ok=True)
 
-            elect_com_path = nested_folder + "/DATA_{}.txt".format(
-                self.parameters.get_file_name()
+        elect_com_path = nested_folder + "/DATA_{}.txt".format(
+            self.parameters.get_file_name()
+        )
+        graph_com_path = nested_folder + "/LASER_{}.txt".format(
+            self.parameters.get_file_name()
+        )
+        server_com_path = nested_folder + "/{}.out".format(
+            self.parameters.get_file_name()
+        )
+        print(elect_com_path)
+        print(self.parameters.get_OUTPUT_FILES_DIR())
+
+        #            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR(), exist_ok=True)
+        if self.parameters.get_ELECT_CHECK():
+            self.dataframes.get_ELECT_DF().to_csv(
+                elect_com_path, sep=self.parameters.get_ELECT_SEP(), index=False
             )
-            graph_com_path = nested_folder + "/LASER_{}.txt".format(
-                self.parameters.get_file_name()
+        if self.parameters.get_GRAPH_CHECK():
+            self.dataframes.get_GRAPH_DF().to_csv(
+                graph_com_path, sep=self.parameters.get_GRAPH_SEP(), index=False
             )
-            server_com_path = nested_folder + "/{}.out".format(
-                self.parameters.get_file_name()
+        if self.parameters.get_SERVER_CHECK():
+            self.dataframes.get_SERVER_DF().to_csv(
+                server_com_path, sep=self.parameters.get_SERVER_SEP(), index=False
             )
-            print(elect_com_path)
-            print(self.parameters.get_OUTPUT_FILES_DIR())
 
-            #            os.makedirs(self.parameters.get_OUTPUT_FILES_DIR(), exist_ok=True)
-            if self.parameters.get_ELECT_CHECK():
-                self.dataframes.get_ELECT_DF().to_csv(
-                    elect_com_path, sep=self.parameters.get_ELECT_SEP(), index=False
-                )
-            if self.parameters.get_GRAPH_CHECK():
-                self.dataframes.get_GRAPH_DF().to_csv(
-                    graph_com_path, sep=self.parameters.get_GRAPH_SEP(), index=False
-                )
-            if self.parameters.get_SERVER_CHECK():
-                self.dataframes.get_SERVER_DF().to_csv(
-                    server_com_path, sep=self.parameters.get_SERVER_SEP(), index=False
-                )
+    # except Exception as e:
+    #     self.ui.textEdit.append("===>", e)
+    # m_zong = ZongFileWriter()
+    # m_zong.set_json_to_UI()
+    # m_zong.Generate_laser_file(
+    #     dict_2_list(self.parameters.get_GRAPH_DICT()), self.dataframes.__GRAPH_DF
+    # )
+    # m_zong.Generate_servr_file(
+    #     dict_2_list(self.parameters.get_SERVER_DICT()), self.dataframes.__SERVR_DF
+    # )
+    # m_zong.Generate_elect_file(
+    #     dict_2_list(self.parameters.get_ELECT_DICT()), self.dataframes.__ELECT_DF
+    # )
 
-        # except Exception as e:
-        #     self.ui.textEdit.append("===>", e)
-        # m_zong = ZongFileWriter()
-        # m_zong.set_json_to_UI()
-        # m_zong.Generate_laser_file(
-        #     dict_2_list(self.parameters.get_GRAPH_DICT()), self.dataframes.__GRAPH_DF
-        # )
-        # m_zong.Generate_servr_file(
-        #     dict_2_list(self.parameters.get_SERVER_DICT()), self.dataframes.__SERVR_DF
-        # )
-        # m_zong.Generate_elect_file(
-        #     dict_2_list(self.parameters.get_ELECT_DICT()), self.dataframes.__ELECT_DF
-        # )
+    # com_path = os.path.join(self.parameters.get_OUTPUT_FILES_DIR(),
+    #                         "{}.txt".format(self.parameters.get_file_name()))
+    #
+    # show_message_box(
+    #     "Information",
+    #     "Generated Data has been saved to {} successfully.".format(com_path),
+    # )
+    #        self.progress_bar_init()
 
-        # com_path = os.path.join(self.parameters.get_OUTPUT_FILES_DIR(),
-        #                         "{}.txt".format(self.parameters.get_file_name()))
-        #
-        # show_message_box(
-        #     "Information",
-        #     "Generated Data has been saved to {} successfully.".format(com_path),
-        # )
-        #        self.progress_bar_init()
+    # self.ui.textEdit.append("==================================")
+    #        self.ui.textEdit.append(f"Created folder '{folder_name}'")
+    #        p_time = time.strftime("%H_%M_%S", time.localtime())
+    #        p_date = datetime.date.today().strftime("%Y_%m_%d")
+    #        date_time = f"{p_date}_{p_time}"
 
-        # self.ui.textEdit.append("==================================")
-        #        self.ui.textEdit.append(f"Created folder '{folder_name}'")
-        #        p_time = time.strftime("%H_%M_%S", time.localtime())
-        #        p_date = datetime.date.today().strftime("%Y_%m_%d")
-        #        date_time = f"{p_date}_{p_time}"
+    # self.ui.textEdit.append(
+    #     f"Directory Name: " + f'<a href="{com_path}" style="color: black;">{com_path}</a>'
+    # )
 
-        # self.ui.textEdit.append(
-        #     f"Directory Name: " + f'<a href="{com_path}" style="color: black;">{com_path}</a>'
-        # )
-
-        # self.ui.textEdit.append("Path: " + os.path.join(os.getcwd(), com_path))
-        # self.ui.textEdit.append("==================================")
+    # self.ui.textEdit.append("Path: " + os.path.join(os.getcwd(), com_path))
+    # self.ui.textEdit.append("==================================")
 
     # def len_check(self, text, key_type, widget):
     #     var = int(parameter_len(text))
@@ -325,7 +327,7 @@ class MainWindow(QMainWindow):
                 #            self.parameters.set_INPUT_PATH(fname[0])
                 self.parameters.set_INPUT_FILE_PATH(fname[0])
 
-#                self.config_holder = json_loader(fname[0])
+        #                self.config_holder = json_loader(fname[0])
         except Exception as e:
             self.ui.textEdit.append(str(e))
             # s = DataGenerationScript(config_holder=config_holder)

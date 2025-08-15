@@ -1,8 +1,8 @@
 import os
 from typing import Annotated
 from globals import Parameters
-# from gui.stylesheet import style_sheet_disabled, style_sheet_good, style_sheet_bad
 from ..utils import len_check, parameter_len, is_valid_iccid, is_valid_imsi
+
 
 class TextLengthValidator:
     def __init__(self, ui):
@@ -402,9 +402,4 @@ class GuiButtons:
         self.ui.adm6_text.setText(string)
 
 
-
-
-__all__ = [
-    "TextLengthValidator",
-    "GuiButtons"
-]
+__all__ = ["TextLengthValidator", "GuiButtons"]

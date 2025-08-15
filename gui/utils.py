@@ -1,6 +1,7 @@
 from typing import Annotated
 from .stylesheet import style_sheet_disabled, style_sheet_good, style_sheet_bad
 
+
 def parameter_len(param) -> str:
     """Function printing python version."""
     length = 0
@@ -31,7 +32,7 @@ def is_valid_iccid(iccid: Annotated[int, "ICCID length validation"]) -> bool:
     return iccid_length in [18, 19, 20]
 
 
-def is_valid_imsi(imsi: [int, "IMSI Length Validation"]) -> bool:
+def is_valid_imsi(imsi: [int, "IMSI Length Validation"]) -> bool: # type: ignore
     return len(str(imsi)) == 15
 
 

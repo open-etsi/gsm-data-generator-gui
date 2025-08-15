@@ -1,6 +1,3 @@
-import re
-
-
 def emailvalidator(email: str) -> bool:
     import re
 
