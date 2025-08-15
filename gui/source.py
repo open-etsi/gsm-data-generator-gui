@@ -13,16 +13,17 @@ from PyQt6.QtWidgets import (
 )
 
 from globals import Parameters, DataFrames, SETTINGS
-from forms import Ui_MainWindow
-from forms import Ui_Form as login_form
-from screens import PreviewOutput
-from gui.messages import show_message_box
-from gui.table import GuiElect, GuiGraph, GuiExtractor
-from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
-from gui.controller.controller import Controller
-from core.executor.utils import read_json, list_2_dict
-from core.parser.utils import json_loader, gui_loader, json_loader1
-from core.executor.script import DataGenerationScript
+from .forms import Ui_MainWindow
+from .forms import Ui_Form as login_form
+# from .screens import PreviewOutput
+from .screens import PreviewOutput
+from .messages import show_message_box
+from .table import GuiElect, GuiGraph, GuiExtractor
+from .controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
+from .controller.controller import Controller
+# from core.executor.utils import read_json, list_2_dict
+# from core.parser.utils import json_loader, gui_loader, json_loader1
+# from core.executor.script import DataGenerationScript
 
 debug = False
 STC_ICON = "resources/stc_logo.ico"
@@ -152,18 +153,18 @@ class MainWindow(QMainWindow):
         try:
             self.controller.gui_to_global_params()
             t = self.controller.global_params_to_json()
-            c = json_loader1(t)
-            d = DataGenerationScript(c)
-            d.json_to_global_params()
-            (dfs, keys) = d.generate_all_data()
+            # c = json_loader1(t)
+            # d = DataGenerationScript(c)
+            # d.json_to_global_params()
+            # (dfs, keys) = d.generate_all_data()
 
-            print("------------> keys used are: ", keys)
+            # print("------------> keys used are: ", keys)
 
-            # print("-----> ", self.parameters.get_SERVER_DICT())
-            # print("-----> ", self.parameters.get_SERVER_CHECK())
-            self.dataframes.ELECT_DF = dfs["ELECT"]
-            self.dataframes.GRAPH_DF = dfs["GRAPH"]
-            self.dataframes.SERVER_DF = dfs["SERVER"]
+            # # print("-----> ", self.parameters.get_SERVER_DICT())
+            # # print("-----> ", self.parameters.get_SERVER_CHECK())
+            # self.dataframes.ELECT_DF = dfs["ELECT"]
+            # self.dataframes.GRAPH_DF = dfs["GRAPH"]
+            # self.dataframes.SERVER_DF = dfs["SERVER"]
 
             # print("-----> ", self.parameters.get_ELECT_CHECK(), self.parameters.get_GRAPH_CHECK(),
             #      self.parameters.get_SERVER_CHECK())
@@ -229,8 +230,8 @@ class MainWindow(QMainWindow):
         #     show_message_box("Error", " Check Missing Input Parameters...")
 
     def create_output_folder(self):
-        try:
-            self.ui.textEdit.append("=====>", self.parameters.get_ELECT_SEP())
+#        try:
+#            self.ui.textEdit.append("=====>", self.parameters.get_ELECT_SEP())
 
             parent_folder = self.parameters.get_OUTPUT_FILES_DIR()
             sub_folder = self.parameters.get_file_name()
@@ -263,8 +264,8 @@ class MainWindow(QMainWindow):
                     server_com_path, sep=self.parameters.get_SERVER_SEP(), index=False
                 )
 
-        except Exception as e:
-            self.ui.textEdit.append("===>", e)
+        # except Exception as e:
+        #     self.ui.textEdit.append("===>", e)
         # m_zong = ZongFileWriter()
         # m_zong.set_json_to_UI()
         # m_zong.Generate_laser_file(
@@ -286,7 +287,7 @@ class MainWindow(QMainWindow):
         # )
         #        self.progress_bar_init()
 
-        self.ui.textEdit.append("==================================")
+        # self.ui.textEdit.append("==================================")
         #        self.ui.textEdit.append(f"Created folder '{folder_name}'")
         #        p_time = time.strftime("%H_%M_%S", time.localtime())
         #        p_date = datetime.date.today().strftime("%Y_%m_%d")
@@ -297,7 +298,7 @@ class MainWindow(QMainWindow):
         # )
 
         # self.ui.textEdit.append("Path: " + os.path.join(os.getcwd(), com_path))
-        self.ui.textEdit.append("==================================")
+        # self.ui.textEdit.append("==================================")
 
     # def len_check(self, text, key_type, widget):
     #     var = int(parameter_len(text))
@@ -324,7 +325,7 @@ class MainWindow(QMainWindow):
                 #            self.parameters.set_INPUT_PATH(fname[0])
                 self.parameters.set_INPUT_FILE_PATH(fname[0])
 
-                self.config_holder = json_loader(fname[0])
+#                self.config_holder = json_loader(fname[0])
         except Exception as e:
             self.ui.textEdit.append(str(e))
             # s = DataGenerationScript(config_holder=config_holder)

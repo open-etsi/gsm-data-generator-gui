@@ -1,9 +1,11 @@
 import json
-from gui.table import GuiElect, GuiGraph, GuiExtractor
-from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
+from ..table import GuiElect, GuiGraph, GuiExtractor
+# from gui.table import GuiElect, GuiGraph, GuiExtractor
+#from gui.controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
+from .ulits import GuiButtons, GuiCheckBox, TextLengthValidator
 
 from globals import Parameters
-from core.executor.utils import list_2_dict, dict_2_list
+# from core.executor.utils import list_2_dict, dict_2_list
 
 
 class Controller:
@@ -146,7 +148,7 @@ class Controller:
         self.parameters.set_SERVER_CHECK(self.checkbox_gui.get_server_check())
 
     def global_params_to_json(self) -> json:
-        param_dict: json = {
+        param_dict = {
             "DISP": {
                 "elect_data_sep": ".",
                 "server_data_sep": ".",
@@ -180,9 +182,9 @@ class Controller:
                 "OUTPUT_FILES_LASER_EXT": "laser_extracted",
             },
             "PARAMETERS": {
-                "server_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
-                "data_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
-                "laser_variables": self.parameters.get_GRAPH_DICT(),
+                # "server_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
+                # "data_variables": dict_2_list(self.parameters.get_ELECT_DICT()),
+                # "laser_variables": self.parameters.get_GRAPH_DICT(),
             },
         }
         #        print(param_dict)
@@ -233,8 +235,8 @@ class Controller:
         params.set_GRAPH_CHECK(config_holder.DISP.graph_check)
         params.set_SERVER_CHECK(config_holder.DISP.server_check)
 
-        params.set_SERVER_DICT(list_2_dict(config_holder.PARAMETERS.server_variables))
-        params.set_ELECT_DICT(list_2_dict(config_holder.PARAMETERS.data_variables))
+        # params.set_SERVER_DICT(list_2_dict(config_holder.PARAMETERS.server_variables))
+        # params.set_ELECT_DICT(list_2_dict(config_holder.PARAMETERS.data_variables))
         params.set_GRAPH_DICT(config_holder.PARAMETERS.laser_variables)
         #  params.set_INPUT_PATH("C:/Users/hamza.qureshi/Desktop/STC_APP/improvements/dataGen-v17/input.csv")
         params.set_file_name(config_holder.PATHS.FILE_NAME)

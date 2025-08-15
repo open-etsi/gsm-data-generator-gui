@@ -6,8 +6,8 @@ from PyQt6.QtWidgets import (
     QTableWidgetItem,
 )
 
-from gui.controller.ulits import parameter_len
-from core.executor.utils import list_2_dict
+# from .controller import parameter_len
+#from core.executor.utils import list_2_dict
 
 
 class GuiElect:

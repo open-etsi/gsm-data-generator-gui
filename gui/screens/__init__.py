@@ -1,1 +1,1 @@
-from screens import *
+from .screens import *
