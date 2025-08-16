@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png" width="32" />
+&nbsp; **GSM Data Generation Stack**
 
 <img src=https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png width=100/> GSM Data Generation Stack
 ==============================================
@@ -18,6 +20,7 @@
 - Machine learning dataset creation
 
 # gsm-data-genration
+
 
 
 
