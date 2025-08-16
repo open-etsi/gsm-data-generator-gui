@@ -15,14 +15,9 @@ from PyQt6.QtWidgets import (
 from globals import Parameters, DataFrames, SETTINGS
 from .forms import Ui_MainWindow
 from .forms import Ui_Form as login_form
-
-# from .screens import PreviewOutput
-from .screens import PreviewOutput
+from .screens import PreviewOutput, PreviewInput
 from .messages import show_message_box
-from .table import GuiElect, GuiGraph, GuiExtractor
-from .controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
-from .controller.controller import Controller
-
+from .controller import Controller
 from .utils import read_json, list_2_dict, dict_2_list
 
 # from core.executor.utils import read_json, list_2_dict
@@ -72,7 +67,7 @@ class MainWindow(QMainWindow):
         self.dataframes = DataFrames.get_instance()
 
         self.sett = SETTINGS(self.ui)
-        self.text_validator = TextLengthValidator(self.ui)
+        #        self.text_validator = TextLengthValidator(self.ui)
 
         self.controller = Controller(self.ui)
 

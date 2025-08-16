@@ -84,3 +84,32 @@ def read_json(file_path: str):
 
 def copy_function(x):
     return str(x)
+
+
+class TextLengthValidator:
+    def __init__(self, ui):
+        self.ui = ui
+        self.connect_signals()
+
+    def connect_signals(self):
+        text_widgets = {
+            "K4": self.ui.k4_key_text,
+            "OP": self.ui.op_key_text,
+            "SIZE": self.ui.data_size_text,
+            "IMSI": self.ui.imsi_text,
+            "ICCID_MIN": self.ui.iccid_text,
+            "PIN1": self.ui.pin1_text,
+            "PIN2": self.ui.pin2_text,
+            "PUK1": self.ui.puk1_text,
+            "PUK2": self.ui.puk2_text,
+            "ADM1": self.ui.adm1_text,
+            "ADM6": self.ui.adm6_text,
+        }
+
+        for key_type, widget in text_widgets.items():
+            widget.textChanged.connect(
+                lambda text, k=key_type, w=widget: len_check(k, text, w)
+            )
+
+
+__all__ = ["TextLengthValidator"]

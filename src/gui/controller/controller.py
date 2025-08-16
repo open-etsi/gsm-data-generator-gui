@@ -1,6 +1,6 @@
 import json
-from ..table import GuiElect, GuiGraph
-from .ulits import GuiButtons, GuiCheckBox
+from ..widgets import GuiElect, GuiGraph
+from ..widgets import GuiButtons, GuiCheckBox
 from globals import Parameters
 from ..utils import list_2_dict, dict_2_list
 
