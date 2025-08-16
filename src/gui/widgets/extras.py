@@ -1,11 +1,12 @@
 import os
 from typing import Annotated
-from globals import Parameters
+from ...globals import Parameters
 from ..utils import is_valid_iccid, is_valid_imsi
 
 
 # Auto parameters to be updated from gsm-data-generator (lib)
 # Currently hardcoded
+
 
 class GuiCheckBox:
     def __init__(self, ui):
@@ -191,7 +192,7 @@ class GuiButtons:
                 # Check if the JSON is not empty
                 if keys:
                     op_key = keys.get("op")
-                    if len(op_key) == 32:
+                    if len(op_key) == 32:  # type: ignore
                         # Set the op_key_text field in the UI
                         self.ui.op_key_text.setText(str(op_key))
                         # self.statusBar().showMessage(
@@ -229,7 +230,7 @@ class GuiButtons:
                 }
                 if keys:
                     k4_key = keys.get("k4")
-                    if len(k4_key) == 64 or len(k4_key) == 32:
+                    if len(k4_key) == 64 or len(k4_key) == 32:  # type: ignore
                         self.ui.k4_key_text.setText(str(k4_key))
                         # self.statusBar().showMessage(
                         #     "Loaded K4 successfully ! : {} Length : {}".format(
@@ -291,7 +292,8 @@ class GuiButtons:
 
     def auto_data_size_func(self):
         self.ui.data_size_text.setText(str(self.default_data_size))
-#        self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
+
+    #        self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
 
     def auto_imsi_func(self):
         init_imsi = self.default_init_imsi

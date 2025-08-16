@@ -12,9 +12,10 @@ from PyQt6.QtWidgets import (
     QDialog,
 )
 
-from globals import Parameters, DataFrames, SETTINGS
+from ..globals import Parameters, DataFrames, SETTINGS
 from .forms import Ui_MainWindow
-from .forms import Ui_Form as login_form
+
+# from .forms import Ui_Form as login_form
 from .screens import PreviewOutput, PreviewInput
 from .messages import show_message_box
 from .controller import Controller
@@ -72,8 +73,8 @@ class MainWindow(QMainWindow):
         self.controller = Controller(self.ui)
 
         self.user_privileges = user_role
-        self.ui.lbl_username.setText(user_name)
-        self.ui.lbl_userrole.setText(user_role)
+        self.ui.lbl_username.setText(user_name)  # type: ignore
+        self.ui.lbl_userrole.setText(user_role)  # type: ignore
 
         # this must not be here | remove in revision
 
@@ -98,14 +99,14 @@ class MainWindow(QMainWindow):
         self.default_operator_key = ""
 
         # Move To Controller Class
-        self.ui.main_generate.clicked.connect(self.main_generate_function)
-        self.ui.main_save.clicked.connect(self.save_files_function)
-        self.ui.browse_button.clicked.connect(self.browse_button_func)
-        self.ui.preview_in_file.clicked.connect(self.show_input_files)
-        self.ui.save_seting_button.clicked.connect(self.save_settings_func)
-        self.ui.load_seting_button.clicked.connect(self.load_settings_func)
+        self.ui.main_generate.clicked.connect(self.main_generate_function)  # type: ignore
+        self.ui.main_save.clicked.connect(self.save_files_function)  # type: ignore
+        self.ui.browse_button.clicked.connect(self.browse_button_func)  # type: ignore
+        self.ui.preview_in_file.clicked.connect(self.show_input_files)  # type: ignore
+        self.ui.save_seting_button.clicked.connect(self.save_settings_func)  # type: ignore
+        self.ui.load_seting_button.clicked.connect(self.load_settings_func)  # type: ignore
 
-    extractor_columns = []
+    extractor_columns: list[str] = []
 
     def save_settings_func(self):
         self.controller.gui_to_global_params()
@@ -364,45 +365,45 @@ class MainWindow(QMainWindow):
         self.hide()
 
 
-class LoginWindow(QDialog):
-    credentials = None
+# class LoginWindow(QDialog):
+#     credentials = None
 
-    def __init__(self):
-        super(LoginWindow, self).__init__()
-        self.ui = login_form()
-        self.ui.setupUi(self)
-        self.ui.label.setPixmap(QPixmap(STC_ICON))
+#     def __init__(self):
+#         super(LoginWindow, self).__init__()
+#         self.ui = login_form()
+#         self.ui.setupUi(self)
+#         self.ui.label.setPixmap(QPixmap(STC_ICON))
 
-        self.setWindowIcon(QIcon(STC_ICON))
-        self.setWindowTitle("Login Account")
-        self.ui.password.setEchoMode(
-            QLineEdit.EchoMode.Password
-        )  # This line sets the echo mode to Password
+#         self.setWindowIcon(QIcon(STC_ICON))
+#         self.setWindowTitle("Login Account")
+#         self.ui.password.setEchoMode(
+#             QLineEdit.EchoMode.Password
+#         )  # This line sets the echo mode to Password
 
-        self.ui.btn_login.clicked.connect(self.login)
-        self.ui.btn_signup.setCheckable(True)
+#         self.ui.btn_login.clicked.connect(self.login)  # type: ignore
+#         self.ui.btn_signup.setCheckable(True)
 
-    def login(self):
-        username = self.ui.username.text()
-        password = self.ui.password.text()
+#     def login(self):
+#         username = self.ui.username.text()
+#         password = self.ui.password.text()
 
-        # success = False
-        # result, success = self.conn.checkCredentials(
-        #     username=username, password=password
-        # )
-        result, success = "admin", True
+#         # success = False
+#         # result, success = self.conn.checkCredentials(
+#         #     username=username, password=password
+#         # )
+#         result, success = "admin", True
 
-        if success:
-            #            global user_role
-            # user_role = self.conn.getRole(username=username)
-            #            global user_name
-            user_role = "admin"
+#         if success:
+#             #            global user_role
+#             # user_role = self.conn.getRole(username=username)
+#             #            global user_name
+#             user_role = "admin"
 
-            user_name = username
-            credentials = {"name": user_name, "privileges": user_role}
-            self.accept()
-        else:
-            QMessageBox.warning(self, "Login Failed", result)
+#             user_name = username
+#             credentials = {"name": user_name, "privileges": user_role}
+#             self.accept()
+#         else:
+#             QMessageBox.warning(self, "Login Failed", result)
 
 
-__all__ = ["MainWindow", "LoginWindow"]
+__all__ = ["MainWindow"]
