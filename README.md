@@ -10,20 +10,12 @@
 </p>
 !-->
 
-<img src=https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png width=128/> Open Deep Learning Compiler Stack
+<img src=https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png width=128/> Open GSM Data Generation Stack
 ==============================================
-[Documentation](https://tvm.apache.org/docs) |
+[Documentation]() |
 [Contributors](CONTRIBUTORS.md) |
-[Community](https://tvm.apache.org/community) |
+[Community]() |
 [Release Notes](NEWS.md)
-
-
-======================================================================================================================
-[Documentation](https://tvm.apache.org/docs) |
-[Contributors](CONTRIBUTORS.md) |
-[Community](https://tvm.apache.org/community) |
-[Release Notes](NEWS.md)
-
 
 License
 -------
@@ -31,8 +23,8 @@ TVM is licensed under the [Apache-2.0](LICENSE) license.
 
 Getting Started
 ---------------
-Check out the [TVM Documentation](https://tvm.apache.org/docs/) site for installation instructions, tutorials, examples, and more.
-The [Getting Started with TVM](https://tvm.apache.org/docs/get_started/overview.html) tutorial is a great
+Check out the [Data Generation Documentation]() site for installation instructions, tutorials, examples, and more.
+The [Getting Started with Data Generation]() tutorial is a great
 place to start.
 
 Features
@@ -41,6 +33,7 @@ Features
 - Operator-specific templates
 - GUI support for ease of use
 - Data output in various formats
+
 
 
 
