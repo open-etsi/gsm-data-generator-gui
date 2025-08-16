@@ -7,13 +7,6 @@
 </table>
 </p>
 
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png" width="128"/>
-  <br/>
-  <h2>GSM Data Generation Stack</h2>
-</p>
-
 <p align="center"> 
 <img src="https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png" width="100" align="left" />
 <h3>GSM Data Generation Stack</h3>
@@ -39,6 +32,7 @@
 - Machine learning dataset creation
 
 # gsm-data-genration
+
 
 
 
