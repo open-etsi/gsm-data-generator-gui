@@ -7,7 +7,7 @@
 
 
 <div style="display: flex; align-items: center; gap: 10px;">
-  <img src="https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png" width="48"/>
+  <img src="https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png" width="128"/>
   <span style="font-size: 20px; font-weight: bold;">Open Deep Learning Compiler Stack</span>
 </div>
 
@@ -24,6 +24,7 @@
 - Machine learning dataset creation
 
 # gsm-data-genration
+
 
 
 
