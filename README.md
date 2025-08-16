@@ -1,4 +1,4 @@
-<img src=https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon.png width=128/> GSM Data Generator
+<img src=https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon.png width=64/> GSM Data Generator
 A modular GSM data generation toolkit built in Python. It supports operator-specific logic (e.g., Zong), template-based data structures, and a user-friendly GUI for simulating synthetic telecom datasets.
 
 ## Features
@@ -13,4 +13,5 @@ A modular GSM data generation toolkit built in Python. It supports operator-spec
 - Machine learning dataset creation
 
 # gsm-data-genration
+
 
