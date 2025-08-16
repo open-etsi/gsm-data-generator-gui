@@ -1,34 +1,11 @@
 import os
 from typing import Annotated
 from globals import Parameters
-from ..utils import len_check, parameter_len, is_valid_iccid, is_valid_imsi
+from ..utils import is_valid_iccid, is_valid_imsi
 
 
-class TextLengthValidator:
-    def __init__(self, ui):
-        self.ui = ui
-        self.connect_signals()
-
-    def connect_signals(self):
-        text_widgets = {
-            "K4": self.ui.k4_key_text,
-            "OP": self.ui.op_key_text,
-            "SIZE": self.ui.data_size_text,
-            "IMSI": self.ui.imsi_text,
-            "ICCID_MIN": self.ui.iccid_text,
-            "PIN1": self.ui.pin1_text,
-            "PIN2": self.ui.pin2_text,
-            "PUK1": self.ui.puk1_text,
-            "PUK2": self.ui.puk2_text,
-            "ADM1": self.ui.adm1_text,
-            "ADM6": self.ui.adm6_text,
-        }
-
-        for key_type, widget in text_widgets.items():
-            widget.textChanged.connect(
-                lambda text, k=key_type, w=widget: len_check(k, text, w)
-            )
-
+# Auto parameters to be updated from gsm-data-generator (lib)
+# Currently hardcoded
 
 class GuiCheckBox:
     def __init__(self, ui):
@@ -37,10 +14,15 @@ class GuiCheckBox:
         self.global_prod_check = None
         self.parameters = Parameters.get_instance()
         self.ui = ui
-        self.ui.production_data.setChecked(self.parameters.get_PRODUCTION_CHECK())
-        self.ui.elect_data.setChecked(self.parameters.get_ELECT_CHECK())
-        self.ui.graph_data.setChecked(self.parameters.get_GRAPH_CHECK())
-        self.ui.server_data.setChecked(self.parameters.get_SERVER_CHECK())
+        self.ui.production_data.setChecked(True)
+        self.ui.elect_data.setChecked(True)
+        self.ui.graph_data.setChecked(True)
+        self.ui.server_data.setChecked(True)
+
+        # self.ui.production_data.setChecked(self.parameters.get_PRODUCTION_CHECK())
+        # self.ui.elect_data.setChecked(self.parameters.get_ELECT_CHECK())
+        # self.ui.graph_data.setChecked(self.parameters.get_GRAPH_CHECK())
+        # self.ui.server_data.setChecked(self.parameters.get_SERVER_CHECK())
         self.check_state_changed()
         self.check_state_prod_data()
 
@@ -309,7 +291,7 @@ class GuiButtons:
 
     def auto_data_size_func(self):
         self.ui.data_size_text.setText(str(self.default_data_size))
-        self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
+#        self.ui.data_size_text.setText(str(self.parameters.get_DATA_SIZE()))
 
     def auto_imsi_func(self):
         init_imsi = self.default_init_imsi
@@ -400,6 +382,3 @@ class GuiButtons:
         #        string = generate_8_Digit()
         string = "00000000"
         self.ui.adm6_text.setText(string)
-
-
-__all__ = ["TextLengthValidator", "GuiButtons"]

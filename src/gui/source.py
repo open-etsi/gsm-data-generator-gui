@@ -15,13 +15,10 @@ from PyQt6.QtWidgets import (
 from globals import Parameters, DataFrames, SETTINGS
 from .forms import Ui_MainWindow
 from .forms import Ui_Form as login_form
-
-# from .screens import PreviewOutput
-from .screens import PreviewOutput
+from .screens import PreviewOutput, PreviewInput
 from .messages import show_message_box
-from .table import GuiElect, GuiGraph, GuiExtractor
-from .controller.ulits import GuiButtons, GuiCheckBox, TextLengthValidator
-from .controller.controller import Controller
+from .controller import Controller
+from .utils import read_json, list_2_dict, dict_2_list
 
 # from core.executor.utils import read_json, list_2_dict
 # from core.parser.utils import json_loader, gui_loader, json_loader1
@@ -29,6 +26,7 @@ from .controller.controller import Controller
 
 debug = False
 STC_ICON = "resources/stc_logo.ico"
+STC_ICON = ""
 
 
 class MainWindow(QMainWindow):
@@ -69,13 +67,7 @@ class MainWindow(QMainWindow):
         self.dataframes = DataFrames.get_instance()
 
         self.sett = SETTINGS(self.ui)
-
-        #self.elect_gui = GuiElect(self.ui)
-        #self.graph_gui = GuiGraph(self.ui)
-        #self.button_gui = GuiButtons(self.ui)
-        #self.checkbox_gui = GuiCheckBox(self.ui)
-        #self.extractor_gui = GuiExtractor(self.ui)
-        self.text_validator = TextLengthValidator(self.ui)
+        #        self.text_validator = TextLengthValidator(self.ui)
 
         self.controller = Controller(self.ui)
 
@@ -85,17 +77,17 @@ class MainWindow(QMainWindow):
 
         # this must not be here | remove in revision
 
-        # data = read_json("settings.json")
-        # if data:
-        #     header_server_dict = list_2_dict(data["PARAMETERS"]["server_variables"])
-        #     headers_laser_dict = data["PARAMETERS"]["laser_variables"]
-        #     headers_data_dict = list_2_dict(data["PARAMETERS"]["data_variables"])
-        #     laser_ext_path = data["PATHS"]["OUTPUT_FILES_LASER_EXT"]
-        #
-        # self.parameters.set_LASER_EXT_PATH(laser_ext_path)
-        # self.parameters.set_ELECT_DICT(headers_data_dict)
-        # self.parameters.set_GRAPH_DICT(headers_laser_dict)
-        # self.parameters.set_SERVER_DICT(header_server_dict)
+        data = read_json("settings.json")
+        if data:
+            header_server_dict = list_2_dict(data["PARAMETERS"]["server_variables"])
+            headers_laser_dict = data["PARAMETERS"]["laser_variables"]
+            headers_data_dict = list_2_dict(data["PARAMETERS"]["data_variables"])
+            laser_ext_path = data["PATHS"]["OUTPUT_FILES_LASER_EXT"]
+
+        self.parameters.set_LASER_EXT_PATH(laser_ext_path)  # type: ignore
+        self.parameters.set_ELECT_DICT(headers_data_dict)  # type: ignore
+        self.parameters.set_GRAPH_DICT(headers_laser_dict)  # type: ignore
+        self.parameters.set_SERVER_DICT(header_server_dict)  # type: ignore
 
         # ==========================================#
         # ============DEFAULT VALUES================#
