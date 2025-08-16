@@ -17,7 +17,7 @@
 [Community]() |
 [Release Notes](NEWS.md)
 
-GSM Data Generator GUI is a graphical interface for the gsm-data-generator library (https://github.com/open-etsi/gsm-data-generator). It simplifies the creation and management of datasets for GSM, USIM, and eSIM applications. The tool provides an easy-to-use interface for developers and operators, bridging the gap between low-level telecom data generation and productivity-focused user workflows.
+GSM Data Generator GUI is a graphical interface for the [Data Generation](https://github.com/open-etsi/gsm-data-generator) library. It simplifies the creation and management of datasets for GSM, USIM, and eSIM applications. The tool provides an easy-to-use interface for developers and operators, bridging the gap between low-level telecom data generation and productivity-focused user workflows.
 
 License
 -------
