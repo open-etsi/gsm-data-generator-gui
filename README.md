@@ -17,6 +17,8 @@
 [Community]() |
 [Release Notes](NEWS.md)
 
+GSM Data Generator GUI is a graphical interface for the gsm-data-generator library. It simplifies the creation and management of datasets for GSM, USIM, and eSIM applications. The tool provides an easy-to-use interface for developers and operators, bridging the gap between low-level telecom data generation and productivity-focused user workflows.
+
 License
 -------
 TVM is licensed under the [Apache-2.0](LICENSE) license.
