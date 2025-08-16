@@ -2,7 +2,7 @@
 <p align="center">
   <table>
     <tr>
-      <td><img src="https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png" width="128"/></td>
+      <td><img src=https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png width="128"/></td>
       <td style="vertical-align: middle; padding-left: 12px;">
         <h1>GSM Data Generation Stack</h1>
       </td>
@@ -42,6 +42,7 @@ Features
 - Operator-specific templates
 - GUI support for ease of use
 - Data output in various formats
+
 
 
 
