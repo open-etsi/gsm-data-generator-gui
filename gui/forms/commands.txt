@@ -1,1 +1,0 @@
-# pyinstaller --onefile --noconsole --icon=resources\style\icons\stc_logo.ico --name DataGenerator source.py
