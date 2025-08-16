@@ -1,5 +1,4 @@
-
-<p align="center">
+<!--
   <table>
     <tr>
       <td><img src=https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png width="128"/></td>
@@ -9,9 +8,9 @@
     </tr>
   </table>
 </p>
+!-->
 
-
-<img src=https://raw.githubusercontent.com/apache/tvm-site/main/images/logo/tvm-logo-small.png width=128/> Open Deep Learning Compiler Stack
+<img src=https://raw.githubusercontent.com/hamzaqureshi5/gsm-data-generator-gui/ds0/src/resources/icon_without_text.png width=128/> Open Deep Learning Compiler Stack
 ==============================================
 [Documentation](https://tvm.apache.org/docs) |
 [Contributors](CONTRIBUTORS.md) |
@@ -42,6 +41,7 @@ Features
 - Operator-specific templates
 - GUI support for ease of use
 - Data output in various formats
+
 
 
 
