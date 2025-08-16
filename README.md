@@ -5,6 +5,13 @@
 [Community](https://tvm.apache.org/community) |
 [Release Notes](NEWS.md)
 
+
+<div style="display: flex; align-items: center; gap: 10px;">
+  <img src="https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png" width="48"/>
+  <span style="font-size: 20px; font-weight: bold;">Open Deep Learning Compiler Stack</span>
+</div>
+
+
 ## Features
 - Synthetic GSM data generation
 - Operator-specific templates
@@ -17,6 +24,7 @@
 - Machine learning dataset creation
 
 # gsm-data-genration
+
 
 
 
