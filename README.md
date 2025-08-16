@@ -1,4 +1,9 @@
 
+<p align="left">
+  <img src="https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png" width="40"/>
+  <span style="font-size: 20px; font-weight: bold;">GSM Data Generation Stack</span>
+</p>
+
 <img src=https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png width=100/> GSM Data Generation Stack
 ==============================================
 [Documentation](https://tvm.apache.org/docs) |
@@ -18,6 +23,7 @@
 - Machine learning dataset creation
 
 # gsm-data-genration
+
 
 
 
