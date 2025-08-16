@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import (
 )
 
 from .utils import parameter_len
+
 # from core.executor.utils import list_2_dict
 
 
