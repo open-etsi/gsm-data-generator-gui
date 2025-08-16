@@ -21,7 +21,7 @@ GSM Data Generator GUI is a graphical interface for the [Data Generation](https:
 
 License
 -------
-TVM is licensed under the [Apache-2.0](LICENSE) license.
+Data Generation is licensed under the [Apache-2.0](LICENSE) license.
 
 Getting Started
 ---------------
