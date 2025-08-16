@@ -1,5 +1,10 @@
 
 <img src=https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png width=128/> Open Deep Learning Compiler Stack
+
+<p align="left">
+  <img src="https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png" width="48" />
+  <b>Open Deep Learning Compiler Stack</b>
+</p>
 ==============================================
 [Documentation](https://tvm.apache.org/docs) |
 [Contributors](CONTRIBUTORS.md) |
@@ -26,6 +31,7 @@ A modular GSM data generation toolkit built in Python. It supports operator-spec
 - Machine learning dataset creation
 
 # gsm-data-genration
+
 
 
 
