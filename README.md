@@ -1,10 +1,6 @@
 
-<img src=https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png width=128/> Open Deep Learning Compiler Stack
+<img src=https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png width=100/> GSM Data Generator Stack
 
-<p align="left">
-  <img src="https://github.com/hamzaqureshi5/gsm-data-generator-gui/blob/ds0/src/resources/icon_without_text.png" width="48" />
-  <b>Open Deep Learning Compiler Stack</b>
-</p>
 ==============================================
 [Documentation](https://tvm.apache.org/docs) |
 [Contributors](CONTRIBUTORS.md) |
