@@ -21,9 +21,7 @@ class Ui_MainWindow(object):
             QtGui.QIcon.State.Off,
         )
         MainWindow.setWindowIcon(icon)
-        MainWindow.setStyleSheet(
-            "background-color:rgba(32,33,36,255);\n" "color:white;"
-        )
+        MainWindow.setStyleSheet("background-color:rgba(32,33,36,255);\ncolor:white;")
         MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -1188,7 +1186,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.lbl_vendor.setFont(font)
-        self.lbl_vendor.setStyleSheet("#lbl_vendor{\n" "\n" "\n" "}")
+        self.lbl_vendor.setStyleSheet("#lbl_vendor{\n\n\n}")
         self.lbl_vendor.setTextFormat(QtCore.Qt.TextFormat.AutoText)
         self.lbl_vendor.setAlignment(
             QtCore.Qt.AlignmentFlag.AlignLeading
@@ -2227,9 +2225,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame_28.sizePolicy().hasHeightForWidth())
         self.frame_28.setSizePolicy(sizePolicy)
-        self.frame_28.setStyleSheet(
-            "#abc\n" "{background-color: rgb(170, 85, 127);\n" "}"
-        )
+        self.frame_28.setStyleSheet("#abc\n{background-color: rgb(170, 85, 127);\n}")
         self.frame_28.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_28.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_28.setObjectName("frame_28")

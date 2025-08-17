@@ -1,5 +1,5 @@
 import pandas as pd
-from typing import List, Dict
+from typing import Any
 
 debug = False
 
@@ -114,25 +114,25 @@ class Parameters(DataFrames):
             self.__SERVER_DICT = {}
 
             self.__INPUT_FILE_PARAMETERS = {}
-            self.file_name: str
+            # self.file_name: str
             # ===========================-=================#
             # ================= SEPERATOR==================#
             # =============================================#
 
-            self.__ELECT_SEP = None
-            self.__GRAPH_SEP = None
-            self.__SERVR_SEP = None
+            self.__ELECT_SEP: Any = None
+            self.__GRAPH_SEP: Any = None
+            self.__SERVR_SEP: Any = None
 
             # ============================================#
             # =================EXTRACTOR==================#
             # ============================================#
 
-            self.__TEMPLATE_JSON = None
-            self.__INPUT_FILE_PATH = None
-            self.__INPUT_CSV = None
-            self.__OUTPUT_FILES_DIR = None
-            self.__OUTPUT_FILES_LASER_EXT = None
-            self.file_name = None
+            self.__TEMPLATE_JSON: Any = None
+            self.__INPUT_FILE_PATH: Any = None
+            self.__INPUT_CSV: Any = None
+            self.__OUTPUT_FILES_DIR: Any = None
+            self.__OUTPUT_FILES_LASER_EXT: Any = None
+            self.file_name: Any = None
 
     #           self.__LASER_DICT = None
     #           self.__SERVER_LIST = None
@@ -441,6 +441,8 @@ class Parameters(DataFrames):
             case "DF":
                 df = pd.DataFrame(param)
                 return df.empty
+            case _:
+                return False
 
     def check_params(self) -> bool:
         if not self.get_PRODUCTION_CHECK():

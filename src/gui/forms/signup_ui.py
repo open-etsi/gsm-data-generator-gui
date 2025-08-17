@@ -16,9 +16,7 @@ class Ui_Form(object):
         Form.setMaximumSize(QtCore.QSize(800, 750))
         self.frame = QtWidgets.QFrame(parent=Form)
         self.frame.setGeometry(QtCore.QRect(10, 10, 781, 731))
-        self.frame.setStyleSheet(
-            "\n" "background-color:rgba(32,33,36,255);\n" "color:white;"
-        )
+        self.frame.setStyleSheet("\nbackground-color:rgba(32,33,36,255);\ncolor:white;")
         self.frame.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhNone)
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -81,7 +79,7 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(75)
         self.btn_signup.setFont(font)
-        self.btn_signup.setStyleSheet("QPushButton{\n" "border:none;\n" "}")
+        self.btn_signup.setStyleSheet("QPushButton{\nborder:none;\n}")
         self.btn_signup.setObjectName("btn_signup")
         self.btn_login = QtWidgets.QPushButton(parent=self.frame)
         self.btn_login.setGeometry(QtCore.QRect(470, 570, 161, 41))

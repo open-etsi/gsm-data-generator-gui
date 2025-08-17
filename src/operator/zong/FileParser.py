@@ -13,9 +13,7 @@ Author : Hamza Qureshi
 
 import re
 import os
-import time
 import json
-import numpy as np
 import pandas as pd
 
 # from datetime import datetime
@@ -200,9 +198,7 @@ class ZongFileParser:
                 data = json.load(file)  # Read the existing JSON data
             except json.JSONDecodeError as e:
                 print("ERROR!", e)
-                data = (
-                    {}
-                )  # Initialize with an empty dictionary if the file is empty or invalid JSON
+                data = {}  # Initialize with an empty dictionary if the file is empty or invalid JSON
             #            data={}
             # Update or create the input and output objects as needed
             data["input"] = variables.get("input", {})
@@ -221,9 +217,7 @@ class ZongFileParser:
             try:
                 data = json.load(file)  # Read the existing JSON data
             except json.JSONDecodeError:
-                data = (
-                    {}
-                )  # Initialize with an empty dictionary if the file is empty or invalid JSON
+                data = {}  # Initialize with an empty dictionary if the file is empty or invalid JSON
 
             # Update or create the input and output objects as needed
             data["JOB_NAME"] = variables.get("JOB_NAME", {})

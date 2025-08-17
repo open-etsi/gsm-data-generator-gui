@@ -1,5 +1,5 @@
 from typing import Annotated
-from .stylesheet import style_sheet_disabled, style_sheet_good, style_sheet_bad
+from .stylesheet import style_sheet_good, style_sheet_bad
 
 
 def parameter_len(param) -> str:
@@ -28,11 +28,21 @@ def parameter_len(param) -> str:
 
 
 def is_valid_iccid(iccid: Annotated[int, "ICCID length validation"]) -> bool:
+    """
+    Validate ICCID length.
+    Args:
+        ICCID (int): ICCID (ICCID Length Validation).
+    """
     iccid_length = len(str(iccid))
     return iccid_length in [18, 19, 20]
 
 
-def is_valid_imsi(imsi: [int, "IMSI Length Validation"]) -> bool:  # type: ignore
+def is_valid_imsi(imsi: int) -> bool:
+    """Validate IMSI length.
+    Args:
+        imsi (int): IMSI (IMSI Length Validation).
+    """
+
     return len(str(imsi)) == 15
 
 

@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QSettings
 from PyQt6.QtWidgets import QWidget
-from globals.parameters import Parameters
+from .parameters import Parameters
 
 
 class SETTINGS(QWidget):

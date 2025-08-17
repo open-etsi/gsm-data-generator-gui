@@ -18,9 +18,7 @@ class Ui_Form(object):
         self.frame.setGeometry(QtCore.QRect(0, 0, 801, 751))
         self.frame.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)
         self.frame.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.frame.setStyleSheet(
-            "\n" "background-color:rgba(32,33,36,255);\n" "color:white;"
-        )
+        self.frame.setStyleSheet("\nbackground-color:rgba(32,33,36,255);\ncolor:white;")
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame.setObjectName("frame")
@@ -89,9 +87,7 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(75)
         self.btn_signup.setFont(font)
-        self.btn_signup.setStyleSheet(
-            "QPushButton{\n" "border:none;\n" "color:white;\n" "}"
-        )
+        self.btn_signup.setStyleSheet("QPushButton{\nborder:none;\ncolor:white;\n}")
         self.btn_signup.setObjectName("btn_signup")
         self.btn_login = QtWidgets.QPushButton(parent=self.frame)
         self.btn_login.setGeometry(QtCore.QRect(460, 500, 161, 41))
