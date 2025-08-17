@@ -26,13 +26,12 @@ Data Generation is licensed under the [Apache-2.0](LICENSE) license.
 Getting Started
 ---------------
 Check out the [Data Generation Documentation]() site for installation instructions, tutorials, examples, and more.
-The [Getting Started with Data Generation]() tutorial is a great
-place to start.
+The [Getting Started with Data Generation]() tutorial is a great place to start.
 
 
 Features
 --------
-Synthetic GSM data generation, Operator-specific templates, Data output in various formats, GUI support
+Synthetic GSM data generation, Operator-specific templates, data output in various formats, and GUI support.
 
 
 Contribute to Data Generation

@@ -17,5 +17,4 @@
 # under the License.
 set -euxo pipefail
 
-# python3 -m pylint src --rcfile="$(dirname "$0")"/pylintrc
 python3 -m pylint src --rcfile="$(dirname "$0")"/pylintrc --ignore=forms
