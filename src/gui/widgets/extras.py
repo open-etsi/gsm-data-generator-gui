@@ -1,5 +1,4 @@
 import os
-from typing import Annotated
 from ...globals import Parameters
 from ..utils import is_valid_iccid, is_valid_imsi
 

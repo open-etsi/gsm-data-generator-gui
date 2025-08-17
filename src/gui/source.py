@@ -1,25 +1,20 @@
-import datetime
-import json
 import os
 import time
 
-from PyQt6.QtGui import QIcon, QPixmap
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import (
     QFileDialog,
     QMainWindow,
-    QLineEdit,
-    QMessageBox,
-    QDialog,
 )
 
 from ..globals import Parameters, DataFrames, SETTINGS
 from .forms import Ui_MainWindow
 
 # from .forms import Ui_Form as login_form
-from .screens import PreviewOutput, PreviewInput
+from .screens import PreviewOutput
 from .messages import show_message_box
 from .controller import Controller
-from .utils import read_json, list_2_dict, dict_2_list
+from .utils import read_json, list_2_dict
 
 # from core.executor.utils import read_json, list_2_dict
 # from core.parser.utils import json_loader, gui_loader, json_loader1

@@ -1,4 +1,3 @@
-import json
 from ..widgets import GuiElect, GuiGraph
 from ..widgets import GuiButtons, GuiCheckBox
 from ...globals import Parameters
