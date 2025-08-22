@@ -1,10 +1,11 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icon_without_text.ico</file>
+    <file>icon_without_text.png</file>
     <file>minusw.ico</file>
     <file>addw.ico</file>
     <file>addw.ico</file>
     <file>savew.ico</file>
-    <file>refresh (1).ico</file>
     <file>minusw.ico</file>
     <file>addw.ico</file>
     <file>savew.ico</file>

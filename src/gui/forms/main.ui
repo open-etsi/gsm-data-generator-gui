@@ -17,15 +17,19 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Secure Tech Cards (Pvt) Ltd </string>
+   <string>Data Genaration </string>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>//stcards-dc/STCards_Software_Team/resources/stc_png.png</normaloff>//stcards-dc/STCards_Software_Team/resources/stc_png.png</iconset>
+    <normaloff>../../resources/icon_without_text.ico</normaloff>../../resources/icon_without_text.ico</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgba(32,33,36,255);
-color:white;</string>
+   <string notr="true">
+background-color:rgba(32,33,36,255);
+image: url(resources/style/icons/icon_without_text.ico);
+color:white;
+
+</string>
   </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonIconOnly</enum>
@@ -565,6 +569,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1109,6 +1114,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1253,6 +1259,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1417,6 +1424,7 @@ border:2px solid black;
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -1490,6 +1498,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -2260,6 +2269,7 @@ border:2px solid black;
                        <font>
                         <family>Segoe UI</family>
                         <pointsize>9</pointsize>
+                        <weight>75</weight>
                         <italic>false</italic>
                         <bold>true</bold>
                        </font>
@@ -2297,6 +2307,7 @@ background-color:rgba(32,33,36,255);
                        <font>
                         <family>Segoe UI</family>
                         <pointsize>9</pointsize>
+                        <weight>75</weight>
                         <italic>false</italic>
                         <bold>true</bold>
                        </font>
@@ -2847,6 +2858,7 @@ background-color:rgba(32,33,36,255);
                          <property name="font">
                           <font>
                            <family>Segoe UI</family>
+                           <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>
@@ -3386,7 +3398,7 @@ padding:2px;
 color: rgb(0, 0, 0);}
 #e_del_text:hover{
 
-background-color:rgba(32,33,36,255);
+background-color:#727272;
 
 }</string>
                          </property>
@@ -3420,7 +3432,7 @@ padding:2px;
 color: rgb(0, 0, 0);}
 #e_add_text:hover{
 	
-background-color:rgba(32,33,36,255);
+background-color:#727272;
 }</string>
                          </property>
                          <property name="text">
@@ -3604,6 +3616,7 @@ QListView::item:hover{
                     <font>
                      <family>Segoe UI</family>
                      <pointsize>9</pointsize>
+                     <weight>68</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -4218,6 +4231,7 @@ border:2px solid black;
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -4255,6 +4269,7 @@ background-color:rgba(32,33,36,255);
                              <font>
                               <family>Segoe UI</family>
                               <pointsize>9</pointsize>
+                              <weight>75</weight>
                               <italic>false</italic>
                               <bold>true</bold>
                              </font>
@@ -4828,6 +4843,7 @@ background-color:rgba(32,33,36,255);
                          <property name="font">
                           <font>
                            <family>Segoe UI</family>
+                           <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>
